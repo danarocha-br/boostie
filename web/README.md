@@ -1,44 +1,60 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<h2 align="center">
+    <img alt="GoBarber API" src="https://res.cloudinary.com/danarocha/image/upload/v1600066654/github/boostie_logo_t2zya5.png"  width="180px"/>
+    <br />
+    <br />
+    Investment platform design implementation
+</h2>
 
-## Available Scripts
+<h5 align="center" >
+  This implementation is part of the design project <a href="https://www.behance.net/gallery/103975967/Improving-Investment-Platforms">Boostie - Improving investment platforms</a>.
+</h5>
 
-In the project directory, you can run:
+---
+
+![Boostie App Screenshot]()
+
+<p align="center">
+  <a href="https://boostie.netlify.app" target="_blank">
+    <img alt="Demo on Netlify" src="">
+  </a>
+</p>
+
+## :rocket: Built With
+
+- [ReactJS](https://reactjs.org/)
+- [Typescript][ts]
+- [react-router-dom](https://github.com/ReactTraining/react-router)
+- [chakra-ui](https://chakra-ui.com/)
+- [emotion](https://emotion.sh/docs/styled)
+- [framer-motion](https://www.framer.com/motion/)
+- [nivo](https://nivo.rocks)
+- [date-fns](https://date-fns.org/)
+- [Faker.js](https://github.com/marak/Faker.js/)
+
+## Tools
+
+- es6 syntax and babel
+- [ESLint][vceslint] + Prettier + [VS Code][vscode] with [EditorConfig][vceditconfig]
+
+## How to run
+
+In the web directory, you can run:
 
 ### `yarn start`
 
 Runs the app in the development mode.<br />
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## :memo: License
 
-### `yarn test`
+This project is under the MIT license. See the [LICENSE](https://github.com/lukemorales/bancointer/blob/master/LICENSE) for more information.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `yarn build`
+Made with ♥ by Dana Rocha :wave: [Get in touch!](https://www.linkedin.com/in/danarocha/)
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+[ts]: https://www.typescriptlang.org
+[vscode]: https://code.visualstudio.com/
+[yarn]: https://yarnpkg.com/
+[vceditconfig]: https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig
+[vceslint]: https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint
