@@ -31,7 +31,7 @@ const PortfolioHistory: React.FC = () => {
             <CardStat
               value={945.45}
               currency="$"
-              result="234.23 (30.34%)"
+              result="234.23 (30.3%)"
               month="Aug"
               year={20}
             />
