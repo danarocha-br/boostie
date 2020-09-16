@@ -1,4 +1,5 @@
 import { theme } from '@chakra-ui/core';
+import { boxShadow } from 'styled-system';
 
 import { icons } from './icons';
 
@@ -16,8 +17,9 @@ const boostieTheme = {
     md: '16px',
     lg: '22px',
     xl: '24px',
-    '2xl': '32px',
-    '3xl': '38px',
+    '2xl': '28px',
+    '3xl': '32px',
+    '4xl': '38px',
   },
   fontWeights: {
     ...theme.fontWeights,
@@ -47,7 +49,7 @@ const boostieTheme = {
     },
     purple: {
       ...theme.colors.purple,
-      900: '#594AFE',
+      900: '#0525F7',
     },
     green: {
       ...theme.colors.green,
@@ -69,6 +71,11 @@ const boostieTheme = {
   icons: {
     ...theme.icons,
     ...icons,
+  },
+  boxShadow: {
+    ...theme.shadows,
+    small: '0px 7px 5px rgba(0, 0, 0, 0.01)',
+    medium: '0px 7px 7px rgba(0, 0, 0, 0.03)',
   },
 };
 

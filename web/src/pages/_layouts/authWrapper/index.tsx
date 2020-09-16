@@ -1,28 +1,31 @@
 import React from 'react';
-import { Grid, Flex } from '@chakra-ui/core';
+import { Grid } from '@chakra-ui/core';
 
 import Menu from '../../../components/Menu';
-import Navbar from '../../../components/Navbar/index';
+import Navbar from '../../../components/Navbar';
+import Footer from '../../../components/Footer';
+import Main from './Main';
 
-export interface Props {}
-
-const AuthWrapper: React.FC<Props> = () => {
+const AuthWrapper: React.FC = ({ children }) => {
   return (
     <Grid
-      as="main"
+      as="div"
       height="100vh"
       width="100%"
       templateColumns="310px 1fr"
-      templateRows="110px 1fr 110px"
+      templateRows="324px 1fr 50px"
       templateAreas="
         'menu header'
         'menu main'
         'menu footer'
       "
       bgImage="linear-gradient(180deg, #bcbcc112 0%, #fafafa 103.67%);"
+      overflow="scroll"
     >
       <Menu />
       <Navbar />
+      <Main>{children}</Main>
+      <Footer />
     </Grid>
   );
 };

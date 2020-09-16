@@ -6,5 +6,6 @@ declare module 'react' {
       React.DOMAttributes<T> {
     disabled?: boolean;
     loading?: boolean;
+    variants?: string | object | null;
   }
 }
