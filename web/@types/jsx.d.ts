@@ -5,5 +5,6 @@ declare module 'react' {
     extends React.AriaAttributes,
       React.DOMAttributes<T> {
     disabled?: boolean;
+    loading?: boolean;
   }
 }

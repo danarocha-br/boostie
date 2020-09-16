@@ -2,7 +2,7 @@ import { theme } from '@chakra-ui/core';
 
 import { icons } from './icons';
 
-const customTheme = {
+const boostieTheme = {
   ...theme,
   fonts: {
     body: 'canada-type-gibson, system-ui, sans-serif',
@@ -72,4 +72,4 @@ const customTheme = {
   },
 };
 
-export default customTheme;
+export default boostieTheme;

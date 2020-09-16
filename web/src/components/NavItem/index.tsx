@@ -1,6 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { Icon, Text } from '@chakra-ui/core';
+import { NavLink } from 'react-router-dom';
+import { Icon, Text, Skeleton } from '@chakra-ui/core';
 
 import { ListItem } from './styles';
 
@@ -10,6 +10,7 @@ interface INavItemProps {
   icon: string;
   disabled?: boolean;
   active?: boolean;
+  loading?: boolean;
 }
 
 const NavItem: React.FC<INavItemProps> = ({
@@ -17,6 +18,7 @@ const NavItem: React.FC<INavItemProps> = ({
   link,
   title,
   disabled,
+  loading,
   active,
   ...rest
 }) => {
@@ -36,17 +38,23 @@ const NavItem: React.FC<INavItemProps> = ({
   }
 
   return (
-    <ListItem disabled={disabled} {...rest}>
-      <Link to={link}>
-        <Icon name={icon} size="24px" mr="2" color="gray.900" />
-        <Text color="gray.900">{title}</Text>
-      </Link>
+    <ListItem disabled={disabled} loading={loading} {...rest}>
+      <NavLink to={link}>
+        <Skeleton isLoaded={!loading} borderRadius="xlarge">
+          <Icon name={icon} size="24px" color="gray.900" />
+        </Skeleton>
+
+        <Skeleton isLoaded={!loading} borderRadius="small" ml="3" w={100}>
+          <Text color="gray.900">{title}</Text>
+        </Skeleton>
+      </NavLink>
     </ListItem>
   );
 };
 
 NavItem.defaultProps = {
   disabled: false,
+  loading: false,
 };
 
 export default NavItem;
