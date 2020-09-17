@@ -1,5 +1,5 @@
 <h2 align="center">
-    <img alt="GoBarber API" src="https://res.cloudinary.com/danarocha/image/upload/v1600066654/github/boostie_logo_t2zya5.png"  width="180px"/>
+    <img alt="Boostie logo" src="https://res.cloudinary.com/danarocha/image/upload/v1600066654/github/boostie_logo_t2zya5.png"  width="180px"/>
     <br />
     <br />
     Investment platform design implementation
@@ -11,7 +11,7 @@
 
 ---
 
-![Boostie App Screenshot]()
+<img alt="Boostie App" src="https://res.cloudinary.com/danarocha/image/upload/v1600347001/Browsers_k153r7.jpg"  />
 
 <p align="center">
   <a href="https://boostie.netlify.app" target="_blank">

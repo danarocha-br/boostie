@@ -4,10 +4,12 @@ import { Flex, List, PseudoBox } from '@chakra-ui/core';
 import ProfileLink from '../ProfileLink';
 import NavItem from '../NavItem';
 
-export interface Props {}
+import { User } from '../ProfileLink/User';
 
-const Menu: React.FC<Props> = () => {
+const Menu: React.FC = () => {
   const [isLoading, setLoading] = useState(false);
+
+  const user: User = { name: 'Dana Rocha', email: 'email@domain.com' };
 
   return (
     <Flex
@@ -20,11 +22,7 @@ const Menu: React.FC<Props> = () => {
       p="8"
     >
       <PseudoBox>
-        <ProfileLink
-          name="Dana Rocha"
-          email="email@domain.com"
-          loading={isLoading}
-        />
+        <ProfileLink user={user} loading={isLoading} />
 
         <List mt="20">
           <NavItem

@@ -2,14 +2,14 @@ import React from 'react';
 import { Flex, Skeleton } from '@chakra-ui/core';
 
 import { UserImage, Wrapper, UserName, UserEmail } from './styles';
+import { User } from './User';
 
 export interface ProfileLinkProps {
-  name: string;
-  email: string;
+  user: User;
   loading?: boolean;
 }
 
-const ProfileLink: React.FC<ProfileLinkProps> = ({ name, email, loading }) => {
+const ProfileLink: React.FC<ProfileLinkProps> = ({ user, loading }) => {
   return (
     <Wrapper w="100%">
       <Skeleton isLoaded={!loading} borderRadius="small">
@@ -19,12 +19,12 @@ const ProfileLink: React.FC<ProfileLinkProps> = ({ name, email, loading }) => {
       <Flex flexDirection="column" ml="4" justifyContent="center" w="65%">
         <Skeleton isLoaded={!loading} borderRadius="small" height="4">
           <UserName fontSize="md" color="gray.900" isTruncated>
-            {name}
+            {user.name}
           </UserName>
         </Skeleton>
         <Skeleton isLoaded={!loading} borderRadius="small" height="4" mt="2">
           <UserEmail fontSize="sm" color="gray.900" isTruncated>
-            {email}
+            {user.email}
           </UserEmail>
         </Skeleton>
       </Flex>
