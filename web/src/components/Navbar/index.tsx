@@ -2,6 +2,7 @@ import React, { memo } from 'react';
 import { Flex, Icon, Select, PseudoBox, Text } from '@chakra-ui/core';
 
 import ButtonGooey from '../Button/ButtonGooey';
+import Button from '../Button';
 
 const Navbar: React.FC = () => {
   return (
@@ -41,7 +42,7 @@ const Navbar: React.FC = () => {
           <option value="option1">Crypto Wallet</option>
           <option value="option2">Etf's Wallet</option>
         </Select>
-        <Icon name="bell" color="gray.900" size="24px" mr="8" />
+        <Button icon="bell" theme="transparent" variants="icon" size="md" />
         {/* <ButtonGooey
           id="transaction"
           onTransactionClick={() => 'clicked'}

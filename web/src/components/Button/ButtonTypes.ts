@@ -12,4 +12,5 @@ export const ButtonSizes = Object.freeze({
 export const ButtonThemes = Object.freeze({
   PRIMARY: 'primary',
   SUCCESS: 'success',
+  TRANSPARENT: 'transparent',
 });

@@ -10,7 +10,7 @@ interface IButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   label?: string;
   icon?: string;
   size?: 'lg' | 'md' | 'sm' | undefined;
-  theme?: string;
+  theme?: 'transparent' | 'success' | 'primary';
   variants?: 'icon' | 'block';
   loading?: boolean;
   disabled?: boolean;
@@ -44,6 +44,9 @@ const Button: React.FC<IButtonProps> = ({
       case ButtonThemes.SUCCESS:
         return colors.green[900];
 
+      case ButtonThemes.TRANSPARENT:
+        return 'transparent';
+
       default:
         return colors.gray[900];
     }
@@ -55,28 +58,36 @@ const Button: React.FC<IButtonProps> = ({
       height={renderSizes(size)}
       lineHeight="1.2"
       outline="none"
-      transition="all 0.3s ease-in-out"
-      border="transparent"
-      px={size === 'lg' ? 5 : 4}
+      border="1px solid transparent"
+      px={size === 'lg' ? 5 : '12px'}
       rounded={size === 'lg' ? '15px' : '10px'}
       fontSize={size === 'lg' ? '18px' : '16px'}
       fontWeight="semibold"
+      color={theme === 'transparent' ? 'gray.900' : 'white'}
       bg={renderTheme(theme)}
-      color="white"
+      transition="all 0.3s ease-in-out"
       onClick={onClick}
       _hover={{
-        bg: darken(0.05, renderTheme(theme)),
+        bg: theme === 'transparent' ? 'none' : darken(0.05, renderTheme(theme)),
         transform: 'scale(1.02)',
+        border:
+          theme === 'transparent'
+            ? `1px solid #CBD5E0`
+            : '1px solid transparent',
       }}
       _active={{
         bg: transparentize(0.13, renderTheme(theme)),
         transform: 'scale(0.9)',
       }}
       _focus={{
-        boxShadow:
-          theme === 'success'
-            ? '0 0 1px 2px rgba(0, 170, 167, .75), 0 1px 1px rgba(0, 0, 0, .15)'
-            : '0 0 1px 2px rgba(6, 36, 246, .75), 0 1px 1px rgba(0, 0, 0, .15)',
+        border:
+          theme === 'transparent'
+            ? `1px dashed ${colors.gray[500]}`
+            : '1px solid transparent',
+        // boxShadow:
+        //   theme === 'success'
+        //     ? '0 0 1px 2px rgba(0, 170, 167, .75), 0 1px 1px rgba(0, 0, 0, .15)'
+        //     : '0 0 1px 2px rgba(6, 36, 246, .75), 0 1px 1px rgba(0, 0, 0, .15)',
       }}
       _disabled={{ cursor: 'not-allowed', bg: 'gray.500', opacity: 0.7 }}
       disabled={disabled}
@@ -84,8 +95,8 @@ const Button: React.FC<IButtonProps> = ({
       {variants === 'icon' && (
         <Icon
           name={icon}
-          color="white"
-          size={size === 'lg' ? '22px' : '14px'}
+          color={theme === 'transparent' ? 'gray.900' : 'white'}
+          size={size === 'lg' ? '22px' : '20px'}
         ></Icon>
       )}
       {variants === 'block' && label}
@@ -98,7 +109,7 @@ Button.defaultProps = {
   label: '',
   disabled: false,
   size: 'md',
-  theme: ButtonThemes.PRIMARY,
+  theme: 'primary',
   icon: '',
 };
 
