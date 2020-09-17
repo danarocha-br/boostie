@@ -1,7 +1,9 @@
 import React from 'react';
 import { Flex, Heading, Text, Image } from '@chakra-ui/core';
 
-import Card from '../../components/Card/index';
+import Card from '../../components/Card';
+import Button from '../../components/Button';
+
 import ImageAdvertisement from '../../assets/icons/user-phone.png';
 
 const DashboardOverview: React.FC = () => {
@@ -21,7 +23,14 @@ const DashboardOverview: React.FC = () => {
             Upgrade your Account
           </Heading>
 
-          <Flex w="100%" justifyContent="flex-end">
+          <Flex
+            w="100%"
+            h="100%"
+            flexDirection="column"
+            alignItems="flex-end"
+            justifyContent="space-between"
+            pb={8}
+          >
             <Image
               size="230px"
               objectFit="contain"
@@ -35,6 +44,7 @@ const DashboardOverview: React.FC = () => {
             <Text color="gray.500" width="55%" mt={6}>
               Access many other features and helpful insights.
             </Text>
+            <Button variants="icon" icon="arrow-forward" size="lg" />
           </Flex>
         </Card>
       </Flex>

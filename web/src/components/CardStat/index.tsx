@@ -1,7 +1,6 @@
 import React from 'react';
 import {
   Flex,
-  Stat,
   StatLabel,
   StatNumber,
   StatHelpText,
@@ -32,7 +31,7 @@ const CardStat: React.FC<ICardStatProps> = ({
 }) => {
   return (
     <Card variants="bordered">
-      <Flex flexDirection="column" alignContent="center" h="100%">
+      <Flex flexDirection="column" alignContent="space-between" h="100%">
         <PseudoBox mb="auto">
           <Text textTransform="uppercase" fontWeight="medium">
             {month} {year}
@@ -44,7 +43,7 @@ const CardStat: React.FC<ICardStatProps> = ({
           />
         </PseudoBox>
 
-        <Stat position="initial">
+        <Flex flexDirection="column">
           <StatLabel fontSize="sm" fontWeight="regular">
             Portfolio Value
           </StatLabel>
@@ -65,7 +64,7 @@ const CardStat: React.FC<ICardStatProps> = ({
             />
             {result}
           </StatHelpText>
-        </Stat>
+        </Flex>
       </Flex>
     </Card>
   );

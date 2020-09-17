@@ -22,21 +22,6 @@ const NavItem: React.FC<INavItemProps> = ({
   active,
   ...rest
 }) => {
-  function renderIconColor() {
-    if (disabled) {
-      return '#9899AE';
-    }
-    // if (isTabletOrMobile && disabled) {
-    //   return '#fff';
-    // }
-    // if (isTabletOrMobile) {
-    //   return '#fff';
-    // }
-    // if (isTabletOrMobile) {
-    //   return '#212237';
-    // }
-  }
-
   return (
     <ListItem disabled={disabled} loading={loading} {...rest}>
       <NavLink to={link}>

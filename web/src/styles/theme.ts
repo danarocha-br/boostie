@@ -1,5 +1,4 @@
 import { theme } from '@chakra-ui/core';
-import { boxShadow } from 'styled-system';
 
 import { icons } from './icons';
 
@@ -71,11 +70,6 @@ const boostieTheme = {
   icons: {
     ...theme.icons,
     ...icons,
-  },
-  boxShadow: {
-    ...theme.shadows,
-    small: '0px 7px 5px rgba(0, 0, 0, 0.01)',
-    medium: '0px 7px 7px rgba(0, 0, 0, 0.03)',
   },
 };
 

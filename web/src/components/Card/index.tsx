@@ -1,6 +1,6 @@
 import React from 'react';
 import { PseudoBox } from '@chakra-ui/core';
-import { transparentize } from 'polished';
+import { darken, transparentize } from 'polished';
 
 import colors from '../../styles/colors';
 
@@ -41,9 +41,9 @@ const Card: React.FC<ICardProps> = ({ children, variants }) => {
             h="100%"
             variants={variants}
             boxShadow="0px 7px 5px rgba(0, 0, 0, 0.01)"
-            transition="background .2s ease-in-out"
+            transition="background .3s ease-in-out"
             _hover={{
-              bg: transparentize(0.01, colors.purple[900]),
+              bg: darken(0.2, colors.purple[900]),
             }}
           >
             {children}
@@ -60,8 +60,11 @@ const Card: React.FC<ICardProps> = ({ children, variants }) => {
             boxShadow="0px 7px 5px rgba(0, 0, 0, 0.01)"
             position="relative"
             variants={variants}
-            _hover={{ boxShadow: '0px 7px 5px rgba(0, 0, 0, 0.03)' }}
-            transition="box-shadow .3s ease-in-out"
+            transition="all .3s ease-in-out"
+            _hover={{
+              boxShadow: '0px 7px 10px rgba(0, 0, 0, 0.03)',
+              transform: 'translateY(-3px)',
+            }}
           >
             {children}
           </PseudoBox>

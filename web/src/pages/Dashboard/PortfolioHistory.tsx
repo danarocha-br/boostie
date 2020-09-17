@@ -2,11 +2,14 @@ import React from 'react';
 import { Flex, Heading, Select, Stack } from '@chakra-ui/core';
 
 import CardStat from '../../components/CardStat';
+import Card from '../../components/Card';
+
+import { StatCardContainer } from './styles';
 
 const PortfolioHistory: React.FC = () => {
   return (
     <>
-      <Flex w="100%" justifyContent="space-between" my={8}>
+      <Flex w="100%" justifyContent="space-between" alignItems="center" mt={8}>
         <Heading as="h2" fontSize="md" fontWeight="regular">
           Portfolio History
         </Heading>
@@ -25,33 +28,48 @@ const PortfolioHistory: React.FC = () => {
         </Select>
       </Flex>
 
-      <Flex w="100%" justifyContent="space-between">
-        <Flex w={{ base: '100%', sm: 4, md: 2.5 / 4 }} h="288px">
-          <Stack isInline spacing={8}>
-            <CardStat
-              value={945.45}
-              currency="$"
-              result="234.23 (30.3%)"
-              month="Aug"
-              year={20}
-            />
-            <CardStat
-              value={945.45}
-              currency="$"
-              result="234.23 (30.34%)"
-              month="Aug"
-              year={20}
-            />
-            <CardStat
-              value={945.45}
-              currency="$"
-              result="234.23 (30.34%)"
-              month="Aug"
-              year={20}
-            />
-          </Stack>
+      <Flex h="288px" mb={8} flex="1" justifyContent="space-between">
+        <StatCardContainer
+          flex="2"
+          as="section"
+          overflowX="scroll"
+          mr={8}
+          pt={6}
+          boxShadow="inset -14px 0px 20px rgba(0,0,0,0.02), inset 0px 33px 0px rgb(255 255 255 / 44%)"
+        >
+          <CardStat
+            value={945.45}
+            currency="$"
+            result="234.23 (30.3%)"
+            month="Aug"
+            year={20}
+          />
+          <CardStat
+            value={945.45}
+            currency="$"
+            result="234.23 (30.34%)"
+            month="Aug"
+            year={20}
+          />
+          <CardStat
+            value={945.45}
+            currency="$"
+            result="234.23 (30.34%)"
+            month="Aug"
+            year={20}
+          />
+          <CardStat
+            value={945.45}
+            currency="$"
+            result="234.23 (30.34%)"
+            month="Aug"
+            year={20}
+          />
+        </StatCardContainer>
+
+        <Flex flex="1" pt={6}>
+          <Card variants="colored" />
         </Flex>
-        <Flex w={{ base: '100%', sm: 4, md: 1.5 / 4 }}></Flex>
       </Flex>
     </>
   );
