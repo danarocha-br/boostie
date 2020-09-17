@@ -84,10 +84,6 @@ const Button: React.FC<IButtonProps> = ({
           theme === 'transparent'
             ? `1px dashed ${colors.gray[500]}`
             : '1px solid transparent',
-        // boxShadow:
-        //   theme === 'success'
-        //     ? '0 0 1px 2px rgba(0, 170, 167, .75), 0 1px 1px rgba(0, 0, 0, .15)'
-        //     : '0 0 1px 2px rgba(6, 36, 246, .75), 0 1px 1px rgba(0, 0, 0, .15)',
       }}
       _disabled={{ cursor: 'not-allowed', bg: 'gray.500', opacity: 0.7 }}
       disabled={disabled}

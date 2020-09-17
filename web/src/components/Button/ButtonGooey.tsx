@@ -1,5 +1,5 @@
 import React from 'react';
-import { Icon } from '@chakra-ui/core';
+// import { Icon } from '@chakra-ui/core';
 import { motion } from 'framer-motion';
 
 interface IButtonGooeyProps {

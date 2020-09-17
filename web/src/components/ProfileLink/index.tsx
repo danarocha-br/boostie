@@ -2,10 +2,10 @@ import React from 'react';
 import { Flex, Skeleton } from '@chakra-ui/core';
 
 import { UserImage, Wrapper, UserName, UserEmail } from './styles';
-import { User } from './User';
+import { IUser } from './User';
 
 export interface ProfileLinkProps {
-  user: User;
+  user: IUser;
   loading?: boolean;
 }
 

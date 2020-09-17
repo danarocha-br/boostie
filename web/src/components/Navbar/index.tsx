@@ -33,7 +33,7 @@ const Navbar: React.FC = () => {
           icon="triangle-down"
           iconSize="11px"
           iconColor="gray.500"
-          focusBorderColor="purple.900"
+          focusBorderColor="gray.500"
           backgroundColor="transparent"
           borderColor="transparent"
           w="180px"
