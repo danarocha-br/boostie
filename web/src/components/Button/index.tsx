@@ -2,7 +2,7 @@ import React from 'react';
 import { PseudoBox, Icon } from '@chakra-ui/core';
 import { darken, transparentize } from 'polished';
 
-import { ButtonVariants, ButtonThemes, ButtonSizes } from './ButtonTypes';
+import { ButtonThemes, ButtonSizes } from './ButtonTypes';
 
 import colors from '../../styles/colors';
 
@@ -39,7 +39,6 @@ const Button: React.FC<IButtonProps> = ({
     }
   }
   // button theme
-
   function renderTheme(theme: string | undefined) {
     switch (theme) {
       case ButtonThemes.SUCCESS:
@@ -49,8 +48,6 @@ const Button: React.FC<IButtonProps> = ({
         return colors.gray[900];
     }
   }
-
-  // button variants
 
   return (
     <PseudoBox
@@ -66,6 +63,7 @@ const Button: React.FC<IButtonProps> = ({
       fontWeight="semibold"
       bg={renderTheme(theme)}
       color="white"
+      onClick={onClick}
       _hover={{
         bg: darken(0.05, renderTheme(theme)),
         transform: 'scale(1.02)',
@@ -80,6 +78,8 @@ const Button: React.FC<IButtonProps> = ({
             ? '0 0 1px 2px rgba(0, 170, 167, .75), 0 1px 1px rgba(0, 0, 0, .15)'
             : '0 0 1px 2px rgba(6, 36, 246, .75), 0 1px 1px rgba(0, 0, 0, .15)',
       }}
+      _disabled={{ cursor: 'not-allowed', bg: 'gray.500', opacity: 0.7 }}
+      disabled={disabled}
     >
       {variants === 'icon' && (
         <Icon

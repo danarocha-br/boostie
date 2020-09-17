@@ -10,7 +10,7 @@ import {
   Divider,
 } from '@chakra-ui/core';
 
-import Card from '../Card';
+import Card from '../index';
 
 interface ICardStatProps {
   type?: 'decrease' | 'increase';

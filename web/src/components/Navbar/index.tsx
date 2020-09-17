@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { Flex, Icon, Select, PseudoBox, Text } from '@chakra-ui/core';
 
 import ButtonGooey from '../Button/ButtonGooey';
@@ -52,4 +52,4 @@ const Navbar: React.FC = () => {
   );
 };
 
-export default Navbar;
+export default memo(Navbar);

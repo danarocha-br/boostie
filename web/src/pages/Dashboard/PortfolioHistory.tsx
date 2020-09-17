@@ -1,8 +1,8 @@
 import React from 'react';
-import { Flex, Heading, Select, Stack } from '@chakra-ui/core';
+import { Flex, Heading, Select } from '@chakra-ui/core';
 
-import CardStat from '../../components/CardStat';
 import Card from '../../components/Card';
+import CardStat from '../../components/Card/CardStat';
 
 import { StatCardContainer } from './styles';
 

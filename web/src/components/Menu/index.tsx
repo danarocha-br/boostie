@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, memo } from 'react';
 import { Flex, List, PseudoBox } from '@chakra-ui/core';
 
 import ProfileLink from '../ProfileLink';
@@ -55,4 +55,4 @@ const Menu: React.FC<Props> = () => {
   );
 };
 
-export default Menu;
+export default memo(Menu);
