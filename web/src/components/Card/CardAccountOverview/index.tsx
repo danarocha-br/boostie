@@ -8,10 +8,16 @@ import {
   PseudoBox,
   Icon,
   Flex,
+  List,
 } from '@chakra-ui/core';
 
 import Card from '../index';
 import Stat from '../../Labels/Stat';
+import BarChart from './BarChart';
+import Legend from '../../Legend';
+import OverviewPercent from './OverviewPercent';
+
+import { STATEMENT_CHART_LEGEND } from '../../../constants';
 
 const selected = {
   fontSize: 'sm',
@@ -20,8 +26,9 @@ const selected = {
   border: '1px solid',
   borderColor: 'gray.900',
   borderRadius: '5px',
-  py: '2px',
-  width: '20px',
+  py: '3px',
+  px: '6px',
+  justifyContent: 'center',
   marginRight: 2,
 };
 
@@ -35,7 +42,11 @@ const focus = {
 };
 
 const CardAccountOverview: React.FC = () => {
-  const [isVisible, setVisibility] = useState(false);
+  const [displayStatement, setDisplayStatement] = useState(true);
+
+  function onDisplayStatement() {
+    setDisplayStatement((prevState) => !prevState);
+  }
 
   return (
     <Card>
@@ -43,7 +54,7 @@ const CardAccountOverview: React.FC = () => {
         position="absolute"
         right="4"
         top="5"
-        onClick={() => setVisibility((prevState) => !prevState)}
+        onClick={onDisplayStatement}
         cursor="pointer"
         transition="all .2s ease-in-out"
         _hover={{
@@ -51,7 +62,7 @@ const CardAccountOverview: React.FC = () => {
           transform: 'scale(1.1)',
         }}
       >
-        {isVisible ? (
+        {displayStatement ? (
           <Icon name="show" color="gray.900" size="18px" />
         ) : (
           <Icon name="hide" color="gray.900" size="18px" />
@@ -68,7 +79,7 @@ const CardAccountOverview: React.FC = () => {
               ...focus,
             }}
           >
-            1d
+            <Icon name="barChart" size="18px" />
           </Tab>
           <Tab
             {...unselected}
@@ -79,26 +90,42 @@ const CardAccountOverview: React.FC = () => {
               ...focus,
             }}
           >
-            1m
-          </Tab>
-          <Tab
-            {...unselected}
-            _selected={{
-              ...selected,
-            }}
-            _focus={{
-              ...focus,
-            }}
-          >
-            1y
+            <Icon name="percent" size="18px" />
           </Tab>
         </TabList>
         <TabPanels>
-          <TabPanel h="100%" w="100%" display="flex" mt={3}>
-            <Flex flex="2">graph</Flex>
-            <Flex flex="1">
-              <Stat currency="$" value={894.35} result="34%" type="increase" />
+          <TabPanel h="100%" flex="1" display="flex" mt={3}>
+            <Flex flex="2">
+              <BarChart />
             </Flex>
+            <Flex flex="1" flexDirection="column" alignItems="center">
+              {displayStatement ? (
+                <Stat
+                  currency="$"
+                  value={894.35}
+                  result="34%"
+                  type="increase"
+                  isVisible={displayStatement}
+                />
+              ) : (
+                <Stat
+                  currency="-"
+                  value="---"
+                  result="---"
+                  type="increase"
+                  isVisible={displayStatement}
+                />
+              )}
+              <List mt={8}>
+                {Object.entries(STATEMENT_CHART_LEGEND).map(([key, value]) => (
+                  <Legend key={key} title={key} color={value.color} />
+                ))}
+              </List>
+            </Flex>
+          </TabPanel>
+
+          <TabPanel>
+            <OverviewPercent isVisible={displayStatement} />
           </TabPanel>
         </TabPanels>
       </Tabs>
