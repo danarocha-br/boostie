@@ -12,6 +12,7 @@ import {
 
 import Card from '../index';
 import Stat from '../../Labels/Stat';
+import BarChart from './BarChart';
 
 const selected = {
   fontSize: 'sm',
@@ -72,7 +73,7 @@ const CardAccountOverview: React.FC = () => {
               ...focus,
             }}
           >
-            1d
+            1y
           </Tab>
           <Tab
             {...unselected}
@@ -94,12 +95,14 @@ const CardAccountOverview: React.FC = () => {
               ...focus,
             }}
           >
-            1y
+            1d
           </Tab>
         </TabList>
         <TabPanels>
           <TabPanel h="100%" w="100%" display="flex" mt={3}>
-            <Flex flex="2">graph</Flex>
+            <Flex flex="2">
+              <BarChart></BarChart>
+            </Flex>
             <Flex flex="1">
               {displayStatement ? (
                 <Stat
