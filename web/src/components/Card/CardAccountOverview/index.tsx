@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   TabList,
   TabPanel,
@@ -35,10 +35,27 @@ const focus = {
 };
 
 const CardAccountOverview: React.FC = () => {
+  const [isVisible, setVisibility] = useState(false);
+
   return (
     <Card>
-      <PseudoBox position="absolute" right="4" top="5">
-        <Icon name="hide" color="gray.900" />
+      <PseudoBox
+        position="absolute"
+        right="4"
+        top="5"
+        onClick={() => setVisibility((prevState) => !prevState)}
+        cursor="pointer"
+        transition="all .2s ease-in-out"
+        _hover={{
+          opacity: 0.6,
+          transform: 'scale(1.1)',
+        }}
+      >
+        {isVisible ? (
+          <Icon name="show" color="gray.900" size="18px" />
+        ) : (
+          <Icon name="hide" color="gray.900" size="18px" />
+        )}
       </PseudoBox>
       <Tabs variant="unstyled">
         <TabList>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Grid } from '@chakra-ui/core';
 
-import Menu from '../../../components/Menu';
+import Sidebar from '../../../components/Sidebar';
 import Navbar from '../../../components/Navbar';
 import Footer from '../../../components/Footer';
 import Main from './Main';
@@ -22,7 +22,7 @@ const AuthWrapper: React.FC = ({ children }) => {
       bgImage="linear-gradient(180deg, #bcbcc112 0%, #fafafa 103.67%);"
       overflow="scroll"
     >
-      <Menu />
+      <Sidebar />
       <Navbar />
       <Main>{children}</Main>
       <Footer />
