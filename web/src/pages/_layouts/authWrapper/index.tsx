@@ -12,8 +12,8 @@ const AuthWrapper: React.FC = ({ children }) => {
       as="div"
       height="100vh"
       width="100%"
-      templateColumns={['1fr', '1fr', '1fr', '310px 1fr']}
-      templateRows={['1fr 95px', '1fr 95px', '1fr 95px', '324px 1fr 50px']}
+      templateColumns={['1fr', '1fr', '310px 1fr', '360px 1fr']}
+      templateRows={['1fr', '1fr', '324px 1fr 50px', '324px 1fr 50px']}
       templateAreas="
         'menu header'
         'menu main'

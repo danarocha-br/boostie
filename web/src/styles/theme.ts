@@ -4,6 +4,7 @@ import { icons } from './icons';
 
 const boostieTheme = {
   ...theme,
+  breakpoints: ['30em', '48em', '78em', '92em'],
   fonts: {
     body: 'canada-type-gibson, system-ui, sans-serif',
     heading: 'canada-type-gibson, system-ui, sans-serif',
