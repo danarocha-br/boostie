@@ -10,12 +10,12 @@ const BarChart: React.FC = () => {
     <Flex h="190px" w="100%">
       <ResponsiveBar
         data={STATEMENT_DATA}
-        keys={['portfolio', 'dollar', 'etf']}
+        keys={['currencyGain', 'dividends', 'capitalGain']}
         indexBy="month"
-        margin={{ top: 0, right: 0, bottom: 30, left: 0 }}
+        margin={{ top: 0, right: 10, bottom: 30, left: -15 }}
         padding={0.82}
         innerPadding={1.5}
-        colors={[colors.red[900], colors.blue[50], colors.purple[900]]}
+        colors={({ id, data }) => data[`${id}Color`]}
         borderRadius={2.5}
         axisTop={null}
         axisRight={null}
@@ -32,7 +32,6 @@ const BarChart: React.FC = () => {
         enableLabel={false}
         labelSkipWidth={10}
         labelSkipHeight={12}
-        labelTextColor="#111"
         tooltipFormat={(value) =>
           `$ ${Number(value).toLocaleString('en-US', {
             minimumFractionDigits: 2,

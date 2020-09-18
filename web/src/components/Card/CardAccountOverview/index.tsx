@@ -8,11 +8,15 @@ import {
   PseudoBox,
   Icon,
   Flex,
+  List,
 } from '@chakra-ui/core';
 
 import Card from '../index';
 import Stat from '../../Labels/Stat';
 import BarChart from './BarChart';
+import Legend from '../../Legend';
+
+import { STATEMENT_CHART_LEGEND } from '../../../constants';
 
 const selected = {
   fontSize: 'sm',
@@ -21,8 +25,9 @@ const selected = {
   border: '1px solid',
   borderColor: 'gray.900',
   borderRadius: '5px',
-  py: '2px',
-  width: '20px',
+  py: '3px',
+  px: '6px',
+  justifyContent: 'center',
   marginRight: 2,
 };
 
@@ -73,7 +78,7 @@ const CardAccountOverview: React.FC = () => {
               ...focus,
             }}
           >
-            1y
+            <Icon name="barChart" size="18px" />
           </Tab>
           <Tab
             {...unselected}
@@ -84,26 +89,15 @@ const CardAccountOverview: React.FC = () => {
               ...focus,
             }}
           >
-            1m
-          </Tab>
-          <Tab
-            {...unselected}
-            _selected={{
-              ...selected,
-            }}
-            _focus={{
-              ...focus,
-            }}
-          >
-            1d
+            <Icon name="percent" size="18px" />
           </Tab>
         </TabList>
         <TabPanels>
           <TabPanel h="100%" w="100%" display="flex" mt={3}>
             <Flex flex="2">
-              <BarChart></BarChart>
+              <BarChart />
             </Flex>
-            <Flex flex="1">
+            <Flex flex="1" flexDirection="column">
               {displayStatement ? (
                 <Stat
                   currency="$"
@@ -121,6 +115,11 @@ const CardAccountOverview: React.FC = () => {
                   isVisible={displayStatement}
                 />
               )}
+              <List mt={8}>
+                {Object.entries(STATEMENT_CHART_LEGEND).map(([key, value]) => (
+                  <Legend key={key} title={key} color={value.color} />
+                ))}
+              </List>
             </Flex>
           </TabPanel>
         </TabPanels>
