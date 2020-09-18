@@ -5,8 +5,9 @@ import ProfileLink from '../ProfileLink';
 import NavItem from '../NavItem';
 
 import { IUser } from '../ProfileLink/User';
+import { SIDE_BAR_NAVIGATION } from '../../constants';
 
-const Menu: React.FC = () => {
+const Sidebar: React.FC = () => {
   const [isLoading, setLoading] = useState(false);
 
   const user: IUser = { name: 'Dana Rocha', email: 'email@domain.com' };
@@ -25,24 +26,15 @@ const Menu: React.FC = () => {
         <ProfileLink user={user} loading={isLoading} />
 
         <List mt="20">
-          <NavItem
-            icon="dashboard"
-            link="/"
-            title="Dashboard"
-            loading={isLoading}
-          />
-          <NavItem
-            icon="wallet"
-            link="/"
-            title="Holdings"
-            loading={isLoading}
-          />
-          <NavItem
-            icon="barChart"
-            link="/"
-            title="Performance"
-            loading={isLoading}
-          />
+          {Object.entries(SIDE_BAR_NAVIGATION).map(([key, value]) => (
+            <NavItem
+              key={key}
+              title={key}
+              icon={value.icon}
+              link={value.to}
+              loading={isLoading}
+            />
+          ))}
         </List>
       </PseudoBox>
 
@@ -53,4 +45,4 @@ const Menu: React.FC = () => {
   );
 };
 
-export default memo(Menu);
+export default memo(Sidebar);
