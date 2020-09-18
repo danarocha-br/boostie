@@ -4,13 +4,11 @@
     <br />
     Investment platform design implementation
 </h2>
-
-<h5 align="center" >
-  This implementation is part of the design project <a href="https://www.behance.net/gallery/103975967/Improving-Investment-Platforms">Boostie - Improving investment platforms</a>.
-</h5>
-
----
-
+<br /><br />
+<p align="center" >
+  This implementation is part of the design project: <br /> <a href="https://www.behance.net/gallery/103975967/Improving-Investment-Platforms">Boostie - Improving investment platforms</a>.
+</p>
+<br />
 <img alt="Boostie App" src="https://res.cloudinary.com/danarocha/image/upload/v1600347001/Browsers_k153r7.jpg"  />
 
 <p align="center">
@@ -31,12 +29,12 @@
 - [date-fns](https://date-fns.org/)
 - [Faker.js](https://github.com/marak/Faker.js/)
 
-## Tools
+## :pencil2: Tools
 
 - es6 syntax and babel
 - [ESLint][vceslint] + Prettier + [VS Code][vscode] with [EditorConfig][vceditconfig]
 
-## How to run
+## :zap: How to run
 
 In the web directory, you can run:
 
@@ -47,7 +45,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ## :memo: License
 
-This project is under the MIT license. See the [LICENSE](https://github.com/lukemorales/bancointer/blob/master/LICENSE) for more information.
+This project is under the MIT license. See the [LICENSE](https://github.com/danarocha-br/boostie/blob/staging/LICENSE) for more information.
 
 ---
 
