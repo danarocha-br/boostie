@@ -35,7 +35,11 @@ const focus = {
 };
 
 const CardAccountOverview: React.FC = () => {
-  const [isVisible, setVisibility] = useState(false);
+  const [displayStatement, setDisplayStatement] = useState(true);
+
+  function onDisplayStatement() {
+    setDisplayStatement((prevState) => !prevState);
+  }
 
   return (
     <Card>
@@ -43,7 +47,7 @@ const CardAccountOverview: React.FC = () => {
         position="absolute"
         right="4"
         top="5"
-        onClick={() => setVisibility((prevState) => !prevState)}
+        onClick={onDisplayStatement}
         cursor="pointer"
         transition="all .2s ease-in-out"
         _hover={{
@@ -51,7 +55,7 @@ const CardAccountOverview: React.FC = () => {
           transform: 'scale(1.1)',
         }}
       >
-        {isVisible ? (
+        {displayStatement ? (
           <Icon name="show" color="gray.900" size="18px" />
         ) : (
           <Icon name="hide" color="gray.900" size="18px" />
@@ -97,7 +101,23 @@ const CardAccountOverview: React.FC = () => {
           <TabPanel h="100%" w="100%" display="flex" mt={3}>
             <Flex flex="2">graph</Flex>
             <Flex flex="1">
-              <Stat currency="$" value={894.35} result="34%" type="increase" />
+              {displayStatement ? (
+                <Stat
+                  currency="$"
+                  value={894.35}
+                  result="34%"
+                  type="increase"
+                  isVisible={displayStatement}
+                />
+              ) : (
+                <Stat
+                  currency="-"
+                  value="---"
+                  result="---"
+                  type="increase"
+                  isVisible={displayStatement}
+                />
+              )}
             </Flex>
           </TabPanel>
         </TabPanels>
