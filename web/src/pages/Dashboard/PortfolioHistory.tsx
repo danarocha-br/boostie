@@ -28,7 +28,7 @@ const PortfolioHistory: React.FC = () => {
         </Select>
       </Flex>
 
-      <Flex h="288px" mb={8} flex="1" justifyContent="space-between">
+      <Flex maxH="288px" mb={8} flex="1" justifyContent="space-between">
         <StatCardContainer
           flex="2"
           as="section"

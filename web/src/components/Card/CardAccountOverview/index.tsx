@@ -15,6 +15,7 @@ import Card from '../index';
 import Stat from '../../Labels/Stat';
 import BarChart from './BarChart';
 import Legend from '../../Legend';
+import OverviewPercent from './OverviewPercent';
 
 import { STATEMENT_CHART_LEGEND } from '../../../constants';
 
@@ -93,11 +94,11 @@ const CardAccountOverview: React.FC = () => {
           </Tab>
         </TabList>
         <TabPanels>
-          <TabPanel h="100%" w="100%" display="flex" mt={3}>
+          <TabPanel h="100%" flex="1" display="flex" mt={3}>
             <Flex flex="2">
               <BarChart />
             </Flex>
-            <Flex flex="1" flexDirection="column">
+            <Flex flex="1" flexDirection="column" alignItems="center">
               {displayStatement ? (
                 <Stat
                   currency="$"
@@ -121,6 +122,10 @@ const CardAccountOverview: React.FC = () => {
                 ))}
               </List>
             </Flex>
+          </TabPanel>
+
+          <TabPanel>
+            <OverviewPercent isVisible={displayStatement} />
           </TabPanel>
         </TabPanels>
       </Tabs>
