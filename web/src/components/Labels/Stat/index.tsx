@@ -23,7 +23,7 @@ const LabelStat: React.FC<IStat> = ({
   divider,
 }) => {
   return (
-    <Flex>
+    <Flex alignItems="center">
       <PseudoBox flexDirection="column" w="100%">
         <StatLabel
           fontSize="sm"
@@ -41,7 +41,7 @@ const LabelStat: React.FC<IStat> = ({
             </StatNumber>
           </Skeleton>
         ) : (
-          <PseudoBox bg="gray.200" h={30} mt={1} rounded="lg" />
+          <PseudoBox bg="gray.200" h={30} w={104} mt={1} rounded="lg" />
         )}
 
         {isVisible ? (
@@ -62,10 +62,12 @@ const LabelStat: React.FC<IStat> = ({
             </StatHelpText>
           </Skeleton>
         ) : (
-          type && <PseudoBox bg="gray.200" h={15} w={16} mt={1} rounded="lg" />
+          type && (
+            <PseudoBox bg="gray.200" h={15} w={16} mt={1} rounded="lg" mb={2} />
+          )
         )}
       </PseudoBox>
-      {divider && <Divider orientation="vertical" />}
+      {divider && <Divider orientation="vertical" height="30px" mr={5} />}
     </Flex>
   );
 };
