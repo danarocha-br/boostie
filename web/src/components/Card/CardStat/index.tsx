@@ -3,6 +3,7 @@ import { Flex, Text, PseudoBox, Divider } from '@chakra-ui/core';
 
 import Card from '../index';
 import Stat from '../../Labels/Stat';
+import useDisplayInvestments from '~/contexts/displayInvestments';
 
 import IStat from '../../Labels/Stat/IStat';
 // import StatChart from './StatChart';
@@ -15,6 +16,8 @@ const CardStat: React.FC<IStat> = ({
   month,
   year,
 }) => {
+  const displayInvestments = useDisplayInvestments().displayInvestment;
+
   return (
     <Card variants="bordered">
       <Flex flexDirection="column" alignContent="space-between" h="100%">
@@ -32,7 +35,13 @@ const CardStat: React.FC<IStat> = ({
         {/* <StatChart /> */}
 
         <Flex flexDirection="column">
-          <Stat type={type} value={value} currency={currency} result={result} />
+          <Stat
+            type={type}
+            value={value}
+            currency={currency}
+            result={result}
+            isVisible={displayInvestments}
+          />
         </Flex>
       </Flex>
     </Card>

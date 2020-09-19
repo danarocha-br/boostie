@@ -12,6 +12,7 @@ import { IAccountData } from '~/utils/generateFinancialData';
 export type IAuthState = {
   signed: boolean;
   investments: IAccountData;
+  displayInvestment: boolean;
 };
 
 export type IAuthContext = {
@@ -33,6 +34,7 @@ export const AuthProvider = ({ children }: PropsWithChildren<unknown>) => {
       return {
         signed: true,
         investments: generateFinancialData(userName),
+        displayInvestment: true,
       };
     }
 
@@ -41,7 +43,11 @@ export const AuthProvider = ({ children }: PropsWithChildren<unknown>) => {
 
   const signIn = useCallback((name) => {
     localStorage.setItem(storageKey('user'), JSON.stringify(name));
-    setData({ signed: true, investments: generateFinancialData(name) });
+    setData({
+      signed: true,
+      investments: generateFinancialData(name),
+      displayInvestment: true,
+    });
   }, []);
 
   const signOut = useCallback(() => {

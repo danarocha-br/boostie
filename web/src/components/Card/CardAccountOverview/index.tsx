@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import {
   TabList,
   TabPanel,
@@ -19,18 +19,16 @@ import OverviewPercent from './OverviewPercent';
 
 import { STATEMENT_CHART_LEGEND } from '~/constants';
 import useAuth from '~/contexts/auth';
+import useDisplayInvestments from '~/contexts/displayInvestments';
 
 import { focus, unselected, selected, hover } from './styles';
 import { formatCurrency } from '~/utils';
 
 const CardAccountOverview: React.FC = () => {
-  const [displayInvestment, setDisplayInvesment] = useState(true);
-
   const { investments } = useAuth().investments;
-
-  function onDisplayInvesments() {
-    setDisplayInvesment((prevState) => !prevState);
-  }
+  const displayInvestments = useDisplayInvestments().displayInvestment;
+  const toggleDisplayInvestments = useDisplayInvestments()
+    .toggleDisplayInvestments;
 
   const [currency, investmentBalance] = useMemo(() => {
     const balance = investments?.reduce(
@@ -57,7 +55,7 @@ const CardAccountOverview: React.FC = () => {
         position="absolute"
         right="5"
         top="5"
-        onClick={onDisplayInvesments}
+        onClick={toggleDisplayInvestments}
         cursor="pointer"
         transition="all .2s ease-in-out"
         _hover={{
@@ -65,7 +63,7 @@ const CardAccountOverview: React.FC = () => {
           transform: 'scale(1.1)',
         }}
       >
-        {displayInvestment ? (
+        {displayInvestments ? (
           <Icon name="show" color="gray.900" size="20px" />
         ) : (
           <Icon name="hide" color="gray.900" size="20px" />
@@ -101,7 +99,7 @@ const CardAccountOverview: React.FC = () => {
         <TabPanels>
           <TabPanel h="100%" flex="1" display="flex" mt={3}>
             <Flex flex="2">
-              <BarChart displayInvestment={displayInvestment} />
+              <BarChart />
             </Flex>
             <Flex
               flex="1"
@@ -109,13 +107,13 @@ const CardAccountOverview: React.FC = () => {
               alignItems="end"
               ml={[10, 10, 12]}
             >
-              {displayInvestment ? (
+              {displayInvestments ? (
                 <Stat
                   currency={currency}
                   value={investmentBalance}
                   result={result}
                   type={Number(result) < 0 ? 'decrease' : 'increase'}
-                  isVisible={displayInvestment}
+                  isVisible={displayInvestments}
                 />
               ) : (
                 <Stat
@@ -123,7 +121,7 @@ const CardAccountOverview: React.FC = () => {
                   value="---"
                   result="---"
                   type="increase"
-                  isVisible={displayInvestment}
+                  isVisible={displayInvestments}
                 />
               )}
               <List mt={8}>
@@ -135,7 +133,7 @@ const CardAccountOverview: React.FC = () => {
           </TabPanel>
 
           <TabPanel>
-            <OverviewPercent isVisible={displayInvestment} />
+            <OverviewPercent isVisible={displayInvestments} />
           </TabPanel>
         </TabPanels>
       </Tabs>

@@ -1,22 +1,22 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { ResponsiveBar } from '@nivo/bar';
 import { Flex } from '@chakra-ui/core';
 
 import colors from '../../../styles/colors';
 import useAuth from '~/contexts/auth';
+import useDisplayInvestments from '~/contexts/displayInvestments';
 import { generateInvestmentGrowth } from '~/utils';
 
-type IBarChart = { displayInvestment: boolean };
-
-const BarChart: React.FC<IBarChart> = ({ displayInvestment }) => {
+const BarChart: React.FC = () => {
   const { investments } = useAuth().investments;
+  const displayInvestments = useDisplayInvestments().displayInvestment;
 
   const hiddenInvestments = generateInvestmentGrowth(false);
 
   return (
     <Flex h="190px" w="100%">
       <ResponsiveBar
-        data={displayInvestment ? investments : hiddenInvestments}
+        data={displayInvestments ? investments : hiddenInvestments}
         keys={['currency', 'dividends', 'capitalGain']}
         indexBy="month"
         margin={{ top: 0, right: -20, bottom: 30, left: -15 }}
