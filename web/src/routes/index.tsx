@@ -11,14 +11,14 @@ const Routes = () => {
   const { pathname } = location;
 
   return (
-    <AnimatePresence exitBeforeEnter>
-      <Switch location={location} key={pathname}>
-        {/* <Route exact path="/" component={Login} /> */}
-        <Route path="/dashboard" component={Dashboard} />
+    // <AnimatePresence exitBeforeEnter>
+    <Switch location={location} key={pathname}>
+      {/* <Route exact path="/" component={Login} /> */}
+      <Route path="/dashboard" component={Dashboard} />
 
-        {/* <Route render={() => <Redirect to="/" />} /> */}
-      </Switch>
-    </AnimatePresence>
+      {/* <Route render={() => <Redirect to="/" />} /> */}
+    </Switch>
+    // </AnimatePresence>
   );
 };
 
