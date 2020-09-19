@@ -41,6 +41,15 @@ const focus = {
   boxShadow: 'none',
 };
 
+const hover = {
+  bg: 'transparent',
+  border: '1px solid',
+  borderColor: 'gray.900',
+  borderRadius: '5px',
+  py: '3px',
+  px: '6px',
+};
+
 const CardAccountOverview: React.FC = () => {
   const [displayStatement, setDisplayStatement] = useState(true);
 
@@ -78,6 +87,7 @@ const CardAccountOverview: React.FC = () => {
             _focus={{
               ...focus,
             }}
+            _hover={{ ...hover }}
           >
             <Icon name="barChart" size="18px" />
           </Tab>
@@ -89,6 +99,7 @@ const CardAccountOverview: React.FC = () => {
             _focus={{
               ...focus,
             }}
+            _hover={{ ...hover }}
           >
             <Icon name="percent" size="18px" />
           </Tab>
@@ -98,7 +109,12 @@ const CardAccountOverview: React.FC = () => {
             <Flex flex="2">
               <BarChart />
             </Flex>
-            <Flex flex="1" flexDirection="column" alignItems="center">
+            <Flex
+              flex="1"
+              flexDirection="column"
+              alignItems="end"
+              ml={[10, 10, 12]}
+            >
               {displayStatement ? (
                 <Stat
                   currency="$"

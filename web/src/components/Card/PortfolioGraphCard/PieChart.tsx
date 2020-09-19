@@ -1,7 +1,7 @@
 import React from 'react';
 import { ResponsivePie, PieDatum } from '@nivo/pie';
 
-interface IPieChartProps {
+export interface IPieChartProps {
   data: PieDatum[];
 }
 

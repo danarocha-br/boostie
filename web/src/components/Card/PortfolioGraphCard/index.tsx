@@ -1,15 +1,37 @@
 import React from 'react';
-import { Flex, PseudoBox, Icon, Text } from '@chakra-ui/core';
+import { Flex, PseudoBox, Text } from '@chakra-ui/core';
+import { motion } from 'framer-motion';
 
 import Card from '../index';
-import PieChart from './PieChart';
-import { PORTFOLIO_PIE_CHART_DATA } from '../../../constants';
+import PieChart, { IPieChartProps } from './PieChart';
 
-const PortfolioGraphCard: React.FC = () => {
-  const data = PORTFOLIO_PIE_CHART_DATA;
+const AnimatedCard = motion.custom(Flex);
 
+const animatePieChartCard = {
+  unmounted: {
+    y: -50,
+    display: 'none',
+  },
+  mounted: {
+    y: 0,
+    display: 'flex',
+    transition: {
+      delay: 0.4,
+    },
+  },
+};
+
+const PortfolioGraphCard: React.FC<IPieChartProps> = ({ data }) => {
   return (
-    <Flex flex="1" pt={6} flexDirection="column">
+    <AnimatedCard
+      flex="1"
+      pt={6}
+      flexDirection="column"
+      initial="unmounted"
+      animate="mounted"
+      variants={animatePieChartCard}
+      layout
+    >
       <Card variants="colored">
         <Flex h="100%" w="100%" alignItems="center" justifyContent="center">
           <PieChart data={data} />
@@ -27,7 +49,7 @@ const PortfolioGraphCard: React.FC = () => {
           </PseudoBox>
         </Flex>
       </Card>
-    </Flex>
+    </AnimatedCard>
   );
 };
 

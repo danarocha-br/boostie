@@ -1,17 +1,35 @@
 import React, { memo } from 'react';
 import { Flex, Icon, Select, PseudoBox, Text } from '@chakra-ui/core';
 
-import ButtonGooey from '../Button/ButtonGooey';
+// import ButtonGooey from '../Button/ButtonGooey';
 import Button from '../Button';
+
+import { AnimatedContainer } from './styles';
+
+const animateHeader = {
+  unmounted: {
+    opacity: 0,
+  },
+  mounted: {
+    opacity: 1,
+  },
+  exit: {
+    height: 0,
+    opacity: 0,
+  },
+};
 
 const Navbar: React.FC = () => {
   return (
-    <PseudoBox
-      as="header"
-      gridArea="header"
-      h="100%"
-      bg="gray.50"
-      borderBottomLeftRadius="xlarge"
+    <AnimatedContainer
+      initial="unmounted"
+      animate="mounted"
+      variants={animateHeader}
+      layout
+      transition={{
+        delay: 0.2,
+        duration: 0.5,
+      }}
     >
       <Flex
         justifyContent="flex-end"
@@ -50,7 +68,7 @@ const Navbar: React.FC = () => {
           onWalletClick={() => 'clicked'}
         ></ButtonGooey> */}
       </Flex>
-    </PseudoBox>
+    </AnimatedContainer>
   );
 };
 
