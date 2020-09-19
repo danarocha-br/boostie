@@ -6,24 +6,25 @@ import React, {
   PropsWithChildren,
 } from 'react';
 
-import { storageKey } from '~/utils';
+import { storageKey, generateFinancialData } from '~/utils';
+import { IAccountData } from '~/utils/generateFinancialData';
 
-export type AuthState = {
+export type IAuthState = {
   signed: boolean;
-  // account: AccountData;
+  investments: IAccountData;
 };
 
-export type AuthContext = {
+export type IAuthContext = {
   signed: boolean;
-  // account: AccountData;
+  investments: IAccountData;
   signIn(name: string): void;
   signOut(): void;
 };
 
-const AuthContext = createContext<AuthContext | null>(null);
+const AuthContext = createContext<IAuthContext | null>(null);
 
 export const AuthProvider = ({ children }: PropsWithChildren<unknown>) => {
-  const [data, setData] = useState<AuthState>(() => {
+  const [data, setData] = useState<IAuthState>(() => {
     const storedUser = localStorage.getItem(storageKey('user'));
 
     if (storedUser) {
@@ -31,27 +32,27 @@ export const AuthProvider = ({ children }: PropsWithChildren<unknown>) => {
 
       return {
         signed: true,
-        // account: generateAccountData(userName),
+        investments: generateFinancialData(userName),
       };
     }
 
-    return {} as AuthState;
+    return {} as IAuthState;
   });
 
   const signIn = useCallback((name) => {
     localStorage.setItem(storageKey('user'), JSON.stringify(name));
-    setData({ signed: true });
+    setData({ signed: true, investments: generateFinancialData(name) });
   }, []);
 
   const signOut = useCallback(() => {
-    setData({} as AuthState);
+    setData({} as IAuthState);
     localStorage.removeItem(storageKey('user'));
   }, []);
 
   const value = React.useMemo(
     () => ({
       signed: data.signed,
-      // account: data.account,
+      investments: data.investments,
       signIn,
       signOut,
     }),
@@ -61,7 +62,7 @@ export const AuthProvider = ({ children }: PropsWithChildren<unknown>) => {
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
 
-const useAuth = (): AuthContext => {
+const useAuth = (): IAuthContext => {
   const context = useContext(AuthContext);
 
   if (!context) {
