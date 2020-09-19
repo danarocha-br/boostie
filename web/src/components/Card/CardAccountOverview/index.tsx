@@ -98,7 +98,12 @@ const CardAccountOverview: React.FC = () => {
             <Flex flex="2">
               <BarChart />
             </Flex>
-            <Flex flex="1" flexDirection="column" alignItems="center">
+            <Flex
+              flex="1"
+              flexDirection="column"
+              alignItems="end"
+              ml={[10, 10, 12]}
+            >
               {displayStatement ? (
                 <Stat
                   currency="$"
