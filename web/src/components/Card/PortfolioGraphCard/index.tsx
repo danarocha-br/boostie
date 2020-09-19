@@ -1,5 +1,5 @@
 import React from 'react';
-import { Flex, PseudoBox, Icon, Text } from '@chakra-ui/core';
+import { Flex, PseudoBox, Text } from '@chakra-ui/core';
 
 import Card from '../index';
 import PieChart from './PieChart';

@@ -4,24 +4,50 @@ import { Flex } from '@chakra-ui/core';
 import CardOffer from '../../components/Card/CardOffer';
 import CardAccountOverview from '../../components/Card/CardAccountOverview';
 
+import { AnimatedContainer } from './styles';
+import { motion } from 'framer-motion';
+
+const animateCards = {
+  unmounted: {
+    y: -50,
+    opacity: 0,
+  },
+  mounted: {
+    y: 0,
+    opacity: 1,
+  },
+  exit: {
+    scale: 0.5,
+    opacity: 0,
+  },
+};
+
 const DashboardOverview: React.FC = () => {
   return (
-    <Flex
-      h={'290px'}
-      w="100%"
-      flexDirection={['column', 'column', 'row', 'row']}
+    <AnimatedContainer
+      initial="unmounted"
+      animate="mounted"
+      variants={animateCards}
+      layout
+      transition={{
+        type: 'spring',
+        staggerChildren: 0.1,
+        delayChildren: 0.5,
+      }}
     >
       <Flex
-        w={{ base: '100%', sm: 4, md: 1.5 / 4 }}
+        as={motion.div}
+        key="offer"
+        w={1.7 / 4}
         pr={6}
-        display={['none', 'none', 'flex']}
+        display={['none', 'none', 'none', 'flex']}
       >
         <CardOffer />
       </Flex>
-      <Flex w={{ base: '100%', sm: 4, md: 2.5 / 4 }}>
+      <Flex key="overview" w={['100%', '100%', '100%', 2.5 / 4]}>
         <CardAccountOverview />
       </Flex>
-    </Flex>
+    </AnimatedContainer>
   );
 };
 
