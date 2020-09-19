@@ -6,10 +6,11 @@ import colors from '../../styles/colors';
 
 interface ICardProps {
   variants?: string | undefined;
+  bg?: string | undefined;
   children?: React.ReactNode;
 }
 
-const Card: React.FC<ICardProps> = ({ children, variants }) => {
+const Card: React.FC<ICardProps> = ({ children, variants, bg }) => {
   function VariCard(variants: string | undefined) {
     switch (variants) {
       case 'bordered':
@@ -36,16 +37,18 @@ const Card: React.FC<ICardProps> = ({ children, variants }) => {
           <PseudoBox
             p={6}
             rounded="small"
-            bg="purple.900"
+            bg={bg}
             w="100%"
             h="100%"
             variants={variants}
             boxShadow="0px 7px 5px rgba(0, 0, 0, 0.01)"
             transition="background .3s ease-in-out"
             position="relative"
-            _hover={{
-              bg: darken(0.2, colors.purple[900]),
-            }}
+            _hover={
+              {
+                // bg: darken(0.2, `${bg}`),
+              }
+            }
           >
             {children}
           </PseudoBox>
@@ -78,6 +81,7 @@ const Card: React.FC<ICardProps> = ({ children, variants }) => {
 
 Card.defaultProps = {
   variants: 'default',
+  bg: colors.purple[900],
 };
 
 export default Card;

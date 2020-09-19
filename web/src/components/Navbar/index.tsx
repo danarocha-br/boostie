@@ -8,11 +8,9 @@ import { AnimatedContainer } from './styles';
 
 const animateHeader = {
   unmounted: {
-    height: 0,
     opacity: 0,
   },
   mounted: {
-    height: '100%',
     opacity: 1,
   },
   exit: {
@@ -29,8 +27,8 @@ const Navbar: React.FC = () => {
       variants={animateHeader}
       layout
       transition={{
-        type: 'spring',
         delay: 0.2,
+        duration: 0.5,
       }}
     >
       <Flex

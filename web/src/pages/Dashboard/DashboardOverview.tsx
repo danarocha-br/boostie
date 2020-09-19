@@ -22,6 +22,8 @@ const animateCards = {
   },
 };
 
+const AnimatedCard = motion.custom(Flex);
+
 const DashboardOverview: React.FC = () => {
   return (
     <AnimatedContainer
@@ -31,22 +33,25 @@ const DashboardOverview: React.FC = () => {
       layout
       transition={{
         type: 'spring',
-        staggerChildren: 0.1,
-        delayChildren: 0.5,
+        staggerChildren: 0.2,
       }}
     >
-      <Flex
-        as={motion.div}
+      <AnimatedCard
+        variants={animateCards}
         key="offer"
         w={1.7 / 4}
         pr={6}
         display={['none', 'none', 'none', 'flex']}
       >
         <CardOffer />
-      </Flex>
-      <Flex key="overview" w={['100%', '100%', '100%', 2.5 / 4]}>
+      </AnimatedCard>
+      <AnimatedCard
+        variants={animateCards}
+        key="overview"
+        w={['100%', '100%', '100%', 2.5 / 4]}
+      >
         <CardAccountOverview />
-      </Flex>
+      </AnimatedCard>
     </AnimatedContainer>
   );
 };

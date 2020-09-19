@@ -2,11 +2,14 @@ import React from 'react';
 import { Flex, Heading, Select } from '@chakra-ui/core';
 
 import PortfolioGraphCard from '../../components/Card/PortfolioGraphCard';
-import CardStat from '../../components/Card/CardStat';
+// import CardStat from '../../components/Card/CardStat';
 
 import { StatCardContainer } from './styles';
+import { PORTFOLIO_PIE_CHART_DATA } from '../../constants';
 
 const PortfolioHistory: React.FC = () => {
+  const data = PORTFOLIO_PIE_CHART_DATA;
+
   return (
     <>
       <Flex w="100%" justifyContent="space-between" alignItems="center" mt={8}>
@@ -72,8 +75,7 @@ const PortfolioHistory: React.FC = () => {
             year={20}
           /> */}
         </StatCardContainer>
-
-        <PortfolioGraphCard />
+        <PortfolioGraphCard data={data} />
       </Flex>
     </>
   );
