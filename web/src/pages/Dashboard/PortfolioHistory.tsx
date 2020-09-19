@@ -1,16 +1,14 @@
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 import { Flex, Heading, Select, Grid } from '@chakra-ui/core';
 import { motion } from 'framer-motion';
 
-import PortfolioGraphCard from '../../components/Card/PortfolioGraphCard';
-import CardStat from '../../components/Card/CardStat';
+import PortfolioGraphCard from '~/components/Card/PortfolioGraphCard';
+import CardStat from '~/components/Card/CardStat';
 
 import { StatCardContainer } from './styles';
 
-import {
-  PORTFOLIO_PIE_CHART_DATA,
-  PORTFOLIO_MONTHLY_CARDS,
-} from '../../constants';
+import { PORTFOLIO_PIE_CHART_DATA } from '~/constants';
+import { generatePortfolioHistory } from '~/utils';
 
 const animateCards = {
   unmounted: {
@@ -31,6 +29,7 @@ const AnimatedScrollableCards = motion.custom(CardStat);
 
 const PortfolioHistory: React.FC = () => {
   const data = PORTFOLIO_PIE_CHART_DATA;
+  const historyData = generatePortfolioHistory();
 
   return (
     <>
@@ -76,12 +75,11 @@ const PortfolioHistory: React.FC = () => {
             type: 'spring',
           }}
         >
-          {Object.entries(PORTFOLIO_MONTHLY_CARDS).map(([key, value]) => (
+          {Object.entries(historyData).map(([key, value]) => (
             <AnimatedScrollableCards
               variants={animateCards}
               key={key}
               value={value.value}
-              currency={value.currency}
               result={value.result}
               month={value.month}
               year={value.year}

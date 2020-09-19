@@ -36,7 +36,7 @@ const CardStat: React.FC<IStat> = ({
 
         <Flex flexDirection="column">
           <Stat
-            type={type}
+            type={Number(result) < 0 ? 'decrease' : 'increase'}
             value={value}
             currency={currency}
             result={result}

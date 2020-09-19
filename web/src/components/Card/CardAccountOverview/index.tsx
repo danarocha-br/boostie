@@ -30,7 +30,7 @@ const CardAccountOverview: React.FC = () => {
   const toggleDisplayInvestments = useDisplayInvestments()
     .toggleDisplayInvestments;
 
-  const [currency, investmentBalance] = useMemo(() => {
+  const [investmentBalance] = useMemo(() => {
     const balance = investments?.reduce(
       (acc, { capitalGain, dividends }) => capitalGain + dividends + acc,
       0,
@@ -109,10 +109,8 @@ const CardAccountOverview: React.FC = () => {
             >
               {displayInvestments ? (
                 <Stat
-                  currency={currency}
                   value={investmentBalance}
                   result={result}
-                  type={Number(result) < 0 ? 'decrease' : 'increase'}
                   isVisible={displayInvestments}
                 />
               ) : (

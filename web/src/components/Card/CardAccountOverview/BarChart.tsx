@@ -19,7 +19,7 @@ const BarChart: React.FC = () => {
         data={displayInvestments ? investments : hiddenInvestments}
         keys={['currency', 'dividends', 'capitalGain']}
         indexBy="month"
-        margin={{ top: 0, right: -20, bottom: 30, left: -15 }}
+        margin={{ top: 0, right: -19, bottom: 30, left: -15 }}
         padding={0.85}
         innerPadding={1.5}
         colors={({ id, data }) => data[`${id}Color`]}

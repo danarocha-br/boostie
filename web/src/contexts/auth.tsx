@@ -6,13 +6,16 @@ import React, {
   PropsWithChildren,
 } from 'react';
 
-import { storageKey, generateFinancialData } from '~/utils';
+import {
+  storageKey,
+  generateFinancialData,
+  generatePortfolioHistory,
+} from '~/utils';
 import { IAccountData } from '~/utils/generateFinancialData';
 
 export type IAuthState = {
   signed: boolean;
   investments: IAccountData;
-  displayInvestment: boolean;
 };
 
 export type IAuthContext = {
@@ -46,7 +49,6 @@ export const AuthProvider = ({ children }: PropsWithChildren<unknown>) => {
     setData({
       signed: true,
       investments: generateFinancialData(name),
-      displayInvestment: true,
     });
   }, []);
 
