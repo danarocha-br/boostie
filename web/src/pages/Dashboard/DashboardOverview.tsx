@@ -1,10 +1,9 @@
 import React from 'react';
-import { Flex } from '@chakra-ui/core';
+import { Grid } from '@chakra-ui/core';
 
 import CardOffer from '../../components/Card/CardOffer';
 import CardAccountOverview from '../../components/Card/CardAccountOverview';
 
-import { AnimatedContainer } from './styles';
 import { motion } from 'framer-motion';
 
 const animateCards = {
@@ -15,6 +14,7 @@ const animateCards = {
   mounted: {
     y: 0,
     opacity: 1,
+    transition: { staggerChildren: 0.3 },
   },
   exit: {
     scale: 0.5,
@@ -22,34 +22,33 @@ const animateCards = {
   },
 };
 
-const AnimatedCard = motion.custom(Flex);
+const AnimatedContainer = motion.custom(Grid);
+const AnimatedCard = motion.custom(Grid);
 
 const DashboardOverview: React.FC = () => {
   return (
     <AnimatedContainer
+      height="290px"
+      width="100%"
+      templateColumns={['1fr', '1fr', '1fr', '400px 1fr']}
       initial="unmounted"
       animate="mounted"
       variants={animateCards}
       layout
       transition={{
         type: 'spring',
-        staggerChildren: 0.2,
       }}
     >
       <AnimatedCard
         variants={animateCards}
         key="offer"
-        w={1.7 / 4}
         pr={6}
         display={['none', 'none', 'none', 'flex']}
+        w="100%"
       >
         <CardOffer />
       </AnimatedCard>
-      <AnimatedCard
-        variants={animateCards}
-        key="overview"
-        w={['100%', '100%', '100%', 2.5 / 4]}
-      >
+      <AnimatedCard variants={animateCards} key="overview" w="100%">
         <CardAccountOverview />
       </AnimatedCard>
     </AnimatedContainer>

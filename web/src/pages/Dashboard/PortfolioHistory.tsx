@@ -1,11 +1,33 @@
 import React from 'react';
-import { Flex, Heading, Select } from '@chakra-ui/core';
+import { Flex, Heading, Select, Grid } from '@chakra-ui/core';
+import { motion } from 'framer-motion';
 
 import PortfolioGraphCard from '../../components/Card/PortfolioGraphCard';
-// import CardStat from '../../components/Card/CardStat';
+import CardStat from '../../components/Card/CardStat';
 
 import { StatCardContainer } from './styles';
-import { PORTFOLIO_PIE_CHART_DATA } from '../../constants';
+
+import {
+  PORTFOLIO_PIE_CHART_DATA,
+  PORTFOLIO_MONTHLY_CARDS,
+} from '../../constants';
+
+const animateCards = {
+  unmounted: {
+    y: -50,
+    opacity: 0,
+  },
+  mounted: {
+    y: 0,
+    opacity: 1,
+    transition: { delay: 0.3, staggerChildren: 1 },
+  },
+  exit: {
+    opacity: 0,
+  },
+};
+
+const AnimatedScrollableCards = motion.custom(CardStat);
 
 const PortfolioHistory: React.FC = () => {
   const data = PORTFOLIO_PIE_CHART_DATA;
@@ -31,52 +53,43 @@ const PortfolioHistory: React.FC = () => {
         </Select>
       </Flex>
 
-      <Flex
+      <Grid
         minH="288px"
         maxH="288px"
         mb={8}
-        flex="1"
+        width="100%"
         justifyContent="space-between"
+        templateColumns="1fr 345px"
       >
         <StatCardContainer
-          flex="2"
           as="section"
           overflowX="scroll"
+          display="flex"
           mr={8}
           pt={6}
           boxShadow="inset -14px 0px 20px rgba(0,0,0,0.02), inset 0px 33px 0px rgb(255 255 255 / 44%)"
+          initial="unmounted"
+          animate="mounted"
+          variants={animateCards}
+          layout
+          transition={{
+            type: 'spring',
+          }}
         >
-          {/* <CardStat
-            value={945.45}
-            currency="$"
-            result="234.23 (30.3%)"
-            month="Aug"
-            year={20}
-          />
-          <CardStat
-            value={945.45}
-            currency="$"
-            result="234.23 (30.34%)"
-            month="Aug"
-            year={20}
-          />
-          <CardStat
-            value={945.45}
-            currency="$"
-            result="234.23 (30.34%)"
-            month="Aug"
-            year={20}
-          />
-          <CardStat
-            value={945.45}
-            currency="$"
-            result="234.23 (30.34%)"
-            month="Aug"
-            year={20}
-          /> */}
+          {Object.entries(PORTFOLIO_MONTHLY_CARDS).map(([key, value]) => (
+            <AnimatedScrollableCards
+              variants={animateCards}
+              key={key}
+              value={value.value}
+              currency={value.currency}
+              result={value.result}
+              month={value.month}
+              year={value.year}
+            />
+          ))}
         </StatCardContainer>
         <PortfolioGraphCard data={data} />
-      </Flex>
+      </Grid>
     </>
   );
 };
