@@ -42,6 +42,7 @@ const Card: React.FC<ICardProps> = ({ children, variants }) => {
             variants={variants}
             boxShadow="0px 7px 5px rgba(0, 0, 0, 0.01)"
             transition="background .3s ease-in-out"
+            position="relative"
             _hover={{
               bg: darken(0.2, colors.purple[900]),
             }}

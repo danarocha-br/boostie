@@ -10,7 +10,7 @@ const Dashboard: React.FC<DashboardProps> = () => {
   return (
     <AuthWrapper>
       <DashboardOverview />
-      {/* <PortfolioHistory /> */}
+      <PortfolioHistory />
     </AuthWrapper>
   );
 };

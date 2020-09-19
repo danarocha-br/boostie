@@ -1,7 +1,7 @@
 import React from 'react';
 import { Flex, Heading, Select } from '@chakra-ui/core';
 
-import Card from '../../components/Card';
+import PortfolioGraphCard from '../../components/Card/PortfolioGraphCard';
 import CardStat from '../../components/Card/CardStat';
 
 import { StatCardContainer } from './styles';
@@ -28,7 +28,13 @@ const PortfolioHistory: React.FC = () => {
         </Select>
       </Flex>
 
-      <Flex maxH="288px" mb={8} flex="1" justifyContent="space-between">
+      <Flex
+        minH="288px"
+        maxH="288px"
+        mb={8}
+        flex="1"
+        justifyContent="space-between"
+      >
         <StatCardContainer
           flex="2"
           as="section"
@@ -37,7 +43,7 @@ const PortfolioHistory: React.FC = () => {
           pt={6}
           boxShadow="inset -14px 0px 20px rgba(0,0,0,0.02), inset 0px 33px 0px rgb(255 255 255 / 44%)"
         >
-          <CardStat
+          {/* <CardStat
             value={945.45}
             currency="$"
             result="234.23 (30.3%)"
@@ -64,12 +70,10 @@ const PortfolioHistory: React.FC = () => {
             result="234.23 (30.34%)"
             month="Aug"
             year={20}
-          />
+          /> */}
         </StatCardContainer>
 
-        <Flex flex="1" pt={6}>
-          <Card variants="colored" />
-        </Flex>
+        <PortfolioGraphCard />
       </Flex>
     </>
   );

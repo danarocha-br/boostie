@@ -7,8 +7,9 @@ const MainContent: React.FC = ({ children }) => {
       as="main"
       mt="-220px"
       pr={[8, 8, 8, 12, 20]}
-      pl={20}
+      pl={[8, 8, 8, 12, 20]}
       flexDirection="column"
+      w="100%"
     >
       {children}
     </Flex>
