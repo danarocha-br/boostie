@@ -17,7 +17,8 @@ const Navbar: React.FC = () => {
         justifyContent="flex-end"
         alignItems="center"
         height="100%"
-        p="8"
+        py="8"
+        px={[8, 8, 8, 12, 20]}
         h="110px"
       >
         <PseudoBox display="flex">

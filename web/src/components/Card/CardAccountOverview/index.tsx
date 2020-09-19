@@ -52,7 +52,7 @@ const CardAccountOverview: React.FC = () => {
     <Card>
       <PseudoBox
         position="absolute"
-        right="4"
+        right="5"
         top="5"
         onClick={onDisplayStatement}
         cursor="pointer"
@@ -63,9 +63,9 @@ const CardAccountOverview: React.FC = () => {
         }}
       >
         {displayStatement ? (
-          <Icon name="show" color="gray.900" size="18px" />
+          <Icon name="show" color="gray.900" size="20px" />
         ) : (
-          <Icon name="hide" color="gray.900" size="18px" />
+          <Icon name="hide" color="gray.900" size="20px" />
         )}
       </PseudoBox>
       <Tabs variant="unstyled">
