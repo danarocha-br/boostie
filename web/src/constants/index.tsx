@@ -1,5 +1,4 @@
 export { default as SIDE_BAR_NAVIGATION } from './sidebar';
-export { default as STATEMENT_DATA } from './statementData';
 export { default as PORTFOLIO_CHART_DATA } from './portfolioCardsChartData';
 export { default as PORTFOLIO_PIE_CHART_DATA } from './portfolioCardPieChartData';
 export { default as PORTFOLIO_MONTHLY_CARDS } from './portfolioMonthlyCards';

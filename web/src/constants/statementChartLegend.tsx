@@ -5,9 +5,9 @@ export default {
     color: colors.purple[900],
   },
   Dividends: {
-    color: colors.blue[50],
-  },
-  'Currency Gain': {
     color: colors.red[900],
+  },
+  Currency: {
+    color: colors.blue[50],
   },
 } as const;
