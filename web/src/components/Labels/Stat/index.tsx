@@ -18,7 +18,6 @@ import {
 } from './AnimatedContainer';
 
 const LabelStat: React.FC<IStat> = ({
-  currency,
   value,
   type,
   result,
@@ -42,7 +41,6 @@ const LabelStat: React.FC<IStat> = ({
           {isVisible ? (
             <Skeleton isLoaded={!loading} borderRadius="lg">
               <StatNumber fontSize="2xl" fontWeight="light" mt="-5px">
-                {currency}
                 {value}
               </StatNumber>
             </Skeleton>

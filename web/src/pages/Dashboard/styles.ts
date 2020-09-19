@@ -7,5 +7,6 @@ const FlexMotion = motion.custom(Flex);
 export const StatCardContainer = styled(FlexMotion)`
   div {
     margin-right: 20px;
+    width: 200px;
   }
 `;

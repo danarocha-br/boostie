@@ -1,17 +1,23 @@
 import React, { useState, memo } from 'react';
 import { Flex, List, PseudoBox } from '@chakra-ui/core';
 import { useMediaQuery } from 'react-responsive';
+import faker from 'faker';
 
 import ProfileLink from '../ProfileLink';
 import NavItem from '../NavItem';
 
 import { IUser } from '../ProfileLink/User';
 import { SIDE_BAR_NAVIGATION } from '../../constants';
+import useAuth from '~/contexts/auth';
 
 const Sidebar: React.FC = () => {
-  const [isLoading, setLoading] = useState(false);
+  const [isLoading] = useState(false);
+  const { signOut, investments } = useAuth();
 
-  const user: IUser = { name: 'Dana Rocha', email: 'email@domain.com' };
+  const user: IUser = {
+    name: investments.user.name,
+    email: faker.internet.email(),
+  };
 
   const isTabletOrMobile = useMediaQuery({ query: '(max-width: 992px)' });
 
@@ -65,7 +71,13 @@ const Sidebar: React.FC = () => {
         </PseudoBox>
 
         <List>
-          <NavItem icon="logout" link="/" title="Logout" loading={isLoading} />
+          <NavItem
+            icon="logout"
+            link="/"
+            title="Logout"
+            loading={isLoading}
+            // onClick={signOut}
+          />
         </List>
       </Flex>
     );

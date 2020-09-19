@@ -58,7 +58,7 @@ const boostieTheme = {
     },
     red: {
       ...theme.colors.red,
-      900: '#FB5253',
+      900: '#F26C9C',
     },
     blue: {
       ...theme.colors.blue,

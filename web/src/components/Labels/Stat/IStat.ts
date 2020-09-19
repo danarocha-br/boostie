@@ -1,5 +1,5 @@
 export default interface IStat {
-  type?: 'decrease' | 'increase' | null;
+  type?: 'decrease' | 'increase' | boolean | null;
   value: number | string;
   currency?: string;
   result?: string | null;

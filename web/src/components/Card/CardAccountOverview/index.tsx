@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useMemo } from 'react';
 import {
   TabList,
   TabPanel,
@@ -12,50 +12,42 @@ import {
 } from '@chakra-ui/core';
 
 import Card from '../index';
-import Stat from '../../Labels/Stat';
+import Stat from '~/components/Labels/Stat';
 import BarChart from './BarChart';
-import Legend from '../../Legend';
+import Legend from '~/components/Legend';
 import OverviewPercent from './OverviewPercent';
 
-import { STATEMENT_CHART_LEGEND } from '../../../constants';
+import { STATEMENT_CHART_LEGEND } from '~/constants';
+import useAuth from '~/contexts/auth';
+import useDisplayInvestments from '~/contexts/displayInvestments';
 
-const selected = {
-  fontSize: 'sm',
-  color: 'gray.900',
-  bg: 'transparent',
-  border: '1px solid',
-  borderColor: 'gray.900',
-  borderRadius: '5px',
-  py: '3px',
-  px: '6px',
-  justifyContent: 'center',
-  marginRight: 2,
-};
-
-const unselected = {
-  ...selected,
-  borderColor: 'transparent',
-};
-
-const focus = {
-  boxShadow: 'none',
-};
-
-const hover = {
-  bg: 'transparent',
-  border: '1px solid',
-  borderColor: 'gray.900',
-  borderRadius: '5px',
-  py: '3px',
-  px: '6px',
-};
+import { focus, unselected, selected, hover } from './styles';
+import { formatCurrency } from '~/utils';
 
 const CardAccountOverview: React.FC = () => {
-  const [displayStatement, setDisplayStatement] = useState(true);
+  const { investments } = useAuth().investments;
+  const displayInvestments = useDisplayInvestments().displayInvestment;
+  const toggleDisplayInvestments = useDisplayInvestments()
+    .toggleDisplayInvestments;
 
-  function onDisplayStatement() {
-    setDisplayStatement((prevState) => !prevState);
-  }
+  const [investmentBalance] = useMemo(() => {
+    const balance = investments?.reduce(
+      (acc, { capitalGain, dividends }) => capitalGain + dividends + acc,
+      0,
+    );
+
+    return formatCurrency(balance).split(' ');
+  }, [investments]);
+
+  const result = useMemo(() => {
+    const total = investments?.reduce(
+      (acc, { capitalGain, dividends }) => capitalGain + dividends + acc,
+      0,
+    );
+
+    const percent = total / 5984;
+    return `${percent.toFixed(2)} %`;
+  }, [investments]);
 
   return (
     <Card>
@@ -63,7 +55,7 @@ const CardAccountOverview: React.FC = () => {
         position="absolute"
         right="5"
         top="5"
-        onClick={onDisplayStatement}
+        onClick={toggleDisplayInvestments}
         cursor="pointer"
         transition="all .2s ease-in-out"
         _hover={{
@@ -71,7 +63,7 @@ const CardAccountOverview: React.FC = () => {
           transform: 'scale(1.1)',
         }}
       >
-        {displayStatement ? (
+        {displayInvestments ? (
           <Icon name="show" color="gray.900" size="20px" />
         ) : (
           <Icon name="hide" color="gray.900" size="20px" />
@@ -115,13 +107,11 @@ const CardAccountOverview: React.FC = () => {
               alignItems="end"
               ml={[10, 10, 12]}
             >
-              {displayStatement ? (
+              {displayInvestments ? (
                 <Stat
-                  currency="$"
-                  value={894.35}
-                  result="34%"
-                  type="increase"
-                  isVisible={displayStatement}
+                  value={investmentBalance}
+                  result={result}
+                  isVisible={displayInvestments}
                 />
               ) : (
                 <Stat
@@ -129,7 +119,7 @@ const CardAccountOverview: React.FC = () => {
                   value="---"
                   result="---"
                   type="increase"
-                  isVisible={displayStatement}
+                  isVisible={displayInvestments}
                 />
               )}
               <List mt={8}>
@@ -141,7 +131,7 @@ const CardAccountOverview: React.FC = () => {
           </TabPanel>
 
           <TabPanel>
-            <OverviewPercent isVisible={displayStatement} />
+            <OverviewPercent isVisible={displayInvestments} />
           </TabPanel>
         </TabPanels>
       </Tabs>
