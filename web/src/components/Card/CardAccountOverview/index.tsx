@@ -11,13 +11,13 @@ import {
   List,
 } from '@chakra-ui/core';
 
-import Card from '../index';
+import Card from './index';
 import Stat from '../../Labels/Stat';
 import BarChart from './BarChart';
 import Legend from '../../Legend';
 import OverviewPercent from './OverviewPercent';
 
-import { STATEMENT_CHART_LEGEND } from '../../../constants';
+import { STATEMENT_CHART_LEGEND } from '~/constants';
 
 const selected = {
   fontSize: 'sm',

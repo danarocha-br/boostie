@@ -3,9 +3,9 @@ import { ThemeProvider, CSSReset } from '@chakra-ui/core';
 import { ThemeProvider as EmotionThemeProvider } from 'emotion-theming';
 import { Router } from 'react-router-dom';
 
-import theme from '../styles/theme';
-import Routes from '../routes';
-import history from '../services/history';
+import theme from '~/styles/theme';
+import Routes from '~/routes';
+import history from '~/services/history';
 
 const App: React.FC = () => {
   return (

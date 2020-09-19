@@ -6,7 +6,7 @@ import ProfileLink from '../ProfileLink';
 import NavItem from '../NavItem';
 
 import { IUser } from '../ProfileLink/User';
-import { SIDE_BAR_NAVIGATION } from '../../constants';
+import { SIDE_BAR_NAVIGATION } from '~/constants';
 
 const Sidebar: React.FC = () => {
   const [isLoading, setLoading] = useState(false);

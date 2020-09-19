@@ -1,10 +1,10 @@
 import React, { memo } from 'react';
 import { Flex, Heading, Text, Image } from '@chakra-ui/core';
 
-import Button from '../../Button';
+import Button from '~/components/Button';
 import Card from '../index';
 
-import ImageAdvertisement from '../../../assets/icons/user-phone.png';
+import ImageAdvertisement from '~/assets/icons/user-phone.png';
 
 const CardOffer: React.FC = () => {
   return (

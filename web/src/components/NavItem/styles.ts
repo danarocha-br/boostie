@@ -1,7 +1,7 @@
 import styled from '@emotion/styled/macro';
 import { darken } from 'polished';
 
-import colors from '../../styles/colors';
+import colors from '~/styles/colors';
 
 export const ListItem = styled.li`
   margin-top: 42px;

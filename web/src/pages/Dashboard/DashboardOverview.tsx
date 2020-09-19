@@ -1,8 +1,8 @@
 import React from 'react';
 import { Grid } from '@chakra-ui/core';
 
-import CardOffer from '../../components/Card/CardOffer';
-import CardAccountOverview from '../../components/Card/CardAccountOverview';
+import CardOffer from '~/components/Card/CardOffer';
+import CardAccountOverview from '~/components/Card/CardAccountOverview';
 
 import { motion } from 'framer-motion';
 

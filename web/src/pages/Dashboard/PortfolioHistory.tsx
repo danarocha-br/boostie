@@ -2,15 +2,12 @@ import React from 'react';
 import { Flex, Heading, Select, Grid } from '@chakra-ui/core';
 import { motion } from 'framer-motion';
 
-import PortfolioGraphCard from '../../components/Card/PortfolioGraphCard';
-import CardStat from '../../components/Card/CardStat';
+import PortfolioGraphCard from '~/components/Card/PortfolioGraphCard';
+import CardStat from '~/components/Card/CardStat';
 
 import { StatCardContainer } from './styles';
 
-import {
-  PORTFOLIO_PIE_CHART_DATA,
-  PORTFOLIO_MONTHLY_CARDS,
-} from '../../constants';
+import { PORTFOLIO_PIE_CHART_DATA, PORTFOLIO_MONTHLY_CARDS } from '~/constants';
 
 const animateCards = {
   unmounted: {

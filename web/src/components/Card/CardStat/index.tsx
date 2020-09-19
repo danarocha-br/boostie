@@ -5,7 +5,6 @@ import Card from '../index';
 import Stat from '../../Labels/Stat';
 
 import IStat from '../../Labels/Stat/IStat';
-// import StatChart from './StatChart';
 
 const CardStat: React.FC<IStat> = ({
   type,

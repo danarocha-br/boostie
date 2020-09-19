@@ -2,7 +2,7 @@ import React from 'react';
 import { PseudoBox } from '@chakra-ui/core';
 import { darken, transparentize } from 'polished';
 
-import colors from '../../styles/colors';
+import colors from '~/styles/colors';
 
 interface ICardProps {
   variants?: string | undefined;

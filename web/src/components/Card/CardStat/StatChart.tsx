@@ -2,7 +2,7 @@ import React from 'react';
 import { Flex } from '@chakra-ui/core';
 import { ResponsiveBump } from '@nivo/bump';
 
-import { PORTFOLIO_CHART_DATA } from '../../../constants';
+import { PORTFOLIO_CHART_DATA } from '~/constants';
 
 const StatChart: React.FC = () => {
   return (

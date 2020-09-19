@@ -1,9 +1,9 @@
 import React from 'react';
 import { Grid } from '@chakra-ui/core';
 
-import Sidebar from '../../../components/Sidebar';
-import Navbar from '../../../components/Navbar';
-import Footer from '../../../components/Footer';
+import Sidebar from '~/components/Sidebar';
+import Navbar from '~/components/Navbar';
+import Footer from '~/components/Footer';
 import Main from './Main';
 
 const AuthWrapper: React.FC = ({ children }) => {

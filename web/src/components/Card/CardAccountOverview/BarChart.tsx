@@ -2,8 +2,8 @@ import React from 'react';
 import { ResponsiveBar } from '@nivo/bar';
 import { Flex } from '@chakra-ui/core';
 
-import { STATEMENT_DATA } from '../../../constants';
-import colors from '../../../styles/colors';
+import { STATEMENT_DATA } from '~/constants';
+import colors from '~/styles/colors';
 
 const BarChart: React.FC = () => {
   return (

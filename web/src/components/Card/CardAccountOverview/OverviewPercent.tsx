@@ -1,8 +1,8 @@
 import React from 'react';
 import { Flex, Grid } from '@chakra-ui/core';
 
-import LabelStat from '../../Labels/Stat/';
-import { STATEMENT_PERCENT_DATA } from '../../../constants';
+import LabelStat from '~/components/Labels/Stat/';
+import { STATEMENT_PERCENT_DATA } from '~/constants';
 
 type OverviewPercentProps = { isVisible: boolean };
 

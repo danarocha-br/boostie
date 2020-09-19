@@ -4,7 +4,7 @@ import { darken, transparentize } from 'polished';
 
 import { ButtonThemes, ButtonSizes } from './ButtonTypes';
 
-import colors from '../../styles/colors';
+import colors from '~/styles/colors';
 
 interface IButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   label?: string;

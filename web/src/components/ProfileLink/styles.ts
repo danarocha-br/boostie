@@ -1,7 +1,7 @@
 import styled from '@emotion/styled/macro';
 import { Flex, Text } from '@chakra-ui/core';
 
-import { ReactComponent as User } from '../../assets/icons/user-female.svg';
+import { ReactComponent as User } from '~/assets/icons/user-female.svg';
 
 export const UserImage = styled(User)``;
 
