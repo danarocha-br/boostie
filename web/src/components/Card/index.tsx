@@ -1,6 +1,6 @@
 import React from 'react';
 import { PseudoBox } from '@chakra-ui/core';
-import { darken, transparentize } from 'polished';
+import { transparentize } from 'polished';
 
 import colors from '~/styles/colors';
 

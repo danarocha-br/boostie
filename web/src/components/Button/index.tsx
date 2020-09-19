@@ -10,7 +10,7 @@ interface IButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   label?: string;
   icon?: string;
   size?: 'lg' | 'md' | 'sm' | undefined;
-  theme?: 'transparent' | 'success' | 'primary';
+  theme?: 'transparent' | 'success' | 'primary' | 'default';
   variants?: 'icon' | 'block';
   loading?: boolean;
   disabled?: boolean;
@@ -44,6 +44,9 @@ const Button: React.FC<IButtonProps> = ({
       case ButtonThemes.SUCCESS:
         return colors.green[900];
 
+      case ButtonThemes.DEFAULT:
+        return colors.purple[900];
+
       case ButtonThemes.TRANSPARENT:
         return 'transparent';
 
@@ -56,11 +59,12 @@ const Button: React.FC<IButtonProps> = ({
     <PseudoBox
       as="button"
       height={renderSizes(size)}
+      width={variants === 'icon' ? renderSizes(size) : '100%'}
       lineHeight="1.2"
       outline="none"
       border="1px solid transparent"
       px={size === 'lg' ? 5 : '12px'}
-      rounded={size === 'lg' ? '15px' : '10px'}
+      rounded={size === 'lg' ? '10px' : '10px'}
       fontSize={size === 'lg' ? '18px' : '16px'}
       fontWeight="semibold"
       color={theme === 'transparent' ? 'gray.900' : 'white'}

@@ -13,4 +13,5 @@ export const ButtonThemes = Object.freeze({
   PRIMARY: 'primary',
   SUCCESS: 'success',
   TRANSPARENT: 'transparent',
+  DEFAULT: 'default',
 });

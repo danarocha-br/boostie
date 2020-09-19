@@ -9,7 +9,7 @@ import { IUser } from '../ProfileLink/User';
 import { SIDE_BAR_NAVIGATION } from '~/constants';
 
 const Sidebar: React.FC = () => {
-  const [isLoading, setLoading] = useState(false);
+  const [isLoading] = useState(false);
 
   const user: IUser = { name: 'Dana Rocha', email: 'email@domain.com' };
 
