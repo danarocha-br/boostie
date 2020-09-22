@@ -6,21 +6,19 @@ import React, {
   PropsWithChildren,
 } from 'react';
 
-import {
-  storageKey,
-  generateFinancialData,
-  generatePortfolioHistory,
-} from '~/utils';
+import { storageKey, generateFinancialData } from '~/utils';
 import { IAccountData } from '~/utils/generateFinancialData';
 
 export type IAuthState = {
   signed: boolean;
   investments: IAccountData;
+  pieChart: IAccountData;
 };
 
 export type IAuthContext = {
   signed: boolean;
   investments: IAccountData;
+  pieChart: IAccountData;
   signIn(name: string): void;
   signOut(): void;
 };
@@ -37,6 +35,7 @@ export const AuthProvider = ({ children }: PropsWithChildren<unknown>) => {
       return {
         signed: true,
         investments: generateFinancialData(userName),
+        pieChart: generateFinancialData(userName),
         displayInvestment: true,
       };
     }
@@ -49,6 +48,7 @@ export const AuthProvider = ({ children }: PropsWithChildren<unknown>) => {
     setData({
       signed: true,
       investments: generateFinancialData(name),
+      pieChart: generateFinancialData(name),
     });
   }, []);
 
@@ -61,6 +61,7 @@ export const AuthProvider = ({ children }: PropsWithChildren<unknown>) => {
     () => ({
       signed: data.signed,
       investments: data.investments,
+      pieChart: data.pieChart,
       signIn,
       signOut,
     }),

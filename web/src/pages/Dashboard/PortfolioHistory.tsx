@@ -2,7 +2,7 @@ import React, { useCallback, useState } from 'react';
 import { Flex, Heading, Select, Grid } from '@chakra-ui/core';
 import { motion } from 'framer-motion';
 
-import PortfolioGraphCard from '~/components/Card/PortfolioGraphCard';
+import PortfolioGraphCard from '~/components/Card/PortfolioPieChartCard';
 import CardStat from '~/components/Card/CardStat';
 
 import { StatCardContainer } from './styles';

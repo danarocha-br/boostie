@@ -5,6 +5,10 @@ import { motion } from 'framer-motion';
 import Card from '../index';
 import PieChart, { IPieChartProps } from './PieChart';
 
+import useAuth from '~/contexts/auth';
+import { generatePieChartData } from '~/utils';
+import useDisplayInvestments from '~/contexts/displayInvestments';
+
 const AnimatedCard = motion.custom(Flex);
 
 const animatePieChartCard = {
@@ -21,7 +25,11 @@ const animatePieChartCard = {
   },
 };
 
-const PortfolioGraphCard: React.FC<IPieChartProps> = ({ data }) => {
+const PortfolioGraphCard: React.FC<IPieChartProps> = () => {
+  const { pieChart } = useAuth().pieChart;
+  const displayInvestments = useDisplayInvestments().displayInvestment;
+  const hiddenData = generatePieChartData(false);
+
   return (
     <AnimatedCard
       flex="1"
@@ -34,7 +42,7 @@ const PortfolioGraphCard: React.FC<IPieChartProps> = ({ data }) => {
     >
       <Card variants="colored">
         <Flex h="100%" w="100%" alignItems="center" justifyContent="center">
-          <PieChart data={data} />
+          <PieChart data={displayInvestments ? pieChart : hiddenData} />
           <PseudoBox
             position="absolute"
             flexDirection="column"
@@ -43,7 +51,7 @@ const PortfolioGraphCard: React.FC<IPieChartProps> = ({ data }) => {
             textAlign="center"
           >
             <Text fontSize="xl" fontWeight="semibold">
-              07
+              {displayInvestments ? '07' : '...'}
             </Text>
             <Text letterSpacing={1.03}>INDUSTRIES</Text>
           </PseudoBox>

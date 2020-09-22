@@ -16,32 +16,32 @@ export default [
   },
   {
     id: 'banks',
-    label: 'Diversidied Banks',
     value: 71,
+    label: 'Diversidied Banks',
     color: colors.yellow[900],
   },
   {
     id: 'oil',
-    label: 'Integrated Oil & Gas',
     value: 45,
+    label: 'Integrated Oil & Gas',
     color: lighten(0.12, colors.purple[900]),
   },
   {
     id: 'retail',
-    label: 'Retail REITs',
     value: 62,
+    label: 'Retail REITs',
     color: colors.red[900],
   },
   {
     id: 'eletronics',
-    label: 'Eletronics',
     value: 23,
+    label: 'Eletronics',
     color: colors.gray[50],
   },
   {
     id: 'energy',
-    label: 'Energy',
     value: 72,
+    label: 'Energy',
     color: complement(colors.red[900]),
   },
 ];
