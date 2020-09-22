@@ -12,7 +12,6 @@ import {
   generatePortfolioLineChartData,
 } from '~/utils';
 import useDisplayInvestments from '~/contexts/displayInvestments';
-import useAuth from '~/contexts/auth';
 
 const animateCards = {
   unmounted: {
@@ -33,11 +32,9 @@ const AnimatedScrollableCards = motion.custom(CardStat);
 
 const PortfolioHistory: React.FC = () => {
   const displayInvestments = useDisplayInvestments().displayInvestment;
-  const { lineChart } = useAuth().investments;
 
   const historyData = generatePortfolioHistory();
   const hiddenChart = generatePortfolioLineChartData(false).timeline;
-  // const chartData = generatePortfolioLineChartData().timeline;
 
   return (
     <>

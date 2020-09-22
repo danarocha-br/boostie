@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { MouseEventHandler } from 'react';
 import { NavLink } from 'react-router-dom';
 import { Icon, Text, Skeleton } from '@chakra-ui/core';
 
@@ -11,6 +11,7 @@ interface INavItemProps {
   disabled?: boolean;
   active?: boolean;
   loading?: boolean;
+  onClick?: MouseEventHandler<HTMLElement>;
 }
 
 const NavItem: React.FC<INavItemProps> = ({
@@ -20,10 +21,11 @@ const NavItem: React.FC<INavItemProps> = ({
   disabled,
   loading,
   active,
+  onClick,
   ...rest
 }) => {
   return (
-    <ListItem disabled={disabled} loading={loading} {...rest}>
+    <ListItem disabled={disabled} loading={loading} {...rest} onClick={onClick}>
       <NavLink to={link}>
         <Skeleton isLoaded={!loading} borderRadius="xlarge">
           <Icon name={icon} size="24px" color="gray.900" />
