@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React from 'react';
 import { Flex, Heading, Select, Grid } from '@chakra-ui/core';
 import { motion } from 'framer-motion';
 
@@ -7,7 +7,11 @@ import CardStat from '~/components/Card/CardStat';
 
 import { StatCardContainer } from './styles';
 
-import { generatePortfolioHistory } from '~/utils';
+import {
+  generatePortfolioHistory,
+  generatePortfolioLineChartData,
+} from '~/utils';
+import useDisplayInvestments from '~/contexts/displayInvestments';
 
 const animateCards = {
   unmounted: {
@@ -27,7 +31,11 @@ const animateCards = {
 const AnimatedScrollableCards = motion.custom(CardStat);
 
 const PortfolioHistory: React.FC = () => {
+  const displayInvestments = useDisplayInvestments().displayInvestment;
+
   const historyData = generatePortfolioHistory();
+  const lineChartData = generatePortfolioLineChartData();
+  const hiddenChart = generatePortfolioLineChartData(false).timeline;
 
   return (
     <>
@@ -81,6 +89,8 @@ const PortfolioHistory: React.FC = () => {
               result={value.result}
               month={value.month}
               year={value.year}
+              data={displayInvestments ? lineChartData.timeline : hiddenChart}
+              isVisible={displayInvestments}
             />
           ))}
         </StatCardContainer>

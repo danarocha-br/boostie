@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Flex, PseudoBox, Text } from '@chakra-ui/core';
 import { motion } from 'framer-motion';
 
 import Card from '../index';
-import PieChart, { IPieChartProps } from './PieChart';
+import PieChart from './PieChart';
 
 import useAuth from '~/contexts/auth';
 import { generatePieChartData } from '~/utils';
@@ -26,8 +26,14 @@ const animatePieChartCard = {
 };
 
 const PortfolioGraphCard: React.FC = () => {
-  const { pieChart } = useAuth().pieChart;
+  const { pieChart } = useAuth().investments;
+
   const displayInvestments = useDisplayInvestments().displayInvestment;
+
+  const pieChartData = useMemo(() => {
+    return pieChart;
+  }, [pieChart]);
+
   const hiddenData = generatePieChartData(false);
 
   return (
@@ -42,7 +48,7 @@ const PortfolioGraphCard: React.FC = () => {
     >
       <Card variants="colored">
         <Flex h="100%" w="100%" alignItems="center" justifyContent="center">
-          <PieChart data={displayInvestments ? pieChart : hiddenData} />
+          <PieChart data={displayInvestments ? pieChartData : hiddenData} />
           <PseudoBox
             position="absolute"
             flexDirection="column"

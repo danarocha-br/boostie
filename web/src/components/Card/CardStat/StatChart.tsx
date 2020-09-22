@@ -1,32 +1,46 @@
 import React from 'react';
 import { Flex } from '@chakra-ui/core';
-import { ResponsiveBump } from '@nivo/bump';
+import { ResponsiveLine, Serie } from '@nivo/line';
 
-import { PORTFOLIO_CHART_DATA } from '../../../constants';
+import colors from '~/styles/colors';
 
-const StatChart: React.FC = () => {
+interface IStatChart {
+  data: Serie[];
+}
+
+const StatChart: React.FC<IStatChart> = ({ data }) => {
   return (
     <Flex h={60} flex="1">
-      <ResponsiveBump
-        data={PORTFOLIO_CHART_DATA}
-        margin={{ top: 40, right: 100, bottom: 40, left: 60 }}
-        xPadding={0.55}
-        xOuterPadding={0.35}
-        colors={'#111'}
-        startLabelPadding={0}
-        endLabelPadding={30}
-        pointSize={0}
-        inactivePointSize={0}
-        pointColor={'#111'}
-        pointBorderWidth={5}
-        activePointBorderWidth={3}
-        pointBorderColor={'#111'}
-        enableGridX={false}
-        enableGridY={false}
+      <ResponsiveLine
+        data={data}
+        margin={{ top: 0, right: 50, bottom: 10, left: 0 }}
+        xScale={{ type: 'point' }}
+        yScale={{
+          type: 'linear',
+          min: 'auto',
+          max: 'auto',
+          stacked: true,
+          reverse: false,
+        }}
+        curve="basis"
         axisTop={null}
         axisRight={null}
         axisBottom={null}
         axisLeft={null}
+        enableGridX={false}
+        enableGridY={false}
+        colors={colors.green[900]}
+        enablePoints={false}
+        pointSize={10}
+        pointColor={{ theme: 'background' }}
+        pointBorderWidth={2}
+        pointBorderColor={{ from: 'serieColor' }}
+        enablePointLabel={true}
+        pointLabel="y"
+        pointLabelYOffset={-12}
+        areaOpacity={0.15}
+        useMesh={true}
+        legends={[]}
       />
     </Flex>
   );
