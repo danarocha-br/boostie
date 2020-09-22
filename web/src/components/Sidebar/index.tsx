@@ -1,4 +1,5 @@
 import React, { useState, memo } from 'react';
+import { useHistory } from 'react-router-dom';
 import { Flex, List, PseudoBox } from '@chakra-ui/core';
 import { useMediaQuery } from 'react-responsive';
 import faker from 'faker';
@@ -13,6 +14,7 @@ import useAuth from '~/contexts/auth';
 const Sidebar: React.FC = () => {
   const [isLoading] = useState(false);
   const { signOut, investments } = useAuth();
+  const history = useHistory();
 
   const user: IUser = {
     name: investments.user.name,
@@ -20,6 +22,11 @@ const Sidebar: React.FC = () => {
   };
 
   const isTabletOrMobile = useMediaQuery({ query: '(max-width: 992px)' });
+
+  const handleSignOut = (): void => {
+    signOut();
+    history.push('/dashboard');
+  };
 
   function renderContent(isTabletOrMobile: boolean) {
     if (isTabletOrMobile) {
@@ -76,7 +83,7 @@ const Sidebar: React.FC = () => {
             link="/"
             title="Logout"
             loading={isLoading}
-            // onClick={signOut}
+            onClick={handleSignOut}
           />
         </List>
       </Flex>

@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Flex, PseudoBox, Text } from '@chakra-ui/core';
 import { motion } from 'framer-motion';
 
 import Card from '../index';
-import PieChart, { IPieChartProps } from './PieChart';
+import PieChart from './PieChart';
+
+import useAuth from '~/contexts/auth';
+import { generatePieChartData } from '~/utils';
+import useDisplayInvestments from '~/contexts/displayInvestments';
 
 const AnimatedCard = motion.custom(Flex);
 
@@ -21,7 +25,17 @@ const animatePieChartCard = {
   },
 };
 
-const PortfolioGraphCard: React.FC<IPieChartProps> = ({ data }) => {
+const PortfolioGraphCard: React.FC = () => {
+  const { pieChart } = useAuth().investments;
+
+  const displayInvestments = useDisplayInvestments().displayInvestment;
+
+  const pieChartData = useMemo(() => {
+    return pieChart;
+  }, [pieChart]);
+
+  const hiddenData = generatePieChartData(false);
+
   return (
     <AnimatedCard
       flex="1"
@@ -34,7 +48,7 @@ const PortfolioGraphCard: React.FC<IPieChartProps> = ({ data }) => {
     >
       <Card variants="colored">
         <Flex h="100%" w="100%" alignItems="center" justifyContent="center">
-          <PieChart data={data} />
+          <PieChart data={displayInvestments ? pieChartData : hiddenData} />
           <PseudoBox
             position="absolute"
             flexDirection="column"
@@ -43,7 +57,7 @@ const PortfolioGraphCard: React.FC<IPieChartProps> = ({ data }) => {
             textAlign="center"
           >
             <Text fontSize="xl" fontWeight="semibold">
-              07
+              {displayInvestments ? '07' : '...'}
             </Text>
             <Text letterSpacing={1.03}>INDUSTRIES</Text>
           </PseudoBox>

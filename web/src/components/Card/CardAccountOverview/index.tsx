@@ -25,29 +25,29 @@ import { focus, unselected, selected, hover } from './styles';
 import { formatCurrency } from '~/utils';
 
 const CardAccountOverview: React.FC = () => {
-  const { investments } = useAuth().investments;
+  const { barChart } = useAuth().investments;
   const displayInvestments = useDisplayInvestments().displayInvestment;
   const toggleDisplayInvestments = useDisplayInvestments()
     .toggleDisplayInvestments;
 
   const [investmentBalance] = useMemo(() => {
-    const balance = investments?.reduce(
+    const balance = barChart?.reduce(
       (acc, { capitalGain, dividends }) => capitalGain + dividends + acc,
       0,
     );
 
     return formatCurrency(balance).split(' ');
-  }, [investments]);
+  }, [barChart]);
 
   const result = useMemo(() => {
-    const total = investments?.reduce(
+    const total = barChart?.reduce(
       (acc, { capitalGain, dividends }) => capitalGain + dividends + acc,
       0,
     );
 
     const percent = total / 5984;
     return `${percent.toFixed(2)} %`;
-  }, [investments]);
+  }, [barChart]);
 
   return (
     <Card>
@@ -131,7 +131,7 @@ const CardAccountOverview: React.FC = () => {
           </TabPanel>
 
           <TabPanel>
-            <OverviewPercent isVisible={displayInvestments} />
+            <OverviewPercent isVisible={displayInvestments} data={barChart} />
           </TabPanel>
         </TabPanels>
       </Tabs>

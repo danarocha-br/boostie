@@ -2,13 +2,13 @@ import React from 'react';
 import { ResponsiveBar } from '@nivo/bar';
 import { Flex } from '@chakra-ui/core';
 
-import colors from '../../../styles/colors';
+import colors from '~/styles/colors';
 import useAuth from '~/contexts/auth';
 import useDisplayInvestments from '~/contexts/displayInvestments';
 import { generateInvestmentGrowth } from '~/utils';
 
 const BarChart: React.FC = () => {
-  const { investments } = useAuth().investments;
+  const { barChart } = useAuth().investments;
   const displayInvestments = useDisplayInvestments().displayInvestment;
 
   const hiddenInvestments = generateInvestmentGrowth(false);
@@ -16,10 +16,10 @@ const BarChart: React.FC = () => {
   return (
     <Flex h="190px" w="100%">
       <ResponsiveBar
-        data={displayInvestments ? investments : hiddenInvestments}
+        data={displayInvestments ? barChart : hiddenInvestments}
         keys={['currency', 'dividends', 'capitalGain']}
         indexBy="month"
-        margin={{ top: 0, right: -19, bottom: 30, left: -15 }}
+        margin={{ top: 0, right: -20, bottom: 30, left: -15 }}
         padding={0.85}
         innerPadding={1.5}
         colors={({ id, data }) => data[`${id}Color`]}

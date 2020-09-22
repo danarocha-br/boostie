@@ -6,11 +6,7 @@ import React, {
   PropsWithChildren,
 } from 'react';
 
-import {
-  storageKey,
-  generateFinancialData,
-  generatePortfolioHistory,
-} from '~/utils';
+import { storageKey, generateFinancialData } from '~/utils';
 import { IAccountData } from '~/utils/generateFinancialData';
 
 export type IAuthState = {

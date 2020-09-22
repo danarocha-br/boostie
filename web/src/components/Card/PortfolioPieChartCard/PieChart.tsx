@@ -22,7 +22,7 @@ const PieChart: React.FC<IPieChartProps> = ({ data }) => {
       enableSlicesLabels={false}
       slicesLabelsSkipAngle={0}
       animate={true}
-      motionStiffness={90}
+      motionStiffness={100}
       motionDamping={15}
       tooltipFormat={(value) =>
         `$ ${Number(value).toLocaleString('en-US', {

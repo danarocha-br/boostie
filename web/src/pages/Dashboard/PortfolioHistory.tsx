@@ -1,14 +1,17 @@
-import React, { useCallback, useState } from 'react';
+import React from 'react';
 import { Flex, Heading, Select, Grid } from '@chakra-ui/core';
 import { motion } from 'framer-motion';
 
-import PortfolioGraphCard from '~/components/Card/PortfolioGraphCard';
+import PortfolioGraphCard from '~/components/Card/PortfolioPieChartCard';
 import CardStat from '~/components/Card/CardStat';
 
 import { StatCardContainer } from './styles';
 
-import { PORTFOLIO_PIE_CHART_DATA } from '~/constants';
-import { generatePortfolioHistory } from '~/utils';
+import {
+  generatePortfolioHistory,
+  generatePortfolioLineChartData,
+} from '~/utils';
+import useDisplayInvestments from '~/contexts/displayInvestments';
 
 const animateCards = {
   unmounted: {
@@ -28,23 +31,27 @@ const animateCards = {
 const AnimatedScrollableCards = motion.custom(CardStat);
 
 const PortfolioHistory: React.FC = () => {
-  const data = PORTFOLIO_PIE_CHART_DATA;
+  const displayInvestments = useDisplayInvestments().displayInvestment;
+
   const historyData = generatePortfolioHistory();
+  const hiddenChart = generatePortfolioLineChartData(false).timeline;
 
   return (
     <>
-      <Flex w="100%" justifyContent="space-between" alignItems="center" mt={8}>
-        <Heading as="h2" fontSize="md" fontWeight="regular">
+      <Flex w="100%" justifyContent="space-between" alignItems="center" mt={10}>
+        <Heading as="h2" fontSize="lg" fontWeight="regular">
           Portfolio History
         </Heading>
         <Select
-          placeholder="Per Industry"
-          variant="flushed"
-          w="200px"
-          borderColor="gray-900"
-          borderStyle="dashed"
-          borderBottomWidth="1px"
-          focusBorderColor="purple.900"
+          placeholder="Per Industries"
+          variant="outline"
+          icon="triangle-down"
+          iconSize="11px"
+          iconColor="gray.500"
+          focusBorderColor="gray.500"
+          backgroundColor="transparent"
+          borderColor="transparent"
+          w="180px"
         >
           <option value="option1">Option 1</option>
           <option value="option2">Option 2</option>
@@ -75,18 +82,26 @@ const PortfolioHistory: React.FC = () => {
             type: 'spring',
           }}
         >
-          {Object.entries(historyData).map(([key, value]) => (
-            <AnimatedScrollableCards
-              variants={animateCards}
-              key={key}
-              value={value.value}
-              result={value.result}
-              month={value.month}
-              year={value.year}
-            />
-          ))}
+          {Object.entries(historyData).map(([key, value]) => {
+            return (
+              <AnimatedScrollableCards
+                variants={animateCards}
+                key={key}
+                value={value.value}
+                result={value.result}
+                month={value.month}
+                year={value.year}
+                data={
+                  displayInvestments
+                    ? generatePortfolioLineChartData().timeline
+                    : hiddenChart
+                }
+                isVisible={displayInvestments}
+              />
+            );
+          })}
         </StatCardContainer>
-        <PortfolioGraphCard data={data} />
+        <PortfolioGraphCard />
       </Grid>
     </>
   );

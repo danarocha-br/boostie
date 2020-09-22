@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
-import { FormControl, FormLabel, Input } from '@chakra-ui/core';
 import { useHistory } from 'react-router-dom';
+import { FormControl, FormLabel, Input } from '@chakra-ui/core';
 
 import Button from '../../components/Button';
 import useAuth from '~/contexts/auth';
 
 const Login: React.FC = () => {
   const [inputValue, setInputValue] = useState('');
-  const history = useHistory();
 
   const { signIn } = useAuth();
+  const history = useHistory();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void =>
     setInputValue(e.target.value);

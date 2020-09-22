@@ -3,7 +3,7 @@ import faker from 'faker';
 import colors from '../styles/colors';
 import generateMonthsInterval from './generateMonthsInterval';
 
-export type IGenerateInvestmentGrowth = {
+export interface IGenerateInvestmentGrowth {
   month: string;
   capitalGain: number;
   capitalGainColor: string;
@@ -11,7 +11,7 @@ export type IGenerateInvestmentGrowth = {
   dividendsColor: string;
   currency: number;
   currencyColor: string;
-};
+}
 
 export type IGenerateInvestmentsGrowth = (
   visible?: boolean,
