@@ -1,6 +1,6 @@
 import faker from 'faker';
 
-import generateMonthsInterval from './generateMonthsInterval';
+import generateWeeksInterval from './generateWeeksInterval';
 import colors from '../styles/colors';
 
 export type IPortfolioTimeline = {
@@ -23,10 +23,10 @@ export type IGeneratedPortfolios = (visible?: boolean) => IPortfolioChart;
 const generatePortfolioLineChartData: IGeneratedPortfolios = (
   visible = true,
 ) => {
-  const currentMonthsInterval = generateMonthsInterval();
+  const currentDaysInterval = generateWeeksInterval();
 
-  const lineChartData = currentMonthsInterval.map((month) => ({
-    x: month,
+  const lineChartData = currentDaysInterval.map((day) => ({
+    x: day,
     y: visible ? +faker.finance.amount(1000, 80000) : 0,
   }));
 

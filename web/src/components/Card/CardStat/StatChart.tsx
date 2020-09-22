@@ -13,7 +13,7 @@ const StatChart: React.FC<IStatChart> = ({ data }) => {
     <Flex h={60} flex="1">
       <ResponsiveLine
         data={data}
-        margin={{ top: 0, right: 50, bottom: 10, left: 0 }}
+        margin={{ top: 5, right: -100, bottom: 10, left: 0 }}
         xScale={{ type: 'point' }}
         yScale={{
           type: 'linear',
@@ -41,6 +41,11 @@ const StatChart: React.FC<IStatChart> = ({ data }) => {
         areaOpacity={0.15}
         useMesh={true}
         legends={[]}
+        yFormat={(value) =>
+          `$ ${Number(value).toLocaleString('en-US', {
+            minimumFractionDigits: 2,
+          })} `
+        }
       />
     </Flex>
   );
