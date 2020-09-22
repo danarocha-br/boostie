@@ -25,7 +25,7 @@ const animatePieChartCard = {
   },
 };
 
-const PortfolioGraphCard: React.FC<IPieChartProps> = () => {
+const PortfolioGraphCard: React.FC = () => {
   const { pieChart } = useAuth().pieChart;
   const displayInvestments = useDisplayInvestments().displayInvestment;
   const hiddenData = generatePieChartData(false);

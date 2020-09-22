@@ -7,7 +7,6 @@ import CardStat from '~/components/Card/CardStat';
 
 import { StatCardContainer } from './styles';
 
-import { PORTFOLIO_PIE_CHART_DATA } from '~/constants';
 import { generatePortfolioHistory } from '~/utils';
 
 const animateCards = {
@@ -28,7 +27,6 @@ const animateCards = {
 const AnimatedScrollableCards = motion.custom(CardStat);
 
 const PortfolioHistory: React.FC = () => {
-  const data = PORTFOLIO_PIE_CHART_DATA;
   const historyData = generatePortfolioHistory();
 
   return (
@@ -86,7 +84,7 @@ const PortfolioHistory: React.FC = () => {
             />
           ))}
         </StatCardContainer>
-        <PortfolioGraphCard data={data} />
+        <PortfolioGraphCard />
       </Grid>
     </>
   );

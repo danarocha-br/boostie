@@ -131,7 +131,10 @@ const CardAccountOverview: React.FC = () => {
           </TabPanel>
 
           <TabPanel>
-            <OverviewPercent isVisible={displayInvestments} />
+            <OverviewPercent
+              isVisible={displayInvestments}
+              data={investments}
+            />
           </TabPanel>
         </TabPanels>
       </Tabs>
