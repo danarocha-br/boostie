@@ -12,6 +12,7 @@ const Dashboard: React.FC<DashboardProps> = () => {
     <AuthWrapper>
       <DashboardOverview />
       <PortfolioHistory />
+
       <InvestmentTable />
     </AuthWrapper>
   );
