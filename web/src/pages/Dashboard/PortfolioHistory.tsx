@@ -6,6 +6,7 @@ import PortfolioGraphCard from '~/components/Card/PortfolioPieChartCard';
 import CardStat from '~/components/Card/CardStat';
 
 import { StatCardContainer } from './styles';
+import useAuth from '~/contexts/auth';
 
 import {
   generatePortfolioHistory,
@@ -31,6 +32,7 @@ const animateCards = {
 const AnimatedScrollableCards = motion.custom(CardStat);
 
 const PortfolioHistory: React.FC = () => {
+  const isLoading = useAuth().isLoading;
   const displayInvestments = useDisplayInvestments().displayInvestment;
 
   const historyData = generatePortfolioHistory();
@@ -97,6 +99,7 @@ const PortfolioHistory: React.FC = () => {
                     : hiddenChart
                 }
                 isVisible={displayInvestments}
+                loading={isLoading}
               />
             );
           })}

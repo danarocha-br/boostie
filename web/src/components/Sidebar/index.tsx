@@ -12,8 +12,7 @@ import { SIDE_BAR_NAVIGATION } from '../../constants';
 import useAuth from '~/contexts/auth';
 
 const Sidebar: React.FC = () => {
-  const [isLoading] = useState(false);
-  const { signOut, investments } = useAuth();
+  const { signOut, investments, isLoading } = useAuth();
   const history = useHistory();
 
   const user: IUser = {

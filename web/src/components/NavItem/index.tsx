@@ -25,7 +25,7 @@ const NavItem: React.FC<INavItemProps> = ({
   ...rest
 }) => {
   return (
-    <ListItem disabled={disabled} loading={loading} {...rest} onClick={onClick}>
+    <ListItem disabled={disabled} {...rest} onClick={onClick}>
       <NavLink to={link}>
         <Skeleton isLoaded={!loading} borderRadius="xlarge">
           <Icon name={icon} size="24px" color="gray.900" />
