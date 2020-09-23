@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route, useLocation } from 'react-router-dom';
+import { Switch, Route, useLocation, Redirect } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 
 import Dashboard from '../pages/Dashboard';
@@ -11,13 +11,13 @@ const Routes = () => {
   const { pathname } = location;
 
   return (
-    <AnimatePresence exitBeforeEnter>
+    <AnimatePresence exitBeforeEnter={pathname === '/dashboard'}>
       <Switch location={location} key={pathname}>
         <Route path="/" exact component={Login} />
 
         <PrivateRoute path="/dashboard" component={Dashboard} />
 
-        {/* <Route render={() => <Redirect to="/" />} /> */}
+        <Route render={() => <Redirect to="/" />} />
       </Switch>
     </AnimatePresence>
   );

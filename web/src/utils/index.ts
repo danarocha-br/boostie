@@ -8,3 +8,4 @@ export { default as generateFinancialData } from './generateFinancialData';
 export { default as generatePortfolioHistory } from './generatePortfolioHistory';
 export { default as generatePortfolioLineChartData } from './generatePortfolioLineChartData';
 export { default as generatePieChartData } from './generatePieChartData';
+export { default as generateInvestmentsTable } from './generateInvestmentsTable';

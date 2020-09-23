@@ -5,7 +5,7 @@ import Card from '../index';
 import Stat from '../../Labels/Stat';
 
 import IStat from '../../Labels/Stat/IStat';
-import StatChart from './StatChart';
+// import StatChart from './StatChart';
 
 import { Serie } from '@nivo/line';
 
@@ -34,7 +34,7 @@ const CardStat: React.FC<IStat & IData> = ({
           />
         </PseudoBox>
 
-        <StatChart data={data} />
+        {/* <StatChart data={data} /> */}
 
         <Flex flexDirection="column">
           <Stat
