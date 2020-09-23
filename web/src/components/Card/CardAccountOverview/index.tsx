@@ -27,6 +27,8 @@ import { formatCurrency } from '~/utils';
 const CardAccountOverview: React.FC = () => {
   const { barChart } = useAuth().investments;
   const displayInvestments = useDisplayInvestments().displayInvestment;
+  const isLoading = useAuth().isLoading;
+
   const toggleDisplayInvestments = useDisplayInvestments()
     .toggleDisplayInvestments;
 
@@ -112,6 +114,7 @@ const CardAccountOverview: React.FC = () => {
                   value={investmentBalance}
                   result={result}
                   isVisible={displayInvestments}
+                  loading={isLoading}
                 />
               ) : (
                 <Stat

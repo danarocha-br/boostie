@@ -39,8 +39,8 @@ const LabelStat: React.FC<IStat> = ({
 
         <AnimatePresence>
           {isVisible ? (
-            <Skeleton isLoaded={!loading} borderRadius="lg">
-              <StatNumber fontSize="2xl" fontWeight="light" mt="-5px">
+            <Skeleton isLoaded={!loading} borderRadius="lg" maxW="100px">
+              <StatNumber fontSize="2xl" fontWeight="light" mt="-3px">
                 {value}
               </StatNumber>
             </Skeleton>
@@ -49,25 +49,23 @@ const LabelStat: React.FC<IStat> = ({
           )}
         </AnimatePresence>
         <AnimatePresence>
-          {isVisible ? (
-            <Skeleton isLoaded={!loading} borderRadius="lg">
-              <StatHelpText
-                mt="-5px"
-                color={type === 'decrease' ? 'red.900' : 'green.900'}
-              >
-                {type && (
-                  <StatArrow
-                    type={type === 'decrease' ? 'decrease' : 'increase'}
-                    color={type === 'decrease' ? 'red.900' : 'green.900'}
-                    name={type === 'decrease' ? 'arrow-down' : 'arrow-up'}
-                    size="14px"
-                  />
-                )}
-                {result}
-              </StatHelpText>
-            </Skeleton>
+          {isVisible && !loading ? (
+            <StatHelpText
+              mt="-5px"
+              color={type === 'decrease' ? 'red.900' : 'green.900'}
+            >
+              {type && (
+                <StatArrow
+                  type={type === 'decrease' ? 'decrease' : 'increase'}
+                  color={type === 'decrease' ? 'red.900' : 'green.900'}
+                  name={type === 'decrease' ? 'arrow-down' : 'arrow-up'}
+                  size="14px"
+                />
+              )}
+              {!loading && result}
+            </StatHelpText>
           ) : (
-            type && <AnimatedContainerSmall />
+            type && !loading && <AnimatedContainerSmall />
           )}
         </AnimatePresence>
       </PseudoBox>

@@ -27,6 +27,7 @@ const animatePieChartCard = {
 
 const PortfolioGraphCard: React.FC = () => {
   const { pieChart } = useAuth().investments;
+  const isLoading = useAuth().isLoading;
 
   const displayInvestments = useDisplayInvestments().displayInvestment;
 
@@ -48,7 +49,9 @@ const PortfolioGraphCard: React.FC = () => {
     >
       <Card variants="colored">
         <Flex h="100%" w="100%" alignItems="center" justifyContent="center">
-          <PieChart data={displayInvestments ? pieChartData : hiddenData} />
+          <PieChart
+            data={!isLoading && displayInvestments ? pieChartData : hiddenData}
+          />
           <PseudoBox
             position="absolute"
             flexDirection="column"
@@ -57,7 +60,7 @@ const PortfolioGraphCard: React.FC = () => {
             textAlign="center"
           >
             <Text fontSize="xl" fontWeight="semibold">
-              {displayInvestments ? '07' : '...'}
+              {!isLoading && displayInvestments ? '07' : '...'}
             </Text>
             <Text letterSpacing={1.03}>INDUSTRIES</Text>
           </PseudoBox>

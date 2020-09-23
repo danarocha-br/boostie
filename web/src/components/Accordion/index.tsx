@@ -7,7 +7,6 @@ import {
   AccordionPanel,
   AccordionHeader,
 } from '@chakra-ui/core';
-import { backgroundColor } from 'styled-system';
 
 interface IAccordionProps {
   title: string;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Flex, Text, PseudoBox, Divider } from '@chakra-ui/core';
+import { Flex, Text, PseudoBox, Divider, Skeleton } from '@chakra-ui/core';
 
 import Card from '../index';
 import Stat from '../../Labels/Stat';
@@ -19,14 +19,17 @@ const CardStat: React.FC<IStat & IData> = ({
   year,
   data,
   isVisible,
+  loading,
 }) => {
   return (
     <Card variants="bordered">
       <Flex flexDirection="column" alignContent="space-between" h="100%">
         <PseudoBox mb="auto">
-          <Text textTransform="uppercase" fontWeight="medium">
-            {month} {year}
-          </Text>
+          <Skeleton isLoaded={!loading} borderRadius="lg" maxW="100px">
+            <Text textTransform="uppercase" fontWeight="medium">
+              {month} {year}
+            </Text>
+          </Skeleton>
           <Divider
             borderBottomWidth="4px"
             borderBottomColor="gray.500"
@@ -43,6 +46,7 @@ const CardStat: React.FC<IStat & IData> = ({
             currency={currency}
             result={result}
             isVisible={isVisible}
+            loading={loading}
           />
         </Flex>
       </Flex>

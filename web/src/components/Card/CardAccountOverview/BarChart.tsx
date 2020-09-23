@@ -9,6 +9,8 @@ import { generateInvestmentGrowth } from '~/utils';
 
 const BarChart: React.FC = () => {
   const { barChart } = useAuth().investments;
+  const isLoading = useAuth().isLoading;
+
   const displayInvestments = useDisplayInvestments().displayInvestment;
 
   const hiddenInvestments = generateInvestmentGrowth(false);
@@ -16,7 +18,7 @@ const BarChart: React.FC = () => {
   return (
     <Flex h="190px" w="100%">
       <ResponsiveBar
-        data={displayInvestments ? barChart : hiddenInvestments}
+        data={!isLoading && displayInvestments ? barChart : hiddenInvestments}
         keys={['currency', 'dividends', 'capitalGain']}
         indexBy="month"
         margin={{ top: 0, right: -20, bottom: 30, left: -15 }}

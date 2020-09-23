@@ -12,9 +12,11 @@ import Accordion from '~/components/Accordion';
 import { INVESTMENT_TABLE_HEADER } from '~/constants';
 import { generateInvestmentsTable } from '~/utils';
 import { IGenerateInvestmentTable } from '~/utils/generateInvestmentsTable';
+import useAuth from '~/contexts/auth';
 
 const InvestmentTable: React.FC = () => {
   const assets = generateInvestmentsTable();
+  const isLoading = useAuth().isLoading;
 
   const nyseMtk = useMemo(() => {
     return _.filter(assets, (item) => item.market === 'nyse');
@@ -26,7 +28,7 @@ const InvestmentTable: React.FC = () => {
 
   const renderTable = (asset: IGenerateInvestmentTable) => (
     <TableGroupRow key={asset.ticker}>
-      <TableCol label="symbol">
+      <TableCol loading={isLoading} label="symbol">
         <ProductLabel
           label={asset.ticker}
           variants={asset.market}
@@ -35,30 +37,44 @@ const InvestmentTable: React.FC = () => {
         />
       </TableCol>
 
-      <TableCol label="shares">{asset.shares}</TableCol>
-      <TableCol label="symbol">{asset.avg_price}</TableCol>
-      <TableCol label="Avg Price">{asset.price}</TableCol>
+      <TableCol loading={isLoading} label="shares">
+        {asset.shares}
+      </TableCol>
+      <TableCol loading={isLoading} label="symbol">
+        {asset.avg_price}
+      </TableCol>
+      <TableCol loading={isLoading} label="Avg Price">
+        {asset.price}
+      </TableCol>
       <TableCol
+        loading={isLoading}
         label="Return"
         color={Math.sign(asset.return_pct) > 0 ? 'positive' : 'negative'}
       >
         {asset.return_pct} %
       </TableCol>
-      <TableCol label="Net cost">{asset.net_cost}</TableCol>
-      <TableCol label="Market value">{asset.market_value}</TableCol>
+      <TableCol loading={isLoading} label="Net cost">
+        {asset.net_cost}
+      </TableCol>
+      <TableCol loading={isLoading} label="Market value">
+        {asset.market_value}
+      </TableCol>
       <TableCol
+        loading={isLoading}
         label="Total Gain"
         color={Math.sign(asset.total_gain) > 0 ? 'positive' : 'negative'}
       >
         {asset.total_gain} %
       </TableCol>
       <TableCol
+        loading={isLoading}
         label="Daily Gain"
         color={Math.sign(asset.daily_gain) > 0 ? 'positive' : 'negative'}
       >
         {asset.daily_gain} %
       </TableCol>
       <TableCol
+        loading={isLoading}
         label="Portfolio %"
         color={Math.sign(asset.portfolio_pct) > 0 ? 'positive' : 'negative'}
       >
