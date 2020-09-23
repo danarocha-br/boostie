@@ -11,6 +11,7 @@ import Accordion from '~/components/Accordion';
 
 import { INVESTMENT_TABLE_HEADER } from '~/constants';
 import { generateInvestmentsTable } from '~/utils';
+import { IGenerateInvestmentTable } from '~/utils/generateInvestmentsTable';
 
 const InvestmentTable: React.FC = () => {
   const assets = generateInvestmentsTable();
@@ -23,85 +24,61 @@ const InvestmentTable: React.FC = () => {
     return _.filter(assets, (item) => item.market === 'nasdaq');
   }, [assets]);
 
-  // const checkNumbers = useMemo(() => {
-  //   let getObjectsValues = Object.fromEntries(
-  //     Object.entries(assets).map(([key, value]) => [
-  //       key,
-  //       {
-  //         dailyGain: value.daily_gain,
-  //         totalGain: value.total_gain,
-  //         return: value.return_pct,
-  //       },
-  //     ]),
-  //   );
+  const renderTable = (asset: IGenerateInvestmentTable) => (
+    <TableGroupRow key={asset.ticker}>
+      <TableCol label="symbol">
+        <ProductLabel
+          label={asset.ticker}
+          variants={asset.market}
+          url={asset.companyUrl}
+          loading={false}
+        />
+      </TableCol>
 
-  //   const array = Object.values(getObjectsValues);
-
-  //   console.log(Object.values(getObjectsValues));
-  // }, [assets]);
+      <TableCol label="shares">{asset.shares}</TableCol>
+      <TableCol label="symbol">{asset.avg_price}</TableCol>
+      <TableCol label="Avg Price">{asset.price}</TableCol>
+      <TableCol
+        label="Return"
+        color={Math.sign(asset.return_pct) > 0 ? 'positive' : 'negative'}
+      >
+        {asset.return_pct} %
+      </TableCol>
+      <TableCol label="Net cost">{asset.net_cost}</TableCol>
+      <TableCol label="Market value">{asset.market_value}</TableCol>
+      <TableCol
+        label="Total Gain"
+        color={Math.sign(asset.total_gain) > 0 ? 'positive' : 'negative'}
+      >
+        {asset.total_gain} %
+      </TableCol>
+      <TableCol
+        label="Daily Gain"
+        color={Math.sign(asset.daily_gain) > 0 ? 'positive' : 'negative'}
+      >
+        {asset.daily_gain} %
+      </TableCol>
+      <TableCol
+        label="Portfolio %"
+        color={Math.sign(asset.portfolio_pct) > 0 ? 'positive' : 'negative'}
+      >
+        {asset.portfolio_pct} %
+      </TableCol>
+    </TableGroupRow>
+  );
   return (
     <>
       <Accordion title="Nasdaq Market">
         <Table>
           <TableHeader columns={INVESTMENT_TABLE_HEADER} />
-          <TableRow>
-            {nasdaqMkt.map((asset) => (
-              <TableGroupRow key={asset.ticker}>
-                <TableCol label="symbol">
-                  <ProductLabel
-                    label={asset.ticker}
-                    variants={asset.market}
-                    url={asset.companyUrl}
-                    loading={false}
-                  />
-                </TableCol>
-
-                <TableCol label="shares">{asset.shares}</TableCol>
-                <TableCol label="symbol">{asset.avg_price}</TableCol>
-                <TableCol label="Avg Price">{asset.price}</TableCol>
-                <TableCol label="Return" color="positive">
-                  {asset.return_pct}
-                </TableCol>
-                <TableCol label="Net cost">{asset.net_cost}</TableCol>
-                <TableCol label="Market value">{asset.market_value}</TableCol>
-                <TableCol label="Total Gain">{asset.total_gain}</TableCol>
-                <TableCol label="Daily Gain">{asset.daily_gain}</TableCol>
-                <TableCol label="Portfolio %">{asset.portfolio_pct}</TableCol>
-              </TableGroupRow>
-            ))}
-          </TableRow>
+          <TableRow>{nasdaqMkt.map((asset) => renderTable(asset))}</TableRow>
         </Table>
       </Accordion>
 
       <Accordion title="Nyse Market">
         <Table>
           <TableHeader columns={INVESTMENT_TABLE_HEADER} />
-          <TableRow>
-            {nyseMtk.map((asset) => (
-              <TableGroupRow key={asset.ticker}>
-                <TableCol label="symbol">
-                  <ProductLabel
-                    label={asset.ticker}
-                    variants={asset.market}
-                    url={asset.companyUrl}
-                    loading={false}
-                  />
-                </TableCol>
-
-                <TableCol label="shares">{asset.shares}</TableCol>
-                <TableCol label="symbol">{asset.avg_price}</TableCol>
-                <TableCol label="Avg Price">{asset.price}</TableCol>
-                <TableCol label="Return" color="positive">
-                  {asset.return_pct}
-                </TableCol>
-                <TableCol label="Net cost">{asset.net_cost}</TableCol>
-                <TableCol label="Market value">{asset.market_value}</TableCol>
-                <TableCol label="Total Gain">{asset.total_gain}</TableCol>
-                <TableCol label="Daily Gain">{asset.daily_gain}</TableCol>
-                <TableCol label="Portfolio %">{asset.portfolio_pct}</TableCol>
-              </TableGroupRow>
-            ))}
-          </TableRow>
+          <TableRow>{nyseMtk.map((asset) => renderTable(asset))}</TableRow>
         </Table>
       </Accordion>
     </>

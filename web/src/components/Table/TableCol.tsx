@@ -6,12 +6,12 @@ import { Skeleton } from '@chakra-ui/core';
 
 interface ITableColProps {
   label?: string | ReactText;
-  color?: string;
+  color?: string | ReactText;
   loading?: boolean;
 }
 
 const TableCol: React.FC<ITableColProps> = ({ color, children, loading }) => {
-  function getColor(color: string | undefined) {
+  function getColor(color: string | undefined | ReactText) {
     switch (color) {
       case 'positive':
         return colors.green[900];

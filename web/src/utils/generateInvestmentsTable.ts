@@ -19,12 +19,12 @@ export type IGenerateInvestmentTable = {
   shares: number | string;
   avg_price: number | string;
   price: number | string;
-  return_pct: number | string;
+  return_pct: number;
   net_cost: number | string;
   market_value: number | string;
-  total_gain: number | string;
-  daily_gain: number | string;
-  portfolio_pct: number | string;
+  total_gain: number;
+  daily_gain: number;
+  portfolio_pct: number;
 };
 
 export type GeneratePortfoliosHistory = (
@@ -51,12 +51,12 @@ const generateInvestmentsTable: GeneratePortfoliosHistory = () => {
       shares: shares.toFixed(0),
       avg_price: formatCurrency(avgPrice),
       price: formatCurrency(price),
-      return_pct: `${return_price} %`,
+      return_pct: parseFloat(return_price),
       net_cost: formatCurrency(net),
       market_value: formatCurrency(value),
-      total_gain: `${result} %`,
-      daily_gain: `${daily} %`,
-      portfolio_pct: `${portfolio} %`,
+      total_gain: parseFloat(result),
+      daily_gain: parseFloat(daily),
+      portfolio_pct: parseFloat(portfolio),
     };
   });
 };
