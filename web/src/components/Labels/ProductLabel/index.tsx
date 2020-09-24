@@ -1,8 +1,8 @@
 import React from 'react';
-
 import { Flex, PseudoBox, Image, Heading, Skeleton } from '@chakra-ui/core';
-import colors from '../../../styles/colors';
 import { transparentize } from 'polished';
+
+import colors from '~/styles/colors';
 
 interface IProductLabelProps {
   variants?: 'amex' | 'nyse' | 'nasdaq ' | undefined | string;

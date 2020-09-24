@@ -13,10 +13,10 @@ import { INVESTMENT_TABLE_HEADER } from '~/constants';
 import { generateInvestmentsTable } from '~/utils';
 import { IGenerateInvestmentTable } from '~/utils/generateInvestmentsTable';
 import useAuth from '~/contexts/auth';
+import { IDashboardProps } from "./IDashboardProps";
 
-const InvestmentTable: React.FC = () => {
+const InvestmentTable: React.FC<IDashboardProps> = ({isLoading}) => {
   const assets = generateInvestmentsTable();
-  const isLoading = useAuth().isLoading;
 
   const nyseMtk = useMemo(() => {
     return _.filter(assets, (item) => item.market === 'nyse');

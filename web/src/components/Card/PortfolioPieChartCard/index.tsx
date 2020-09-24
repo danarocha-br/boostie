@@ -8,6 +8,7 @@ import PieChart from './PieChart';
 import useAuth from '~/contexts/auth';
 import { generatePieChartData } from '~/utils';
 import useDisplayInvestments from '~/contexts/displayInvestments';
+import { IDashboardProps } from "~/pages/Dashboard/IDashboardProps";
 
 const AnimatedCard = motion.custom(Flex);
 
@@ -25,9 +26,9 @@ const animatePieChartCard = {
   },
 };
 
-const PortfolioGraphCard: React.FC = () => {
+const PortfolioGraphCard: React.FC<IDashboardProps> = ({ isLoading } ) => {
   const { pieChart } = useAuth().investments;
-  const isLoading = useAuth().isLoading;
+
 
   const displayInvestments = useDisplayInvestments().displayInvestment;
 

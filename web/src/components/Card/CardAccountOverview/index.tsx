@@ -23,11 +23,12 @@ import useDisplayInvestments from '~/contexts/displayInvestments';
 
 import { focus, unselected, selected, hover } from './styles';
 import { formatCurrency } from '~/utils';
+import { IDashboardProps } from "~/pages/Dashboard/IDashboardProps";
 
-const CardAccountOverview: React.FC = () => {
+
+const CardAccountOverview: React.FC<IDashboardProps> = ({isLoading}) => {
   const { barChart } = useAuth().investments;
   const displayInvestments = useDisplayInvestments().displayInvestment;
-  const isLoading = useAuth().isLoading;
 
   const toggleDisplayInvestments = useDisplayInvestments()
     .toggleDisplayInvestments;
@@ -101,7 +102,7 @@ const CardAccountOverview: React.FC = () => {
         <TabPanels>
           <TabPanel h="100%" flex="1" display="flex" mt={3}>
             <Flex flex="2">
-              <BarChart />
+              <BarChart isLoading={isLoading} />
             </Flex>
             <Flex
               flex="1"

@@ -3,6 +3,7 @@ import { Grid } from '@chakra-ui/core';
 
 import CardOffer from '../../components/Card/CardOffer';
 import CardAccountOverview from '../../components/Card/CardAccountOverview';
+import { IDashboardProps } from "./IDashboardProps";
 
 import { motion } from 'framer-motion';
 
@@ -22,10 +23,12 @@ const animateCards = {
   },
 };
 
+
+
 const AnimatedContainer = motion.custom(Grid);
 const AnimatedCard = motion.custom(Grid);
 
-const DashboardOverview: React.FC = () => {
+const DashboardOverview: React.FC<IDashboardProps> = ({isLoading}) => {
   return (
     <AnimatedContainer
       height="290px"
@@ -49,7 +52,7 @@ const DashboardOverview: React.FC = () => {
         <CardOffer />
       </AnimatedCard>
       <AnimatedCard variants={animateCards} key="overview" w="100%">
-        <CardAccountOverview />
+        <CardAccountOverview isLoading={isLoading} />
       </AnimatedCard>
     </AnimatedContainer>
   );

@@ -1,19 +1,20 @@
-import React, { useState, memo } from 'react';
-import { useHistory } from 'react-router-dom';
+import React, { memo } from 'react';
 import { Flex, List, PseudoBox } from '@chakra-ui/core';
+import { useHistory } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive';
 import faker from 'faker';
-
 import ProfileLink from '../ProfileLink';
 import NavItem from '../NavItem';
 
 import { IUser } from '../ProfileLink/User';
-import { SIDE_BAR_NAVIGATION } from '../../constants';
+import { SIDE_BAR_NAVIGATION } from '~/constants';
 import useAuth from '~/contexts/auth';
+import { IDashboardProps } from "~/pages/Dashboard/IDashboardProps";
 
-const Sidebar: React.FC = () => {
-  const { signOut, investments, isLoading } = useAuth();
-  const history = useHistory();
+
+const Sidebar: React.FC<IDashboardProps> = ({isLoading}) => {
+  const { signOut, investments } = useAuth();
+  let history = useHistory();
 
   const user: IUser = {
     name: investments.user.name,
@@ -24,7 +25,7 @@ const Sidebar: React.FC = () => {
 
   const handleSignOut = (): void => {
     signOut();
-    history.push('/dashboard');
+    history.push('/login');
   };
 
   function renderContent(isTabletOrMobile: boolean) {

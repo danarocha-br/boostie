@@ -20,6 +20,7 @@
     "faker": "^5.1.0",
     "framer": "^1.2.7",
     "framer-motion": "^2.6.15",
+    "history": "4.10.1",
     "lodash": "^4.17.20",
     "polished": "^3.6.6",
     "react": "^16.13.1",

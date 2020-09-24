@@ -11,13 +11,11 @@ import { IAccountData } from '~/utils/generateFinancialData';
 
 export type IAuthState = {
   signed: boolean;
-  isLoading: boolean;
   investments: IAccountData;
 };
 
 export type IAuthContext = {
   signed: boolean;
-  isLoading: boolean;
   investments: IAccountData;
   signIn(name: string): void;
   signOut(): void;
@@ -26,16 +24,13 @@ export type IAuthContext = {
 const AuthContext = createContext<IAuthContext | null>(null);
 
 export const AuthProvider = ({ children }: PropsWithChildren<unknown>) => {
-  const [isLoading, setLoading] = useState<boolean>(true);
-
   const [data, setData] = useState<IAuthState>(() => {
     const storedUser = localStorage.getItem(storageKey('user'));
 
     if (storedUser) {
-      const userName = JSON.parse(storedUser);
 
+      const userName = JSON.parse(storedUser);
       return {
-        isLoading: false,
         signed: true,
         investments: generateFinancialData(userName),
         displayInvestment: true,
@@ -48,14 +43,12 @@ export const AuthProvider = ({ children }: PropsWithChildren<unknown>) => {
   const signIn = useCallback((name) => {
     localStorage.setItem(storageKey('user'), JSON.stringify(name));
 
-    setTimeout(() => {
-      setLoading(false);
-      setData({
-        isLoading: isLoading,
-        signed: true,
-        investments: generateFinancialData(name),
-      });
-    }, 10000);
+    setData({
+      signed: true,
+      investments: generateFinancialData(name),
+    });
+
+     
   }, []);
 
   const signOut = useCallback(() => {
@@ -66,7 +59,6 @@ export const AuthProvider = ({ children }: PropsWithChildren<unknown>) => {
   const value = React.useMemo(
     () => ({
       signed: data.signed,
-      isLoading: data.isLoading,
       investments: data.investments,
       signIn,
       signOut,

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Flex, Heading, Select, Grid } from '@chakra-ui/core';
-import { motion, useAnimation, useDragControls } from 'framer-motion';
+import { motion, useAnimation } from 'framer-motion';
 import { useScroll } from 'react-use-gesture';
 
 import PortfolioGraphCard from '~/components/Card/PortfolioPieChartCard';
@@ -10,14 +10,14 @@ import { clamp } from './animations';
 import { StatCardContainer } from './styles';
 import useAuth from '~/contexts/auth';
 
+
 import {
   generatePortfolioHistory,
   generatePortfolioLineChartData,
 } from '~/utils';
 import useDisplayInvestments from '~/contexts/displayInvestments';
 
-const PortfolioHistory = () => {
-  const isLoading = useAuth().isLoading;
+const PortfolioHistory = ({ isLoading }) => {
   const displayInvestments = useDisplayInvestments().displayInvestment;
 
   const historyData = generatePortfolioHistory();
@@ -73,10 +73,11 @@ const PortfolioHistory = () => {
           as="section"
           overflowX="scroll"
           overflowY="initial"
+          cursor="all-scroll"
           mr={8}
           pt={6}
           pb={1}
-          boxShadow="inset -14px 0px 20px rgba(0,0,0,0.02), inset 0px 33px 0px rgb(255 255 255 / 44%)"
+          boxShadow="inset -14px 0px 20px rgba(0,0,0,0.04), inset 0px 332px 0px rgb(255 255 255 / 86%)"
           {...bind()}
         >
           <motion.div

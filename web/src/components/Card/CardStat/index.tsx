@@ -1,7 +1,6 @@
 import React from 'react';
 import { Flex, Text, PseudoBox, Divider, Skeleton } from '@chakra-ui/core';
-import { AnimationControls, motion } from 'framer-motion';
-
+import { motion, AnimationControls } from 'framer-motion';
 import Stat from '../../Labels/Stat';
 
 import IStat from '../../Labels/Stat/IStat';

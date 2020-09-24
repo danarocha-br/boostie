@@ -1,12 +1,14 @@
 import React from 'react';
 import { Grid } from '@chakra-ui/core';
 
-import Sidebar from '../../../components/Sidebar';
-import Navbar from '../../../components/Navbar';
-import Footer from '../../../components/Footer';
+import Sidebar from '~/components/Sidebar';
+import Navbar from '~/components/Navbar';
+import Footer from '~/components/Footer';
 import Main from './Main';
+import { IDashboardProps } from "~/pages/Dashboard/IDashboardProps";
 
-const AuthWrapper: React.FC = ({ children }) => {
+
+const AuthWrapper: React.FC<IDashboardProps> = ({ children, isLoading }) => {
   return (
     <Grid
       as="div"
@@ -22,7 +24,7 @@ const AuthWrapper: React.FC = ({ children }) => {
       bgImage="linear-gradient(180deg, #bcbcc112 0%, #fafafa 103.67%);"
       overflow="scroll"
     >
-      <Sidebar />
+      <Sidebar isLoading={isLoading} />
       <Navbar />
       <Main>{children}</Main>
       <Footer />

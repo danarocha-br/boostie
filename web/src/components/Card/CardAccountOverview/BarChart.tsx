@@ -6,10 +6,10 @@ import colors from '~/styles/colors';
 import useAuth from '~/contexts/auth';
 import useDisplayInvestments from '~/contexts/displayInvestments';
 import { generateInvestmentGrowth } from '~/utils';
+import { IDashboardProps } from "~/pages/Dashboard/IDashboardProps";
 
-const BarChart: React.FC = () => {
+const BarChart: React.FC<IDashboardProps> = ({isLoading}) => {
   const { barChart } = useAuth().investments;
-  const isLoading = useAuth().isLoading;
 
   const displayInvestments = useDisplayInvestments().displayInvestment;
 
