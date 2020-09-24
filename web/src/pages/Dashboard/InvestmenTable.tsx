@@ -12,10 +12,9 @@ import Accordion from '~/components/Accordion';
 import { INVESTMENT_TABLE_HEADER } from '~/constants';
 import { generateInvestmentsTable } from '~/utils';
 import { IGenerateInvestmentTable } from '~/utils/generateInvestmentsTable';
-import useAuth from '~/contexts/auth';
-import { IDashboardProps } from "./IDashboardProps";
+import { IDashboardProps } from './IDashboardProps';
 
-const InvestmentTable: React.FC<IDashboardProps> = ({isLoading}) => {
+const InvestmentTable: React.FC<IDashboardProps> = ({ isLoading }) => {
   const assets = generateInvestmentsTable();
 
   const nyseMtk = useMemo(() => {

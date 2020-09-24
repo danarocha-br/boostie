@@ -8,8 +8,6 @@ import CardStat from '~/components/Card/CardStat';
 import { clamp } from './animations';
 
 import { StatCardContainer } from './styles';
-import useAuth from '~/contexts/auth';
-
 
 import {
   generatePortfolioHistory,

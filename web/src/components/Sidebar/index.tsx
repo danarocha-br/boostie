@@ -3,16 +3,19 @@ import { Flex, List, PseudoBox } from '@chakra-ui/core';
 import { useHistory } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive';
 import faker from 'faker';
+
 import ProfileLink from '../ProfileLink';
 import NavItem from '../NavItem';
 
 import { IUser } from '../ProfileLink/User';
 import { SIDE_BAR_NAVIGATION } from '~/constants';
 import useAuth from '~/contexts/auth';
-import { IDashboardProps } from "~/pages/Dashboard/IDashboardProps";
+import { IDashboardProps } from '~/pages/Dashboard/IDashboardProps';
+import { TabletOrMobile } from '~/utils/breakpoints';
 
+const Sidebar: React.FC<IDashboardProps> = ({ isLoading }) => {
+  const isTabletOrMobile = useMediaQuery({ query: TabletOrMobile });
 
-const Sidebar: React.FC<IDashboardProps> = ({isLoading}) => {
   const { signOut, investments } = useAuth();
   let history = useHistory();
 
@@ -20,8 +23,6 @@ const Sidebar: React.FC<IDashboardProps> = ({isLoading}) => {
     name: investments.user.name,
     email: faker.internet.email(),
   };
-
-  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 992px)' });
 
   const handleSignOut = (): void => {
     signOut();
@@ -37,15 +38,30 @@ const Sidebar: React.FC<IDashboardProps> = ({isLoading}) => {
           justifyContent="space-between"
           position="fixed"
           bottom={0}
-          h={95}
+          h={65}
           w="100%"
           px={8}
-          bg="purple.900"
+          bg="blue.50"
           borderTopLeftRadius="xlarge"
           borderTopRightRadius="xlarge"
           color="white"
+          zIndex={10}
         >
-          <h1>menu items</h1>
+          <List
+            display="flex"
+            alignItems="center"
+            justifyContent="center"
+            color="white"
+          >
+            {Object.entries(SIDE_BAR_NAVIGATION).map(([key, value]) => (
+              <NavItem
+                key={key}
+                icon={value.icon}
+                link={value.to}
+                loading={isLoading}
+              />
+            ))}
+          </List>
         </Flex>
       );
     }
