@@ -1,8 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import colors from '../../../styles/colors';
 import { transparentize } from 'polished';
 
+import colors from '~/styles/colors';
 // hide/show animation
 
 const hidden = {

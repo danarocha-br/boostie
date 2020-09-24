@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 import AuthWrapper from '../_layouts/authWrapper';
 import DashboardOverview from './DashboardOverview';
@@ -8,12 +8,20 @@ import InvestmentTable from './InvestmenTable';
 export interface DashboardProps {}
 
 const Dashboard: React.FC<DashboardProps> = () => {
-  return (
-    <AuthWrapper>
-      <DashboardOverview />
-      <PortfolioHistory />
+  const [isLoading, setLoading] = useState<boolean>(true);
 
-      <InvestmentTable />
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 1100);
+  }, [isLoading]);
+
+  return (
+    <AuthWrapper isLoading={isLoading}>
+      <DashboardOverview isLoading={isLoading} />
+      <PortfolioHistory isLoading={isLoading} />
+
+      {!isLoading && <InvestmentTable isLoading={isLoading} />}
     </AuthWrapper>
   );
 };

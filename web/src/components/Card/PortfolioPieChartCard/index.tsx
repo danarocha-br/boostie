@@ -8,26 +8,13 @@ import PieChart from './PieChart';
 import useAuth from '~/contexts/auth';
 import { generatePieChartData } from '~/utils';
 import useDisplayInvestments from '~/contexts/displayInvestments';
+import { IDashboardProps } from '~/pages/Dashboard/IDashboardProps';
+import { animation } from './animations';
 
 const AnimatedCard = motion.custom(Flex);
 
-const animatePieChartCard = {
-  unmounted: {
-    y: -50,
-    display: 'none',
-  },
-  mounted: {
-    y: 0,
-    display: 'flex',
-    transition: {
-      delay: 0.4,
-    },
-  },
-};
-
-const PortfolioGraphCard: React.FC = () => {
+const PortfolioGraphCard: React.FC<IDashboardProps> = ({ isLoading }) => {
   const { pieChart } = useAuth().investments;
-  const isLoading = useAuth().isLoading;
 
   const displayInvestments = useDisplayInvestments().displayInvestment;
 
@@ -44,7 +31,7 @@ const PortfolioGraphCard: React.FC = () => {
       flexDirection="column"
       initial="unmounted"
       animate="mounted"
-      variants={animatePieChartCard}
+      variants={animation}
       layout
     >
       <Card variants="colored">

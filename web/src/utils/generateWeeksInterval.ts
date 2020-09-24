@@ -19,6 +19,9 @@ const generateDaysInterval: GenerateDaysInterval = () => {
     end: currentMonthsInterval[currentMonthsInterval.length - 1],
   });
 
+  console.log(
+    weeksOfTheMonth.map((week) => format(week, 'do', { locale: enUS })),
+  );
   return weeksOfTheMonth.map((week) => format(week, 'do', { locale: enUS }));
 };
 

@@ -2,7 +2,7 @@ import React from 'react';
 import { PseudoBox } from '@chakra-ui/core';
 import { transparentize } from 'polished';
 
-import colors from '../../styles/colors';
+import colors from '~/styles/colors';
 
 interface ICardProps {
   variants?: string | undefined;
@@ -11,11 +11,14 @@ interface ICardProps {
 }
 
 const Card: React.FC<ICardProps> = ({ children, variants, bg }) => {
-  function VariCard(variants: string | undefined) {
+  function VariantCard(variants: string | undefined) {
     switch (variants) {
       case 'bordered':
         return (
           <PseudoBox
+            flexShrink={0}
+            alignContent="space-between"
+            justifyContent="space-between"
             p={6}
             rounded="small"
             bg="transparent"
@@ -76,7 +79,7 @@ const Card: React.FC<ICardProps> = ({ children, variants, bg }) => {
     }
   }
 
-  return VariCard(variants);
+  return VariantCard(variants);
 };
 
 Card.defaultProps = {

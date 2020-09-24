@@ -1,8 +1,8 @@
 import React from 'react';
-
 import { Flex, PseudoBox, Image, Heading, Skeleton } from '@chakra-ui/core';
-import colors from '../../../styles/colors';
 import { transparentize } from 'polished';
+
+import colors from '~/styles/colors';
 
 interface IProductLabelProps {
   variants?: 'amex' | 'nyse' | 'nasdaq ' | undefined | string;
@@ -34,7 +34,13 @@ const ProductLabel: React.FC<IProductLabelProps> = ({
   label,
 }) => {
   return (
-    <Flex alignItems="center" justifyContent="space-between" h="60px" flex="1">
+    <Flex
+      as="label"
+      alignItems="center"
+      justifyContent="space-between"
+      h="60px"
+      flex="1"
+    >
       {!loading && (
         <PseudoBox
           as="span"
@@ -44,6 +50,7 @@ const ProductLabel: React.FC<IProductLabelProps> = ({
         />
       )}
       <Skeleton
+        as="label"
         isLoaded={!loading}
         borderRadius="rounded"
         maxH="35px"
@@ -64,6 +71,7 @@ const ProductLabel: React.FC<IProductLabelProps> = ({
       </Skeleton>
 
       <Skeleton
+        as="label"
         isLoaded={!loading}
         borderRadius="lg"
         maxH="25px"
@@ -71,7 +79,7 @@ const ProductLabel: React.FC<IProductLabelProps> = ({
         maxW="70px"
         w="70px"
       >
-        <Heading as="h5" fontSize="md" fontWeight="medium" ml={5}>
+        <Heading as="h5" fontSize="md" fontWeight="medium" ml={8}>
           {label}
         </Heading>
       </Skeleton>

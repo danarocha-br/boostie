@@ -12,12 +12,13 @@ const TableHeader: React.FC<ITableHeaderProps> = ({ columns }) => {
       as="dt"
       justifyContent="space-between"
       w="100%"
-      py={2}
+      py={[0, 0, 2]}
       px={0}
       fontSize="xs"
       fontWeight="medium"
       textTransform="uppercase"
       color="gray.500"
+      display={['none', 'none', 'none', 'flex']}
     >
       {columns.map((column) => (
         <div key={column.label}>{column.label}</div>

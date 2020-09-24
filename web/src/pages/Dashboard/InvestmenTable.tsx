@@ -12,11 +12,10 @@ import Accordion from '~/components/Accordion';
 import { INVESTMENT_TABLE_HEADER } from '~/constants';
 import { generateInvestmentsTable } from '~/utils';
 import { IGenerateInvestmentTable } from '~/utils/generateInvestmentsTable';
-import useAuth from '~/contexts/auth';
+import { IDashboardProps } from './IDashboardProps';
 
-const InvestmentTable: React.FC = () => {
+const InvestmentTable: React.FC<IDashboardProps> = ({ isLoading }) => {
   const assets = generateInvestmentsTable();
-  const isLoading = useAuth().isLoading;
 
   const nyseMtk = useMemo(() => {
     return _.filter(assets, (item) => item.market === 'nyse');
@@ -64,7 +63,7 @@ const InvestmentTable: React.FC = () => {
         label="Total Gain"
         color={Math.sign(asset.total_gain) > 0 ? 'positive' : 'negative'}
       >
-        {asset.total_gain} %
+        $ {asset.total_gain}
       </TableCol>
       <TableCol
         loading={isLoading}

@@ -7,4 +7,5 @@ export const AnimatedContainer = styled(motion.header)`
   height: 100%;
   background-color: ${colors.gray[50]};
   border-bottom-left-radius: 45px;
+  width: 100%;
 `;

@@ -6,16 +6,16 @@ import colors from '~/styles/colors';
 export const TableContainer = styled(Flex)``;
 
 export const TableHeaderContainer = styled(Flex)`
+  justify-content: space-between;
+
   div {
     justify-content: flex-end;
-    margin-left: 10px;
     flex-basis: 20%;
     text-align: right;
 
     &:first-of-type {
-      margin-left: 0px;
       flex-grow: 1;
-      flex-basis: 30%;
+      flex-basis: 25%;
       text-align: initial;
     }
 
@@ -30,37 +30,74 @@ export const TableRowContainer = styled(Flex)``;
 export const TableGroupRowContainer = styled(Flex)`
   margin-bottom: 5px;
   transition: background-color 0.25s ease-in;
+  justify-content: space-between;
+  position: relative;
 
   &:hover {
     background-color: ${colors.gray[50]};
   }
 
+  @media (max-width: 992px) {
+    flex-direction: column;
+  }
+
   div {
-    justify-content: flex-end;
-    align-items: center;
+    text-align: right;
     height: 60px;
     align-items: center;
     flex-basis: 20%;
-    margin-left: 10px;
+    justify-content: flex-end;
 
-    &:first-of-type {
+    label {
       justify-content: flex-start;
-      margin-left: 0px;
       text-align: initial;
       flex-grow: 1;
       flex-basis: 30%;
+
+      @media (max-width: 992px) {
+        flex-basis: 0;
+      }
     }
 
     &:nth-of-type(2) {
       flex-basis: 15%;
-    }
 
-    &:last-child {
-      padding-right: 10px;
+      @media (max-width: 992px) {
+        flex-basis: 0;
+      }
     }
 
     p {
       margin-left: none;
+    }
+
+    @media (max-width: 992px) {
+      &:nth-of-type(4),
+      &:nth-of-type(6),
+      &:nth-of-type(7),
+      &:nth-of-type(8),
+      &:nth-of-type(9),
+      &:nth-of-type(10) {
+        display: none;
+      }
+      &:nth-of-type(2),
+      &:nth-of-type(3),
+      &:nth-of-type(5) {
+        position: absolute;
+      }
+
+      &:nth-of-type(2) {
+        top: 20px;
+        right: 0px;
+      }
+      &:nth-of-type(3) {
+        top: 20px;
+        left: 87px;
+      }
+      &:nth-of-type(5) {
+        top: -5px;
+        right: 0px;
+      }
     }
   }
 `;

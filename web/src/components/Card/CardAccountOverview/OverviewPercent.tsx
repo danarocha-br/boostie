@@ -35,7 +35,11 @@ const OverviewPercent: React.FC<OverviewPercentProps> = ({
 
   return (
     <Flex as="section" flex="1" flexDirection="column" mt={8} pl={3}>
-      <Grid templateColumns="repeat(3, 1fr)" gap={8} justifyItems="stretch">
+      <Grid
+        templateColumns={['initial', 'initial', 'repeat(3, 1fr)']}
+        gap={8}
+        justifyItems="stretch"
+      >
         <LabelStat
           key="1"
           title="net cost"

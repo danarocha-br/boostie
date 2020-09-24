@@ -1,6 +1,5 @@
 import faker from 'faker';
 
-import generateWeeksInterval from './generateWeeksInterval';
 import colors from '../styles/colors';
 
 export type IPortfolioTimeline = {
@@ -23,13 +22,23 @@ export type IGeneratedPortfolios = (visible?: boolean) => IPortfolioChart;
 const generatePortfolioLineChartData: IGeneratedPortfolios = (
   visible = true,
 ) => {
-  const currentDaysInterval = generateWeeksInterval();
+  const currentDaysInterval = [
+    '1st',
+    '4th',
+    '7th',
+    '12th',
+    '16th',
+    '20th',
+    '23rd',
+    '25th',
+    '27th',
+    '30th',
+  ];
 
   const lineChartData = currentDaysInterval.map((day) => ({
     x: day,
-    y: visible ? +faker.finance.amount(1000, 80000) : 0,
+    y: visible ? +faker.finance.amount(1000, 2000) : 0,
   }));
-
   const timeline = [
     {
       id: 'investments',

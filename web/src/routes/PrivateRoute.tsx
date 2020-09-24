@@ -12,7 +12,7 @@ const PrivateRoute = ({ component: Component, ...rest }: PrivateRouteProps) => {
   const { signed } = useAuth();
 
   if (!signed) {
-    return <Redirect to="/" />;
+    return <Redirect to="/login" />;
   }
 
   return <Route {...rest} render={() => <Component />} />;
