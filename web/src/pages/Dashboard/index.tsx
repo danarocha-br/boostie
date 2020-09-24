@@ -21,7 +21,7 @@ const Dashboard: React.FC<DashboardProps> = () => {
       <DashboardOverview isLoading={isLoading} />
       <PortfolioHistory isLoading={isLoading} />
 
-      <InvestmentTable isLoading={isLoading} />
+      {!isLoading && <InvestmentTable isLoading={isLoading} />}
     </AuthWrapper>
   );
 };

@@ -2,7 +2,6 @@ import React, { ReactText } from 'react';
 
 import { TableColContainer } from './styles';
 import colors from '~/styles/colors';
-import { Skeleton } from '@chakra-ui/core';
 
 interface ITableColProps {
   label?: string | ReactText;
@@ -10,7 +9,7 @@ interface ITableColProps {
   loading?: boolean;
 }
 
-const TableCol: React.FC<ITableColProps> = ({ color, children, loading }) => {
+const TableCol: React.FC<ITableColProps> = ({ color, children }) => {
   function getColor(color: string | undefined | ReactText) {
     switch (color) {
       case 'positive':
@@ -25,17 +24,11 @@ const TableCol: React.FC<ITableColProps> = ({ color, children, loading }) => {
   }
 
   return (
-    <TableColContainer fontWeight="normal" color={getColor(color)}>
-      <Skeleton
-        display="flex"
-        isLoaded={!loading}
-        borderRadius="lg"
-        maxH="20px"
-        justifyContent="center"
-      >
+    <>
+      <TableColContainer fontWeight="normal" color={getColor(color)}>
         {children}
-      </Skeleton>
-    </TableColContainer>
+      </TableColContainer>
+    </>
   );
 };
 

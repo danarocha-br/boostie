@@ -63,7 +63,7 @@ const InvestmentTable: React.FC<IDashboardProps> = ({ isLoading }) => {
         label="Total Gain"
         color={Math.sign(asset.total_gain) > 0 ? 'positive' : 'negative'}
       >
-        {asset.total_gain} %
+        $ {asset.total_gain}
       </TableCol>
       <TableCol
         loading={isLoading}

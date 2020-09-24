@@ -38,7 +38,7 @@ const generateInvestmentsTable: GeneratePortfoliosHistory = () => {
     const price = avgPrice * Math.random();
     let random = Math.random() * (0.0005 - -0.0001) + -0.0001;
     const net = value - price;
-    const result = (value * random).toFixed(2);
+    const result = (value * random * 50).toFixed(2);
     const return_price = (50000 * random).toFixed(2);
     const shares = Math.random() * 600;
     const daily = (Math.random() * 10).toFixed(2);
