@@ -1,15 +1,16 @@
 import React from 'react';
 import { Flex, Text, PseudoBox, Divider, Skeleton } from '@chakra-ui/core';
+import { AnimationControls, motion } from 'framer-motion';
 
-import Card from '../index';
 import Stat from '../../Labels/Stat';
 
 import IStat from '../../Labels/Stat/IStat';
 // import StatChart from './StatChart';
 
 import { Serie } from '@nivo/line';
+import Card from '../index';
 
-type IData = { data: Serie[] };
+type IData = { data: Serie[]; animate: AnimationControls };
 
 const CardStat: React.FC<IStat & IData> = ({
   value,
@@ -20,10 +21,11 @@ const CardStat: React.FC<IStat & IData> = ({
   data,
   isVisible,
   loading,
+  animate,
 }) => {
   return (
-    <Card variants="bordered">
-      <Flex flexDirection="column" alignContent="space-between" h="100%">
+    <motion.div animate={animate} style={{ height: '100%' }}>
+      <Card variants="bordered">
         <PseudoBox mb="auto">
           <Skeleton isLoaded={!loading} borderRadius="lg" maxW="100px">
             <Text textTransform="uppercase" fontWeight="medium">
@@ -49,8 +51,8 @@ const CardStat: React.FC<IStat & IData> = ({
             loading={loading}
           />
         </Flex>
-      </Flex>
-    </Card>
+      </Card>
+    </motion.div>
   );
 };
 

@@ -1,9 +1,11 @@
 import React from 'react';
 import { Flex, Heading, Select, Grid } from '@chakra-ui/core';
-import { motion } from 'framer-motion';
+import { motion, useAnimation, useDragControls } from 'framer-motion';
+import { useScroll } from 'react-use-gesture';
 
 import PortfolioGraphCard from '~/components/Card/PortfolioPieChartCard';
 import CardStat from '~/components/Card/CardStat';
+import { clamp } from './animations';
 
 import { StatCardContainer } from './styles';
 import useAuth from '~/contexts/auth';
@@ -14,29 +16,27 @@ import {
 } from '~/utils';
 import useDisplayInvestments from '~/contexts/displayInvestments';
 
-const animateCards = {
-  unmounted: {
-    y: -50,
-    opacity: 0,
-  },
-  mounted: {
-    y: 0,
-    opacity: 1,
-    transition: { delay: 0.3, staggerChildren: 1 },
-  },
-  exit: {
-    opacity: 0,
-  },
-};
-
-const AnimatedScrollableCards = motion.custom(CardStat);
-
-const PortfolioHistory: React.FC = () => {
+const PortfolioHistory = () => {
   const isLoading = useAuth().isLoading;
   const displayInvestments = useDisplayInvestments().displayInvestment;
 
   const historyData = generatePortfolioHistory();
   const hiddenChart = generatePortfolioLineChartData(false).timeline;
+
+  /* animation scroll */
+  const controls = useAnimation();
+
+  const cardsAnimation = (event) => {
+    controls.start({
+      transform: `perspective(500px) rotateY(${
+        event.scrolling ? clamp(event.delta[0]) : 0
+      }deg)`,
+    });
+  };
+
+  const bind = useScroll((event) => {
+    cardsAnimation(event);
+  });
 
   return (
     <>
@@ -72,37 +72,39 @@ const PortfolioHistory: React.FC = () => {
         <StatCardContainer
           as="section"
           overflowX="scroll"
-          display="flex"
+          overflowY="initial"
           mr={8}
           pt={6}
+          pb={1}
           boxShadow="inset -14px 0px 20px rgba(0,0,0,0.02), inset 0px 33px 0px rgb(255 255 255 / 44%)"
-          initial="unmounted"
-          animate="mounted"
-          variants={animateCards}
-          layout
-          transition={{
-            type: 'spring',
-          }}
+          {...bind()}
         >
-          {Object.entries(historyData).map(([key, value]) => {
-            return (
-              <AnimatedScrollableCards
-                variants={animateCards}
-                key={key}
-                value={value.value}
-                result={value.result}
-                month={value.month}
-                year={value.year}
-                data={
-                  displayInvestments
-                    ? generatePortfolioLineChartData().timeline
-                    : hiddenChart
-                }
-                isVisible={displayInvestments}
-                loading={isLoading}
-              />
-            );
-          })}
+          <motion.div
+            style={{ display: 'flex', flexDirection: 'row' }}
+            drag="x"
+            dragConstraints={{ left: '100%', right: 0 }}
+            // dragControls={dragControls}
+          >
+            {Object.entries(historyData).map(([key, value]) => {
+              return (
+                <CardStat
+                  animate={controls}
+                  key={key}
+                  value={value.value}
+                  result={value.result}
+                  month={value.month}
+                  year={value.year}
+                  data={
+                    displayInvestments
+                      ? generatePortfolioLineChartData().timeline
+                      : hiddenChart
+                  }
+                  isVisible={displayInvestments}
+                  loading={isLoading}
+                />
+              );
+            })}
+          </motion.div>
         </StatCardContainer>
         <PortfolioGraphCard />
       </Grid>
