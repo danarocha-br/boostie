@@ -92,7 +92,7 @@ export const TableGroupRowContainer = styled(Flex)`
       }
       &:nth-of-type(3) {
         top: 20px;
-        left: 70px;
+        left: 87px;
       }
       &:nth-of-type(5) {
         top: -5px;

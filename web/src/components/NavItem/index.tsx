@@ -32,7 +32,7 @@ const NavItem: React.FC<INavItemProps> = ({
       disabled={disabled}
       {...rest}
       onClick={onClick}
-      mt={['10px', '42px']}
+      mt={['10px', '10px', '10px', '42px']}
     >
       <NavLink to={link}>
         <Skeleton isLoaded={!loading} borderRadius="xlarge">
@@ -43,8 +43,16 @@ const NavItem: React.FC<INavItemProps> = ({
           />
         </Skeleton>
 
-        <Skeleton isLoaded={!loading} borderRadius="small" ml="3" w={100}>
-          <Text color="gray.900">{title}</Text>
+        <Skeleton
+          display={['none', 'none', 'none', 'block']}
+          isLoaded={!loading}
+          borderRadius="small"
+          ml="3"
+          w={100}
+        >
+          <Text display={['none', 'none', 'none', 'block']} color="gray.900">
+            {title}
+          </Text>
         </Skeleton>
       </NavLink>
     </ListItem>

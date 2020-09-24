@@ -11,7 +11,7 @@ import { IUser } from '../ProfileLink/User';
 import { SIDE_BAR_NAVIGATION } from '~/constants';
 import useAuth from '~/contexts/auth';
 import { IDashboardProps } from '~/pages/Dashboard/IDashboardProps';
-import { TabletOrMobile } from '~/utils/breakpoints';
+import { isTablet, TabletOrMobile } from '~/utils/breakpoints';
 
 const Sidebar: React.FC<IDashboardProps> = ({ isLoading }) => {
   const isTabletOrMobile = useMediaQuery({ query: TabletOrMobile });
@@ -30,12 +30,11 @@ const Sidebar: React.FC<IDashboardProps> = ({ isLoading }) => {
   };
 
   function renderContent(isTabletOrMobile: boolean) {
-    if (isTabletOrMobile) {
+    if (isTabletOrMobile && isTablet) {
       return (
         <Flex
           as="nav"
           alignItems="center"
-          justifyContent="space-between"
           position="fixed"
           bottom={0}
           h={65}
@@ -49,9 +48,9 @@ const Sidebar: React.FC<IDashboardProps> = ({ isLoading }) => {
         >
           <List
             display="flex"
-            alignItems="center"
-            justifyContent="center"
+            justifyContent="space-between"
             color="white"
+            w="100%"
           >
             {Object.entries(SIDE_BAR_NAVIGATION).map(([key, value]) => (
               <NavItem
@@ -74,6 +73,8 @@ const Sidebar: React.FC<IDashboardProps> = ({ isLoading }) => {
         justifyContent="space-between"
         w="100%"
         h="100vh"
+        position="sticky"
+        top={0}
         py="8"
         px={[8, 8, 8, 12, 20]}
       >
