@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { Flex, Heading, Select, Grid } from '@chakra-ui/core';
 import { motion, useAnimation } from 'framer-motion';
 import { useScroll } from 'react-use-gesture';
@@ -17,9 +17,13 @@ import useDisplayInvestments from '~/contexts/displayInvestments';
 
 const PortfolioHistory = ({ isLoading }) => {
   const displayInvestments = useDisplayInvestments().displayInvestment;
-
   const historyData = generatePortfolioHistory();
+
   const hiddenChart = generatePortfolioLineChartData(false).timeline;
+
+  const generateData = useCallback(() => {
+    return generatePortfolioLineChartData().timeline;
+  }, []);
 
   /* animation scroll */
   const controls = useAnimation();
@@ -98,8 +102,8 @@ const PortfolioHistory = ({ isLoading }) => {
                   month={value.month}
                   year={value.year}
                   data={
-                    displayInvestments
-                      ? generatePortfolioLineChartData().timeline
+                    displayInvestments && !isLoading
+                      ? generateData()
                       : hiddenChart
                   }
                   isVisible={displayInvestments}
@@ -109,7 +113,7 @@ const PortfolioHistory = ({ isLoading }) => {
             })}
           </motion.div>
         </StatCardContainer>
-        <PortfolioGraphCard />
+        <PortfolioGraphCard isLoading={isLoading} />
       </Grid>
     </>
   );

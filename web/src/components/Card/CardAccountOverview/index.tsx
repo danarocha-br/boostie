@@ -115,7 +115,7 @@ const CardAccountOverview: React.FC<IDashboardProps> = ({ isLoading }) => {
               alignItems={['center', 'center', 'center', 'end']}
               ml={['', 10, 12]}
             >
-              {displayInvestments ? (
+              {!isLoading && displayInvestments ? (
                 <Stat
                   value={investmentBalance}
                   result={result}
@@ -129,6 +129,7 @@ const CardAccountOverview: React.FC<IDashboardProps> = ({ isLoading }) => {
                   result="---"
                   type="increase"
                   isVisible={displayInvestments}
+                  loading={isLoading}
                 />
               )}
               <List display={['none', 'none', 'initial']} mt={8}>

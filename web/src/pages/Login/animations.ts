@@ -1,19 +1,19 @@
-export const ANIMATION = {
-  unMounted: { opacity: 0, y: 50 },
+export const animation = {
+  unmounted: { opacity: 0, y: 100 },
   mounted: {
     opacity: 1,
     y: 0,
     transition: {
       type: 'spring',
-      mass: 2.5,
+      mass: 1.2,
     },
   },
   exit: {
     opacity: 0,
-    y: -50,
+    y: 0,
     transition: {
       type: 'spring',
-      mass: 2.5,
+      mass: 1.2,
     },
   },
 };

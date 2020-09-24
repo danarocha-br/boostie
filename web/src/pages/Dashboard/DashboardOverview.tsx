@@ -17,24 +17,36 @@ const DashboardOverview: React.FC<IDashboardProps> = ({ isLoading }) => {
       height={['100%', '100%', '290px']}
       width="100%"
       templateColumns={['100%', '100%', '100%', '400px 1fr']}
-      initial="unmounted"
-      animate="mounted"
-      variants={animateCards}
-      layout
-      transition={{
-        type: 'spring',
-      }}
     >
       <AnimatedCard
         variants={animateCards}
+        initial="unmounted"
+        animate="mounted"
+        exit="exit"
         key="offer"
         pr={6}
         display={['none', 'none', 'none', 'flex']}
-        // w="100%"
       >
         <CardOffer />
       </AnimatedCard>
-      <AnimatedCard variants={animateCards} key="overview" w="100%">
+      <AnimatedCard
+        initial={{
+          y: 100,
+          opacity: 0,
+        }}
+        animate={{
+          y: 0,
+          opacity: 1,
+          transition: {
+            delay: 0.3,
+            duration: 1,
+            type: 'spring',
+          },
+        }}
+        exit="exit"
+        key="overview"
+        w="100%"
+      >
         <CardAccountOverview isLoading={isLoading} />
       </AnimatedCard>
     </AnimatedContainer>

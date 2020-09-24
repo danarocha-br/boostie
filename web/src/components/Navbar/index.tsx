@@ -19,7 +19,8 @@ const Navbar: React.FC = () => {
       layout
       transition={{
         delay: 0.1,
-        duration: 0.5,
+        type: 'spring',
+        duration: 0.7,
       }}
     >
       <Flex

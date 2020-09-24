@@ -60,6 +60,12 @@ const Sidebar: React.FC<IDashboardProps> = ({ isLoading }) => {
                 loading={isLoading}
               />
             ))}
+            <NavItem
+              icon="logout"
+              link="/"
+              loading={isLoading}
+              onClick={handleSignOut}
+            />
           </List>
         </Flex>
       );
