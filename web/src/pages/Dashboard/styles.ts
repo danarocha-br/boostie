@@ -8,6 +8,10 @@ export const StatCardContainer = styled(Flex)`
     margin-right: 20px;
     width: 200px;
 
+    @media (max-width: 992px) {
+      width: 100%;
+    }
+
     ::-webkit-scrollbar {
       width: 0px;
     }

@@ -61,25 +61,29 @@ const PortfolioHistory = ({ isLoading }) => {
 
       <Grid
         minH="288px"
-        maxH="288px"
+        maxH={['initial', 'initial', 'initial', '288px']}
+        h={['500px', '500px', '500px', '288px']}
         mb={8}
         width="100%"
         justifyContent="space-between"
-        templateColumns="1fr 345px"
+        templateColumns={['1fr', '1fr', '1fr', '1fr 345px']}
       >
         <StatCardContainer
           as="section"
           overflowX="scroll"
           overflowY="initial"
           cursor="all-scroll"
-          mr={8}
+          mr={[0, 0, 0, 8]}
           pt={6}
           pb={1}
           boxShadow="inset -14px 0px 20px rgba(0,0,0,0.04), inset 0px 332px 0px rgb(255 255 255 / 86%)"
           {...bind()}
         >
           <motion.div
-            style={{ display: 'flex', flexDirection: 'row' }}
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+            }}
             drag="x"
             dragConstraints={{ left: '100%', right: 0 }}
             // dragControls={dragControls}

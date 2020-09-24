@@ -4,7 +4,7 @@ import { motion, AnimationControls } from 'framer-motion';
 import Stat from '../../Labels/Stat';
 
 import IStat from '../../Labels/Stat/IStat';
-// import StatChart from './StatChart';
+import StatChart from './StatChart';
 
 import { Serie } from '@nivo/line';
 import Card from '../index';
@@ -25,9 +25,16 @@ const CardStat: React.FC<IStat & IData> = ({
   return (
     <motion.div animate={animate} style={{ height: '100%' }}>
       <Card variants="bordered">
-        <PseudoBox mb="auto">
+        <PseudoBox
+          mb="auto"
+          alignItems={['center', 'center', 'initial', 'initial']}
+        >
           <Skeleton isLoaded={!loading} borderRadius="lg" maxW="100px">
-            <Text textTransform="uppercase" fontWeight="medium">
+            <Text
+              textTransform="uppercase"
+              fontWeight="medium"
+              textAlign={['center', 'center', 'left', 'left']}
+            >
               {month} {year}
             </Text>
           </Skeleton>
@@ -35,6 +42,7 @@ const CardStat: React.FC<IStat & IData> = ({
             borderBottomWidth="4px"
             borderBottomColor="gray.500"
             width={6}
+            visibility={['hidden', 'hidden', 'initial', 'initial']}
           />
         </PseudoBox>
 

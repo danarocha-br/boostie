@@ -23,10 +23,9 @@ import useDisplayInvestments from '~/contexts/displayInvestments';
 
 import { focus, unselected, selected, hover } from './styles';
 import { formatCurrency } from '~/utils';
-import { IDashboardProps } from "~/pages/Dashboard/IDashboardProps";
+import { IDashboardProps } from '~/pages/Dashboard/IDashboardProps';
 
-
-const CardAccountOverview: React.FC<IDashboardProps> = ({isLoading}) => {
+const CardAccountOverview: React.FC<IDashboardProps> = ({ isLoading }) => {
   const { barChart } = useAuth().investments;
   const displayInvestments = useDisplayInvestments().displayInvestment;
 
@@ -100,15 +99,21 @@ const CardAccountOverview: React.FC<IDashboardProps> = ({isLoading}) => {
           </Tab>
         </TabList>
         <TabPanels>
-          <TabPanel h="100%" flex="1" display="flex" mt={3}>
-            <Flex flex="2">
+          <TabPanel
+            h="100%"
+            flex="1"
+            display="flex"
+            flexDirection={['column', 'column', 'row']}
+            mt={3}
+          >
+            <Flex flex={['1', '2']} order={[2, -1, -1, -1]}>
               <BarChart isLoading={isLoading} />
             </Flex>
             <Flex
-              flex="1"
+              flex={['1', '1']}
               flexDirection="column"
-              alignItems="end"
-              ml={[10, 10, 12]}
+              alignItems={['center', 'center', 'center', 'end']}
+              ml={['', 10, 12]}
             >
               {displayInvestments ? (
                 <Stat
@@ -126,7 +131,7 @@ const CardAccountOverview: React.FC<IDashboardProps> = ({isLoading}) => {
                   isVisible={displayInvestments}
                 />
               )}
-              <List mt={8}>
+              <List display={['none', 'none', 'initial']} mt={8}>
                 {Object.entries(STATEMENT_CHART_LEGEND).map(([key, value]) => (
                   <Legend key={key} title={key} color={value.color} />
                 ))}

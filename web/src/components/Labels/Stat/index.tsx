@@ -27,8 +27,16 @@ const LabelStat: React.FC<IStat> = ({
   divider,
 }) => {
   return (
-    <Flex alignItems="center" w="100%">
-      <PseudoBox flexDirection="column" w="100%">
+    <Flex
+      as="span"
+      alignItems="center"
+      w={['initial', 'initial', 'initial', '100%']}
+    >
+      <PseudoBox
+        flexDirection="column"
+        w="100%"
+        textAlign={['center', 'center', 'left', 'left']}
+      >
         <StatLabel
           fontSize="sm"
           fontWeight="regular"
@@ -39,7 +47,11 @@ const LabelStat: React.FC<IStat> = ({
 
         <AnimatePresence>
           {isVisible ? (
-            <Skeleton isLoaded={!loading} borderRadius="lg" maxW="100px">
+            <Skeleton
+              isLoaded={!loading}
+              borderRadius="lg"
+              maxW={['initial', 'initial', 'initial', '100px']}
+            >
               <StatNumber fontSize="2xl" fontWeight="light" mt="-3px">
                 {value}
               </StatNumber>
