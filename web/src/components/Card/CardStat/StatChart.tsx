@@ -10,7 +10,7 @@ interface IStatChart {
 
 const StatChart: React.FC<IStatChart> = ({ data }) => {
   return (
-    <Flex h={60} flex="1">
+    <Flex h={60} flex="1" mt={5}>
       <ResponsiveLine
         data={data}
         margin={{ top: 5, right: 50, bottom: 10, left: 0 }}
@@ -31,13 +31,9 @@ const StatChart: React.FC<IStatChart> = ({ data }) => {
         enableGridY={false}
         colors={colors.green[900]}
         enablePoints={false}
-        pointSize={10}
-        pointColor={{ theme: 'background' }}
-        pointBorderWidth={2}
-        pointBorderColor={{ from: 'serieColor' }}
         enablePointLabel={true}
         pointLabel="y"
-        pointLabelYOffset={-12}
+        pointLabelYOffset={12}
         areaOpacity={0.15}
         useMesh={true}
         legends={[]}

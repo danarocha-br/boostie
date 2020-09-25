@@ -29,6 +29,7 @@
     "react-responsive": "^8.1.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
+    "react-use": "^15.3.4",
     "react-use-gesture": "^7.0.16",
     "styled-system": "^5.1.5",
     "typescript": "~3.7.2"

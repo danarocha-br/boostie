@@ -1,10 +1,11 @@
 import React, { useCallback } from 'react';
 import { Flex, Heading, Select, Grid } from '@chakra-ui/core';
-import { motion, useAnimation } from 'framer-motion';
+import { useAnimation, motion } from 'framer-motion';
 import { useScroll } from 'react-use-gesture';
 
 import PortfolioGraphCard from '~/components/Card/PortfolioPieChartCard';
 import CardStat from '~/components/Card/CardStat';
+// import DragSlider from '~/components/DragSlider';
 import { clamp } from './animations';
 
 import { StatCardContainer } from './styles';
@@ -75,8 +76,9 @@ const PortfolioHistory = ({ isLoading }) => {
         <StatCardContainer
           as="section"
           overflowX="scroll"
-          overflowY="initial"
+          overflowY="hidden"
           cursor="all-scroll"
+          h={['100%']}
           mr={[0, 0, 0, 8]}
           pt={6}
           pb={1}
@@ -87,30 +89,36 @@ const PortfolioHistory = ({ isLoading }) => {
             style={{
               display: 'flex',
               flexDirection: 'row',
+              height: '100%',
+              width: '100%',
             }}
             drag="x"
-            dragConstraints={{ left: '100%', right: 0 }}
-            // dragControls={dragControls}
+            dragConstraints={{
+              left: -1000,
+              right: 0,
+            }}
           >
-            {Object.entries(historyData).map(([key, value]) => {
-              return (
-                <CardStat
-                  animate={controls}
-                  key={key}
-                  value={value.value}
-                  result={value.result}
-                  month={value.month}
-                  year={value.year}
-                  data={
-                    displayInvestments && !isLoading
-                      ? generateData()
-                      : hiddenChart
-                  }
-                  isVisible={displayInvestments}
-                  loading={isLoading}
-                />
-              );
-            })}
+            {Object.entries(historyData)
+              .slice(0, -5)
+              .map(([key, value]) => {
+                return (
+                  <CardStat
+                    animate={controls}
+                    key={key}
+                    value={value.value}
+                    result={value.result}
+                    month={value.month}
+                    year={value.year}
+                    data={
+                      displayInvestments && !isLoading
+                        ? generateData()
+                        : hiddenChart
+                    }
+                    isVisible={displayInvestments}
+                    loading={isLoading}
+                  />
+                );
+              })}
           </motion.div>
         </StatCardContainer>
         <PortfolioGraphCard isLoading={isLoading} />

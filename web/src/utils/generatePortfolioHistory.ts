@@ -20,7 +20,7 @@ const generatePortfolioHistory: GeneratePortfoliosHistory = (
 ) => {
   const currentMonthsInterval = generateMonthsInterval();
 
-  return currentMonthsInterval.map((month) => {
+  return currentMonthsInterval.reverse().map((month) => {
     const value = visible ? +faker.finance.amount(60000, 80000, 2) : 1;
     let random = Math.random() * (0.0005 - -0.0001) + -0.0001;
     const result = (value * random).toFixed(2);

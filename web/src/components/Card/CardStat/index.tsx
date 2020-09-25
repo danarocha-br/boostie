@@ -23,9 +23,10 @@ const CardStat: React.FC<IStat & IData> = ({
   animate,
 }) => {
   return (
-    <motion.div animate={animate} style={{ height: '100%' }}>
+    <motion.article animate={animate} style={{ height: '100%' }}>
       <Card variants="bordered">
         <PseudoBox
+          as="header"
           mb="auto"
           alignItems={['center', 'center', 'initial', 'initial']}
         >
@@ -48,7 +49,7 @@ const CardStat: React.FC<IStat & IData> = ({
 
         <StatChart data={data} />
 
-        <Flex flexDirection="column">
+        <Flex flexDirection="column" as="label" mb={4}>
           <Stat
             type={Number(result) < 0 ? 'decrease' : 'increase'}
             value={value}
@@ -59,7 +60,7 @@ const CardStat: React.FC<IStat & IData> = ({
           />
         </Flex>
       </Card>
-    </motion.div>
+    </motion.article>
   );
 };
 

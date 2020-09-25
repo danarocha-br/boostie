@@ -31,7 +31,7 @@ const Login: React.FC = () => {
       signIn(inputValue);
       history.push('/dashboard');
     },
-    [inputValue],
+    [inputValue, history, signIn],
   );
 
   return (
