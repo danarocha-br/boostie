@@ -7,6 +7,10 @@
 <br /><br />
 <p align="center" >
   This implementation is part of the design project: <br /> <a href="https://www.behance.net/gallery/103975967/Improving-Investment-Platforms">Boostie - Improving investment platforms</a>.
+  
+  [![Netlify Status](https://api.netlify.com/api/v1/badges/500c6087-aa13-4630-b302-fb0a89bfa710/deploy-status)](https://app.netlify.com/sites/boostie/deploys)
+  [![Codacy Badge](https://app.codacy.com/project/badge/Grade/b0135ed3438f4460a7c37da5d2aa16d2)](https://www.codacy.com/manual/danarocha-br/boostie/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=danarocha-br/boostie&amp;utm_campaign=Badge_Grade)
+  ![Language Badge](https://img.shields.io/github/languages/count/danarocha-br/boostie)
 </p>
 <br />
 <img alt="Boostie App" src="https://res.cloudinary.com/danarocha/image/upload/v1600347001/Browsers_k153r7.jpg"  />
