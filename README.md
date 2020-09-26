@@ -11,16 +11,20 @@
 <br />
 <img alt="Boostie App" src="https://res.cloudinary.com/danarocha/image/upload/v1600347001/Browsers_k153r7.jpg"  />
 
-<p align="center">
+<p align="center" >
+<br />
+<br />
   <a href="https://boostie.netlify.app" target="_blank">
-    <img alt="Demo on Netlify" src="">
+    <img width='270px' alt="Demo on Netlify" src="https://res.cloudinary.com/danarocha/image/upload/v1601147332/github/netlify-button_gyy8w9.png"
   </a>
+  <br />
+  <br />
 </p>
 
 ## :rocket: Built With
 
 - [ReactJS](https://reactjs.org/)
-- [Typescript][ts]
+- [Typescript](https://www.typescriptlang.org/)
 - [react-router-dom](https://github.com/ReactTraining/react-router)
 - [chakra-ui](https://chakra-ui.com/)
 - [emotion](https://emotion.sh/docs/styled)
@@ -55,7 +59,7 @@ To install the dependencies.
 ### `yarn start`
 
 Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Open <http://localhost:3000> to view it in the browser.
 
 ## :memo: License
 
