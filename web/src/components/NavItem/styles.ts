@@ -1,11 +1,10 @@
 import styled from '@emotion/styled/macro';
 import { darken } from 'polished';
+import { ListItem as ListItemChakra } from '@chakra-ui/core';
 
 import colors from '../../styles/colors';
 
-export const ListItem = styled.li`
-  margin-top: 42px;
-
+export const ListItem = styled(ListItemChakra)`
   a {
     display: flex;
     align-items: center;
@@ -27,8 +26,7 @@ export const ListItem = styled.li`
       cursor: ${(props) => (props.disabled ? 'not-allowed' : 'pointer')};
 
       /* &:after {
-        opacity: ${(props) =>
-        props.disabled ? 1 : 0};
+        opacity: ${(props) => (props.disabled ? 1 : 0)};
       } */
     }
 

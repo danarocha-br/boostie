@@ -1,39 +1,95 @@
 import React from 'react';
 import {
-  Flex,
+  Divider,
   StatLabel,
   StatNumber,
   StatHelpText,
   StatArrow,
+  Skeleton,
+  PseudoBox,
+  Flex,
 } from '@chakra-ui/core';
+import { AnimatePresence } from 'framer-motion';
 
 import IStat from './IStat';
+import {
+  AnimatedContainerLarge,
+  AnimatedContainerSmall,
+} from './AnimatedContainer';
 
-const LabelStat: React.FC<IStat> = ({ currency, value, type, result }) => {
+const LabelStat: React.FC<IStat> = ({
+  value,
+  type,
+  result,
+  loading,
+  isVisible,
+  title,
+  divider,
+}) => {
   return (
-    <Flex flexDirection="column">
-      <StatLabel fontSize="sm" fontWeight="regular">
-        Portfolio Value
-      </StatLabel>
-      <StatNumber fontSize="2xl" fontWeight="light" mt="-5px">
-        {currency}
-        {value}
-      </StatNumber>
-
-      <StatHelpText
-        mt="-5px"
-        color={type === 'decrease' ? 'red.900' : 'green.900'}
+    <Flex
+      as="span"
+      alignItems="center"
+      w={['initial', 'initial', 'initial', '100%']}
+    >
+      <PseudoBox
+        flexDirection="column"
+        w="100%"
+        textAlign={['center', 'center', 'left', 'left']}
       >
-        <StatArrow
-          type={type === 'decrease' ? 'decrease' : 'increase'}
-          color={type === 'decrease' ? 'red.900' : 'green.900'}
-          name={type === 'decrease' ? 'arrow-down' : 'arrow-up'}
-          size="14px"
-        />
-        {result}
-      </StatHelpText>
+        <StatLabel
+          fontSize="sm"
+          fontWeight="regular"
+          textTransform="capitalize"
+        >
+          {title}
+        </StatLabel>
+
+        <AnimatePresence>
+          {isVisible ? (
+            <Skeleton
+              isLoaded={!loading}
+              borderRadius="lg"
+              maxW={['initial', 'initial', 'initial', '100px']}
+            >
+              <StatNumber fontSize="2xl" fontWeight="light" mt="-3px">
+                {value}
+              </StatNumber>
+            </Skeleton>
+          ) : (
+            <AnimatedContainerLarge />
+          )}
+        </AnimatePresence>
+        <AnimatePresence>
+          {isVisible && !loading ? (
+            <StatHelpText
+              mt="-5px"
+              color={type === 'decrease' ? 'red.900' : 'green.900'}
+            >
+              {type && (
+                <StatArrow
+                  type={type === 'decrease' ? 'decrease' : 'increase'}
+                  color={type === 'decrease' ? 'red.900' : 'green.900'}
+                  name={type === 'decrease' ? 'arrow-down' : 'arrow-up'}
+                  size="14px"
+                />
+              )}
+              {!loading && result}
+            </StatHelpText>
+          ) : (
+            type && !loading && <AnimatedContainerSmall />
+          )}
+        </AnimatePresence>
+      </PseudoBox>
+      {divider && <Divider orientation="vertical" height="30px" mr={5} />}
     </Flex>
   );
+};
+
+LabelStat.defaultProps = {
+  isVisible: true,
+  title: 'Portfolio value',
+  currency: '$',
 };
 
 export default LabelStat;

@@ -1,20 +1,24 @@
 import React from 'react';
 import { PseudoBox } from '@chakra-ui/core';
-import { darken, transparentize } from 'polished';
+import { transparentize } from 'polished';
 
-import colors from '../../styles/colors';
+import colors from '~/styles/colors';
 
 interface ICardProps {
   variants?: string | undefined;
+  bg?: string | undefined;
   children?: React.ReactNode;
 }
 
-const Card: React.FC<ICardProps> = ({ children, variants }) => {
-  function VariCard(variants: string | undefined) {
+const Card: React.FC<ICardProps> = ({ children, variants, bg }) => {
+  function VariantCard(variants: string | undefined) {
     switch (variants) {
       case 'bordered':
         return (
           <PseudoBox
+            flexShrink={0}
+            alignContent="space-between"
+            justifyContent="space-between"
             p={6}
             rounded="small"
             bg="transparent"
@@ -36,15 +40,18 @@ const Card: React.FC<ICardProps> = ({ children, variants }) => {
           <PseudoBox
             p={6}
             rounded="small"
-            bg="purple.900"
+            bg={bg}
             w="100%"
             h="100%"
             variants={variants}
             boxShadow="0px 7px 5px rgba(0, 0, 0, 0.01)"
             transition="background .3s ease-in-out"
-            _hover={{
-              bg: darken(0.2, colors.purple[900]),
-            }}
+            position="relative"
+            _hover={
+              {
+                // bg: darken(0.2, `${bg}`),
+              }
+            }
           >
             {children}
           </PseudoBox>
@@ -72,11 +79,12 @@ const Card: React.FC<ICardProps> = ({ children, variants }) => {
     }
   }
 
-  return VariCard(variants);
+  return VariantCard(variants);
 };
 
 Card.defaultProps = {
   variants: 'default',
+  bg: colors.purple[900],
 };
 
 export default Card;

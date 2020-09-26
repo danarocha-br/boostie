@@ -1,27 +1,55 @@
 import React from 'react';
-import { Flex } from '@chakra-ui/core';
+import { Grid } from '@chakra-ui/core';
+import { motion } from 'framer-motion';
 
 import CardOffer from '../../components/Card/CardOffer';
 import CardAccountOverview from '../../components/Card/CardAccountOverview';
+import { animateCards } from './animations';
 
-const DashboardOverview: React.FC = () => {
+import { IDashboardProps } from './IDashboardProps';
+
+const AnimatedContainer = motion.custom(Grid);
+const AnimatedCard = motion.custom(Grid);
+
+const DashboardOverview: React.FC<IDashboardProps> = ({ isLoading }) => {
   return (
-    <Flex
-      h={'290px'}
-      w="100%"
-      flexDirection={['column', 'column', 'row', 'row']}
+    <AnimatedContainer
+      height={['100%', '100%', '290px']}
+      width="100%"
+      templateColumns={['100%', '100%', '100%', '400px 1fr']}
     >
-      <Flex
-        w={{ base: '100%', sm: 4, md: 1.5 / 4 }}
+      <AnimatedCard
+        variants={animateCards}
+        initial="unmounted"
+        animate="mounted"
+        exit="exit"
+        key="offer"
         pr={6}
-        display={['none', 'none', 'flex']}
+        display={['none', 'none', 'none', 'flex']}
       >
         <CardOffer />
-      </Flex>
-      <Flex w={{ base: '100%', sm: 4, md: 2.5 / 4 }}>
-        <CardAccountOverview />
-      </Flex>
-    </Flex>
+      </AnimatedCard>
+      <AnimatedCard
+        initial={{
+          y: 100,
+          opacity: 0,
+        }}
+        animate={{
+          y: 0,
+          opacity: 1,
+          transition: {
+            delay: 0.3,
+            duration: 0.7,
+            type: 'spring',
+          },
+        }}
+        exit="exit"
+        key="overview"
+        w="100%"
+      >
+        <CardAccountOverview isLoading={isLoading} />
+      </AnimatedCard>
+    </AnimatedContainer>
   );
 };
 

@@ -1,31 +1,44 @@
 import React, { memo } from 'react';
 import { Flex, Icon, Select, PseudoBox, Text } from '@chakra-ui/core';
+import { useMediaQuery } from 'react-responsive';
 
-import ButtonGooey from '../Button/ButtonGooey';
+// import ButtonGooey from '../Button/ButtonGooey';
 import Button from '../Button';
+import { AnimatedContainer } from './styles';
+import { animateHeader } from './animation';
+import { TabletOrMobile } from '~/utils/breakpoints';
 
 const Navbar: React.FC = () => {
+  const isTabletOrMobile = useMediaQuery({ query: TabletOrMobile });
+
   return (
-    <PseudoBox
-      as="header"
-      gridArea="header"
-      h="100%"
-      bg="gray.50"
-      borderBottomLeftRadius="xlarge"
+    <AnimatedContainer
+      initial="unmounted"
+      animate="mounted"
+      variants={animateHeader}
+      layout
+      transition={{
+        delay: 0.1,
+        type: 'spring',
+        duration: 0.7,
+      }}
     >
       <Flex
         justifyContent="flex-end"
         alignItems="center"
         height="100%"
-        p="8"
-        h="110px"
+        py="8"
+        px={[8, 8, 8, 12, 20]}
+        h={['10px', '10px', '110px']}
       >
-        <PseudoBox display="flex">
-          <Icon name="sun" color="gray.500" size="22px" mr="3" />
-          <Text color="gray.500" fontWeight="regular" mr="16">
-            US Stock market opens in 3 hours
-          </Text>
-        </PseudoBox>
+        {!isTabletOrMobile && (
+          <PseudoBox display="flex">
+            <Icon name="sun" color="gray.500" size="22px" mr="3" />
+            <Text color="gray.500" fontWeight="regular" mr="16">
+              US Stock market opens in 3 hours
+            </Text>
+          </PseudoBox>
+        )}
 
         <Select
           placeholder="Main Wallet"
@@ -49,7 +62,7 @@ const Navbar: React.FC = () => {
           onWalletClick={() => 'clicked'}
         ></ButtonGooey> */}
       </Flex>
-    </PseudoBox>
+    </AnimatedContainer>
   );
 };
 

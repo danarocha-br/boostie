@@ -4,7 +4,7 @@ import { darken, transparentize } from 'polished';
 
 import { ButtonThemes, ButtonSizes } from './ButtonTypes';
 
-import colors from '../../styles/colors';
+import colors from '~/styles/colors';
 
 interface IButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   label?: string;
@@ -56,11 +56,12 @@ const Button: React.FC<IButtonProps> = ({
     <PseudoBox
       as="button"
       height={renderSizes(size)}
+      width={variants === 'block' ? '100%' : 'initial'}
       lineHeight="1.2"
       outline="none"
       border="1px solid transparent"
       px={size === 'lg' ? 5 : '12px'}
-      rounded={size === 'lg' ? '15px' : '10px'}
+      rounded={size === 'lg' ? '12px' : '10px'}
       fontSize={size === 'lg' ? '18px' : '16px'}
       fontWeight="semibold"
       color={theme === 'transparent' ? 'gray.900' : 'white'}

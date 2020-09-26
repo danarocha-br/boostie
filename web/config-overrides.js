@@ -8,10 +8,10 @@ const isDevelopment = process.env.NODE_ENV === 'development';
 
 module.exports = override(
   isDevelopment && addWebpackPlugin(new ReactRefreshPlugin()),
-  // addBabelPlugin([
-  //   'babel-plugin-root-import',
-  //   {
-  //     rootPathSuffix: 'src',
-  //   },
-  // ]),
+  addBabelPlugin([
+    'babel-plugin-root-import',
+    {
+      rootPathSuffix: 'src',
+    },
+  ]),
 );

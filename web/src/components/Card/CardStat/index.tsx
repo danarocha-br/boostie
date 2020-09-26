@@ -1,38 +1,66 @@
 import React from 'react';
-import { Flex, Text, PseudoBox, Divider } from '@chakra-ui/core';
-
-import Card from '../index';
+import { Flex, Text, PseudoBox, Divider, Skeleton } from '@chakra-ui/core';
+import { motion, AnimationControls } from 'framer-motion';
 import Stat from '../../Labels/Stat';
 
 import IStat from '../../Labels/Stat/IStat';
+import StatChart from './StatChart';
 
-const CardStat: React.FC<IStat> = ({
-  type,
+import { Serie } from '@nivo/line';
+import Card from '../index';
+
+type IData = { data: Serie[]; animate: AnimationControls };
+
+const CardStat: React.FC<IStat & IData> = ({
   value,
   currency,
   result,
   month,
   year,
+  data,
+  isVisible,
+  loading,
+  animate,
 }) => {
   return (
-    <Card variants="bordered">
-      <Flex flexDirection="column" alignContent="space-between" h="100%">
-        <PseudoBox mb="auto">
-          <Text textTransform="uppercase" fontWeight="medium">
-            {month} {year}
-          </Text>
+    <motion.article animate={animate} style={{ height: '100%' }}>
+      <Card variants="bordered">
+        <PseudoBox
+          as="header"
+          mb="auto"
+          alignItems={['center', 'center', 'initial', 'initial']}
+        >
+          <Skeleton isLoaded={!loading} borderRadius="lg" maxW="100px">
+            <Text
+              textTransform="uppercase"
+              fontWeight="medium"
+              textAlign={['center', 'center', 'left', 'left']}
+            >
+              {month} {year}
+            </Text>
+          </Skeleton>
           <Divider
             borderBottomWidth="4px"
             borderBottomColor="gray.500"
             width={6}
+            visibility={['hidden', 'hidden', 'initial', 'initial']}
           />
         </PseudoBox>
 
-        <Flex flexDirection="column">
-          <Stat type={type} value={value} currency={currency} result={result} />
+        <StatChart data={data} />
+
+        <Flex flexDirection="column" as="label" mb={4}>
+          <Stat
+            type={Number(result) < 0 ? 'decrease' : 'increase'}
+            value={value}
+            currency={currency}
+            result={result}
+            isVisible={isVisible}
+            loading={loading}
+          />
         </Flex>
-      </Flex>
-    </Card>
+      </Card>
+    </motion.article>
   );
 };
 
