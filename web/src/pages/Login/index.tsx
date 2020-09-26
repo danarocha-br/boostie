@@ -6,6 +6,7 @@ import {
   Flex,
   Image,
   Text,
+  Heading,
 } from '@chakra-ui/core';
 import { useHistory } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -30,7 +31,7 @@ const Login: React.FC = () => {
       signIn(inputValue);
       history.push('/dashboard');
     },
-    [inputValue],
+    [inputValue, history, signIn],
   );
 
   return (
@@ -45,13 +46,13 @@ const Login: React.FC = () => {
           alignItems="center"
           justifyContent="center"
           flexDirection="column"
-          w={['100%', '400px']}
+          w={['100%', '450px']}
           bg="white"
           rounded="small"
           px={12}
           py={10}
           zIndex={1}
-          boxShadow="0px 10px 40px -10px rgba(0,64,128,0.05)"
+          boxShadow="0px 10px 40px 10px rgba(0,64,128,0.05)"
         >
           <form onSubmit={handleSubmit}>
             <FormControl
@@ -63,10 +64,14 @@ const Login: React.FC = () => {
             >
               <Image
                 display="flex"
-                src="https://res.cloudinary.com/danarocha/image/upload/v1600523763/github/boostie-logo_oymwns.png"
+                src="https://res.cloudinary.com/danarocha/image/upload/v1601053438/github/boostie-logo_ezcwor.png"
                 w="150px"
                 mb={12}
               ></Image>
+
+              <Heading fontSize="lg" fontWeight="medium" pb={8}>
+                Login to dashboard
+              </Heading>
 
               <Text
                 textAlign="center"
@@ -98,7 +103,7 @@ const Login: React.FC = () => {
               />
             </FormControl>
             <Button
-              label="Ready to Go"
+              label="Ready to go"
               variants="block"
               theme="success"
               size="lg"

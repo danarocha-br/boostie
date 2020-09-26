@@ -1,5 +1,5 @@
 <h2 align="center">
-    <img alt="Boostie logo" src="https://res.cloudinary.com/danarocha/image/upload/v1600066654/github/boostie_logo_t2zya5.png"  width="180px"/>
+    <img alt="Boostie logo" src="https://res.cloudinary.com/danarocha/image/upload/v1601053438/github/boostie-logo_ezcwor.png"  width="180px"/>
     <br />
     <br />
     Investment platform design implementation
@@ -34,9 +34,23 @@
 - es6 syntax and babel
 - [ESLint][vceslint] + Prettier + [VS Code][vscode] with [EditorConfig][vceditconfig]
 
+## :fire: Functionalities
+
+Currently this is a dashboard UI implementation using the faker api.
+
+- Login: just a fake login to simulate loading and fetching data to compose the dashboard.
+  <br />
+- Dashboard:
+  - hide and show financial data and graphs.
+  - some nice animations :)
+
 ## :zap: How to run
 
 In the web directory, you can run:
+
+### `yarn or npm i`
+
+To install the dependencies.
 
 ### `yarn start`
 
@@ -50,9 +64,3 @@ This project is under the MIT license. See the [LICENSE](https://github.com/dana
 ---
 
 Made with ♥ by Dana Rocha :wave: [Get in touch!](https://www.linkedin.com/in/danarocha/)
-
-[ts]: https://www.typescriptlang.org
-[vscode]: https://code.visualstudio.com/
-[yarn]: https://yarnpkg.com/
-[vceditconfig]: https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig
-[vceslint]: https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint
