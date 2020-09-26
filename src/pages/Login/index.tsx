@@ -29,7 +29,7 @@ const Login: React.FC = () => {
   const handleSubmit = useCallback(
     (e: React.FormEvent<HTMLFormElement>): void => {
       signIn(inputValue);
-      history.push('/dashboard');
+      history.push('/');
     },
     [inputValue, history, signIn],
   );
