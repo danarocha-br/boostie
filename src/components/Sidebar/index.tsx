@@ -103,7 +103,7 @@ const Sidebar: React.FC<IDashboardProps> = ({ isLoading }) => {
         <List>
           <NavItem
             icon="logout"
-            link="/"
+            link="/login"
             title="Logout"
             loading={isLoading}
             onClick={handleSignOut}

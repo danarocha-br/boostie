@@ -11,11 +11,11 @@ const Routes = () => {
   const { pathname } = location;
 
   return (
-    <AnimatePresence exitBeforeEnter={pathname === '/dashboard'}>
+    <AnimatePresence exitBeforeEnter={pathname === '/'}>
       <Switch location={location} key={pathname}>
         <Route path="/login" exact component={Login} />
 
-        <PrivateRoute path="/dashboard" exact component={Dashboard} />
+        <PrivateRoute path="/" component={Dashboard} />
 
         <Route render={() => <Redirect to="/login" />} />
       </Switch>
