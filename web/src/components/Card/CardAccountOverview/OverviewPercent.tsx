@@ -67,21 +67,22 @@ const OverviewPercent: React.FC<OverviewPercentProps> = ({
           isVisible={isVisible}
           divider
         />
+
         <LabelStat
           key="5"
-          title="Performance Today"
-          value="-$ 120,67"
-          result="-5.65 %"
-          type="decrease"
+          title="Currency Gain"
+          value="-$ 8,67"
+          result="0.87 %"
+          type="increase"
           isVisible={isVisible}
           divider
         />
         <LabelStat
           key="6"
-          title="Currency Gain"
-          value="-$ 8,67"
-          result="0.87 %"
-          type="increase"
+          title="Performance Today"
+          value="-$ 4,45"
+          result="-5.87 %"
+          type="decrease"
           isVisible={isVisible}
         />
       </Grid>
